@@ -1,0 +1,105 @@
+{
+  "start": {
+    "type": "text",
+    "message": "Welcome to Zilla Parishad Buldhana. Please select a department:",
+    "interactive": {
+      "type": "list",
+      "button": "Departments",
+      "options": [
+        {"id": "education", "title": "Education"},
+        {"id": "health", "title": "Health"},
+        {"id": "agriculture", "title": "Agriculture"},
+        {"id": "social_welfare", "title": "Social Welfare"},
+        {"id": "public_works", "title": "Public Works"}
+      ]
+    }
+  },
+  "departments": {
+    "education": {
+      "type": "text",
+      "message": "Education Department: Select a service:",
+      "interactive": {
+        "type": "list",
+        "button": "Education Services",
+        "options": [
+          {"id": "school_info", "title": "Schools Info"},
+          {"id": "midday_meal", "title": "Midday Meal Scheme"},
+          {"id": "scholarships", "title": "Scholarships"}
+        ]
+      }
+    },
+    "health": {
+      "type": "text",
+      "message": "Health Department: Select a service:",
+      "interactive": {
+        "type": "list",
+        "button": "Health Services",
+        "options": [
+          {"id": "hospitals", "title": "Hospitals Info"},
+          {"id": "vaccination", "title": "Vaccination Schedule"},
+          {"id": "health_schemes", "title": "Health Schemes"}
+        ]
+      }
+    },
+    "agriculture": {
+      "type": "text",
+      "message": "Agriculture Department: Select a service:",
+      "interactive": {
+        "type": "list",
+        "button": "Agriculture Services",
+        "options": [
+          {"id": "farmer_schemes", "title": "Farmer Schemes"},
+          {"id": "crop_info", "title": "Crop Info & Guidance"},
+          {"id": "soil_testing", "title": "Soil Testing Centers"}
+        ]
+      }
+    },
+    "social_welfare": {
+      "type": "text",
+      "message": "Social Welfare Department: Select a service:",
+      "interactive": {
+        "type": "list",
+        "button": "Social Welfare Services",
+        "options": [
+          {"id": "pension_schemes", "title": "Pension Schemes"},
+          {"id": "welfare_programs", "title": "Welfare Programs"},
+          {"id": "grievance_redressal", "title": "Grievance Redressal"}
+        ]
+      }
+    },
+    "public_works": {
+      "type": "text",
+      "message": "Public Works Department: Select a service:",
+      "interactive": {
+        "type": "list",
+        "button": "Public Works",
+        "options": [
+          {"id": "road_projects", "title": "Road Projects"},
+          {"id": "water_supply", "title": "Water Supply Projects"},
+          {"id": "infrastructure", "title": "Other Infrastructure"}
+        ]
+      }
+    }
+  },
+  "services": {
+    "school_info": {"type": "text", "message": "List of all schools in Buldhana district:\n1. XYZ School\n2. ABC School\n3. DEF School", "next": "education"},
+    "midday_meal": {"type": "text", "message": "Midday Meal Scheme ensures nutrition for students in all government schools. More info: https://buldhana.nic.in/education/midday-meal", "next": "education"},
+    "scholarships": {"type": "text", "message": "Scholarships available for students: Merit-based, SC/ST/OBC, and Minority Scholarships. Apply online at: https://buldhana.nic.in/education/scholarships", "next": "education"},
+
+    "hospitals": {"type": "text", "message": "List of Government Hospitals:\n1. Civil Hospital Buldhana\n2. Primary Health Centers\n3. Community Health Centers", "next": "health"},
+    "vaccination": {"type": "text", "message": "Vaccination schedule for children & adults is available at all government hospitals. More info: https://buldhana.nic.in/health/vaccination", "next": "health"},
+    "health_schemes": {"type": "text", "message": "Health Schemes: Ayushman Bharat, Free Medical Camps, Health Insurance for Low-income Families.", "next": "health"},
+
+    "farmer_schemes": {"type": "text", "message": "Farmer Schemes: PM-Kisan, Subsidies on seeds and fertilizers. Visit: https://buldhana.nic.in/agriculture/schemes", "next": "agriculture"},
+    "crop_info": {"type": "text", "message": "Crop Guidance: Information on sowing, pest control, and irrigation for all major crops in Buldhana.", "next": "agriculture"},
+    "soil_testing": {"type": "text", "message": "Soil Testing Centers: Locations and timings available at local Agriculture Offices.", "next": "agriculture"},
+
+    "pension_schemes": {"type": "text", "message": "Pension Schemes: Old Age Pension, Widow Pension, Disability Pension. Apply online at: https://buldhana.nic.in/social-welfare/pension", "next": "social_welfare"},
+    "welfare_programs": {"type": "text", "message": "Welfare Programs: Women Empowerment, Child Welfare, Tribal Welfare Programs.", "next": "social_welfare"},
+    "grievance_redressal": {"type": "text", "message": "Grievance Redressal: Submit complaints online or contact your nearest ZP office.", "next": "social_welfare"},
+
+    "road_projects": {"type": "text", "message": "Current Road Projects: Buldhana-Malkapur, Khamgaon-Buldhana, etc.", "next": "public_works"},
+    "water_supply": {"type": "text", "message": "Water Supply Projects: Rural water supply, new pipelines, maintenance updates.", "next": "public_works"},
+    "infrastructure": {"type": "text", "message": "Other Infrastructure Projects: Bridges, government buildings, and drainage projects.", "next": "public_works"}
+  }
+}

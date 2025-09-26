@@ -1,41 +1,37 @@
+
+
+
 from flask import Flask, request, jsonify
 import requests
 import os
+import json
 
-# Environment variables for security
-ACCESS_TOKEN = "EAAYtyB9hTPsBPla6eZBvA79i16Qud60wVwm5XjbvEPJEnzpdnnw8Glnw75jbv3jbvFp0feevoTQd80hiqc3YmZCoKy1nHANYcw3mASrcSv1i4BtrS8oJcOj90cRQWjBb0sUf2jVanclzOtv6QusCb3rI2pm6bbev2tKOQ8ZBVdedZCivZCXQoqnYCECWLpaZAZAUFZA9Mv2ognqb6uZC6GJQlSipX1Oqiny6bNos6MDeu7JXFVgZDZD"  # from Meta App Dashboard
+# Load credentials from JSON
+with open("credentials.json") as cred_file:
+    creds = json.load(cred_file)
 
-VERIFY_TOKEN = "123456"
-PHONE_NUMBER_ID = "729844620223276"
+ACCESS_TOKEN = creds["ACCESS_TOKEN"]
+VERIFY_TOKEN = creds["VERIFY_TOKEN"]
+PHONE_NUMBER_ID = creds["PHONE_NUMBER_ID"]
 
 app = Flask(__name__)
 
-# Simple in-memory user states
+# Load JSON flow
+with open("zp_buldhana_flow.json") as f:
+    flow = json.load(f)
+
+# Track user states
 user_states = {}
 
-# Products info
-products_info = {
-    "eng": {
-        "product1": "ZP Buldhana Product 1: Description in English",
-        "product2": "ZP Buldhana Product 2: Description in English",
-    },
-    "mar": {
-        "product1": "ZP Buldhana उत्पादन 1: मराठीत माहिती",
-        "product2": "ZP Buldhana उत्पादन 2: मराठीत माहिती",
-    }
-}
-
-# Webhook verification
 @app.route("/webhook", methods=["GET"])
-def verify_webhook():
+def verify():
     mode = request.args.get("hub.mode")
     token = request.args.get("hub.verify_token")
     challenge = request.args.get("hub.challenge")
-    if mode and token and mode == "subscribe" and token == VERIFY_TOKEN:
+    if mode == "subscribe" and token == VERIFY_TOKEN:
         return challenge, 200
     return "Verification failed", 403
 
-# Webhook receiver
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
@@ -49,10 +45,8 @@ def webhook():
                 from_number = msg.get("from")
                 msg_body = None
 
-                # Text messages
                 if msg.get("text"):
                     msg_body = msg["text"].get("body").strip().lower()
-                # Interactive messages (list/button)
                 elif msg.get("interactive"):
                     interactive = msg["interactive"]
                     if interactive["type"] == "button_reply":
@@ -61,116 +55,83 @@ def webhook():
                         msg_body = interactive["list_reply"]["id"]
 
                 if msg_body:
-                    handle_user_message(from_number, msg_body)
+                    handle_message(from_number, msg_body)
 
     return jsonify({"status": "ok"}), 200
 
-# Handle user state and messages
-def handle_user_message(user, message):
+def handle_message(user, msg):
     state = user_states.get(user, "start")
 
     if state == "start":
-        send_language_list(user)
-        user_states[user] = "language"
+        send_node(user, "start")
+        user_states[user] = "departments"
+        return
 
-    elif state == "language":
-        if message in ["eng", "english"]:
-            send_product_list(user, "eng")
-            user_states[user] = "menu_eng"
-        elif message in ["mar", "marathi"]:
-            send_product_list(user, "mar")
-            user_states[user] = "menu_mar"
+    # Departments menu
+    if state == "departments":
+        if msg in flow["departments"]:
+            user_states[user] = msg
+            send_node(user, "departments", msg)
         else:
-            send_language_list(user)
+            send_node(user, "start")
+        return
 
-    elif state in ["menu_eng", "menu_mar"]:
-        lang = "eng" if state == "menu_eng" else "mar"
-        if message in products_info[lang]:
-            send_whatsapp_message(user, products_info[lang][message])
+    # Services menu
+    if state in flow["departments"]:
+        service_node = flow["departments"][state]["interactive"]["options"]
+        valid_ids = [opt["id"] for opt in service_node]
+        if msg in valid_ids:
+            send_node(user, "services", msg)
         else:
-            send_product_list(user, lang)
+            send_node(user, "departments", state)
+        return
 
-# Send plain text message
-def send_whatsapp_message(to, message_text):
+def send_node(user, category, msg_id=None):
+    if category == "start":
+        node = flow["start"]
+        send_interactive(user, node["interactive"], node["message"])
+    elif category == "departments":
+        node = flow["departments"][msg_id]
+        send_interactive(user, node["interactive"], node["message"])
+    elif category == "services":
+        node = flow["services"][msg_id]
+        send_text(user, node["message"])
+
+def send_text(to, text):
     url = f"https://graph.facebook.com/v21.0/{PHONE_NUMBER_ID}/messages"
-    headers = {
-        "Authorization": f"Bearer {ACCESS_TOKEN}",
-        "Content-Type": "application/json"
-    }
     payload = {
         "messaging_product": "whatsapp",
         "to": to,
         "type": "text",
-        "text": {"body": message_text}
+        "text": {"body": text}
     }
+    headers = {"Authorization": f"Bearer {ACCESS_TOKEN}", "Content-Type": "application/json"}
     resp = requests.post(url, headers=headers, json=payload)
-    print("Text message sent:", resp.status_code, resp.text)
-    return resp.json()
+    print("Text sent:", resp.status_code, resp.text)
 
-# Send interactive list message
-def send_interactive_message(payload):
-    url = f"https://graph.facebook.com/v21.0/{PHONE_NUMBER_ID}/messages"
-    headers = {
-        "Authorization": f"Bearer {ACCESS_TOKEN}",
-        "Content-Type": "application/json"
-    }
-    resp = requests.post(url, headers=headers, json=payload)
-    print("Interactive message sent:", resp.status_code, resp.text)
-    return resp.json()
-
-# Language selection list
-def send_language_list(to):
+def send_interactive(to, interactive_data, text):
     payload = {
         "messaging_product": "whatsapp",
         "to": to,
         "type": "interactive",
         "interactive": {
-            "type": "list",
-            "body": {"text": "Hello! Welcome to ZP Buldhana. Please choose your language:"},
+            "type": interactive_data["type"],
+            "body": {"text": text},
             "action": {
-                "button": "Choose Language",
+                "button": interactive_data.get("button"),
                 "sections": [
-                    {
-                        "title": "Languages",
-                        "rows": [
-                            {"id": "eng", "title": "English"},
-                            {"id": "mar", "title": "Marathi"}
-                        ]
-                    }
+                    {"title": "Options", "rows": interactive_data["options"]}
                 ]
             }
         }
     }
-    send_interactive_message(payload)
-
-# Product selection list
-def send_product_list(to, lang):
-    payload = {
-        "messaging_product": "whatsapp",
-        "to": to,
-        "type": "interactive",
-        "interactive": {
-            "type": "list",
-            "body": {"text": "Please select a product:"},
-            "action": {
-                "button": "Products",
-                "sections": [
-                    {
-                        "title": "ZP Buldhana Products",
-                        "rows": [
-                            {"id": "product1", "title": "Product 1" if lang=="eng" else "उत्पादन 1"},
-                            {"id": "product2", "title": "Product 2" if lang=="eng" else "उत्पादन 2"}
-                        ]
-                    }
-                ]
-            }
-        }
-    }
-    send_interactive_message(payload)
+    headers = {"Authorization": f"Bearer {ACCESS_TOKEN}", "Content-Type": "application/json"}
+    resp = requests.post(f"https://graph.facebook.com/v21.0/{PHONE_NUMBER_ID}/messages", headers=headers, json=payload)
+    print("Interactive sent:", resp.status_code, resp.text)
 
 @app.route("/")
 def home():
-    return "WhatsApp ZP Buldhana Interactive Bot running!", 200
+    return "WhatsApp ZP Buldhana Bot running!", 200
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
