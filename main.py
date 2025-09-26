@@ -1,21 +1,21 @@
   # you define this
-ACCESS_TOKEN = "EAAYtyB9hTPsBPtJDJlWIKVAUDZAUXedhocIFduHHGY3sbnns0yP9NGNGBS8A3Jz1wJn7c3YjunespGydPY2VezZAY8DuL1bAihZCvZCv0YXznUxw0USaZBfByrA3mzB8MtVxUgGff1FCZAjy38Ynj0dSZAzLotfKUNcswscOUBmNqNem2YsPRpryFQrxYFZB1YIupzwNcZClxkLwi67NH6l2whnDbF3qqYnyd0fMXSg4HZBfcaiAZDZD"  # from Meta App Dashboard
 from flask import Flask, request, jsonify
 import requests
 import os
 
+ACCESS_TOKEN = "EAAYtyB9hTPsBPla6eZBvA79i16Qud60wVwm5XjbvEPJEnzpdnnw8Glnw75jbv3jbvFp0feevoTQd80hiqc3YmZCoKy1nHANYcw3mASrcSv1i4BtrS8oJcOj90cRQWjBb0sUf2jVanclzOtv6QusCb3rI2pm6bbev2tKOQ8ZBVdedZCivZCXQoqnYCECWLpaZAZAUFZA9Mv2ognqb6uZC6GJQlSipX1Oqiny6bNos6MDeu7JXFVgZDZD"  # from Meta App Dashboard
+                
 app = Flask(__name__)
-# 08ecb69c3741be3a2b4515209a795268
-# These should be environment variables or securely stored in production
-VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "my_verify_token")
-PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID", "your_phone_number_id")
+
+VERIFY_TOKEN = "123456"
+PHONE_NUMBER_ID = "729844620223276"
 
 @app.route("/webhook", methods=["GET"])
 def verify_webhook():
-    # Verify webhook setup (sent by Meta during webhook subscription)
     mode = request.args.get("hub.mode")
     token = request.args.get("hub.verify_token")
     challenge = request.args.get("hub.challenge")
+
     if mode and token:
         if mode == "subscribe" and token == VERIFY_TOKEN:
             return challenge, 200
@@ -24,10 +24,8 @@ def verify_webhook():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
-    # Log incoming data for debugging
     print("Received webhook:", data)
 
-    # Meta’s webhook structure — parse messages
     entry_list = data.get("entry", [])
     for entry in entry_list:
         changes = entry.get("changes", [])
@@ -35,15 +33,12 @@ def webhook():
             value = change.get("value", {})
             messages = value.get("messages", [])
             for msg in messages:
-                from_number = msg.get("from")  # user’s phone number
+                from_number = msg.get("from")
                 msg_body = None
-                # The message could be text or other types
                 if msg.get("text"):
                     msg_body = msg["text"].get("body")
-                # You can also handle images, stickers, etc. later
 
                 if msg_body:
-                    # Echo back the same text
                     reply_text = f"You said: {msg_body}"
                     send_whatsapp_message(from_number, reply_text)
 
@@ -58,13 +53,16 @@ def send_whatsapp_message(to, message_text):
     payload = {
         "messaging_product": "whatsapp",
         "to": to,
-        "text": {
-            "body": message_text
-        }
+        "text": {"body": message_text}
     }
     resp = requests.post(url, headers=headers, json=payload)
     print("Send message response:", resp.status_code, resp.text)
     return resp.json()
 
+@app.route("/")
+def home():
+    return "WhatsApp Echo Bot is running!", 200
+
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
