@@ -1,105 +1,111 @@
 {
-  "start": {
-    "type": "text",
-    "message": "Welcome to Zilla Parishad Buldhana. Please select a department:",
-    "interactive": {
-      "type": "list",
-      "button": "Departments",
-      "options": [
-        {"id": "education", "title": "Education"},
-        {"id": "health", "title": "Health"},
-        {"id": "agriculture", "title": "Agriculture"},
-        {"id": "social_welfare", "title": "Social Welfare"},
-        {"id": "public_works", "title": "Public Works"}
+  "bot_name": "ZP Buldhana WhatsApp Bot",
+  "restart_trigger": "Restart",
+  "idle_followup": {
+    "timeout_minutes": 60,
+    "message": "Knock Knock 👋 Are you still there?"
+  },
+  "opening": {
+    "id": "template1",
+    "text": {
+      "en": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana\nPlease select your preferred language to continue:",
+      "mr": "नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:"
+    },
+    "options": {
+      "type": "buttons",
+      "choices": [
+        {"id": "lang_marathi", "label": "मराठी"},
+        {"id": "lang_english", "label": "English"}
       ]
     }
   },
-  "departments": {
-    "education": {
-      "type": "text",
-      "message": "Education Department: Select a service:",
-      "interactive": {
-        "type": "list",
-        "button": "Education Services",
-        "options": [
-          {"id": "school_info", "title": "Schools Info"},
-          {"id": "midday_meal", "title": "Midday Meal Scheme"},
-          {"id": "scholarships", "title": "Scholarships"}
-        ]
-      }
+  "languages": {
+    "lang_marathi": {
+      "id": "template2",
+      "text": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा",
+      "main_menu": "services_menu"
     },
-    "health": {
-      "type": "text",
-      "message": "Health Department: Select a service:",
-      "interactive": {
-        "type": "list",
-        "button": "Health Services",
-        "options": [
-          {"id": "hospitals", "title": "Hospitals Info"},
-          {"id": "vaccination", "title": "Vaccination Schedule"},
-          {"id": "health_schemes", "title": "Health Schemes"}
-        ]
-      }
-    },
-    "agriculture": {
-      "type": "text",
-      "message": "Agriculture Department: Select a service:",
-      "interactive": {
-        "type": "list",
-        "button": "Agriculture Services",
-        "options": [
-          {"id": "farmer_schemes", "title": "Farmer Schemes"},
-          {"id": "crop_info", "title": "Crop Info & Guidance"},
-          {"id": "soil_testing", "title": "Soil Testing Centers"}
-        ]
-      }
-    },
-    "social_welfare": {
-      "type": "text",
-      "message": "Social Welfare Department: Select a service:",
-      "interactive": {
-        "type": "list",
-        "button": "Social Welfare Services",
-        "options": [
-          {"id": "pension_schemes", "title": "Pension Schemes"},
-          {"id": "welfare_programs", "title": "Welfare Programs"},
-          {"id": "grievance_redressal", "title": "Grievance Redressal"}
-        ]
-      }
-    },
-    "public_works": {
-      "type": "text",
-      "message": "Public Works Department: Select a service:",
-      "interactive": {
-        "type": "list",
-        "button": "Public Works",
-        "options": [
-          {"id": "road_projects", "title": "Road Projects"},
-          {"id": "water_supply", "title": "Water Supply Projects"},
-          {"id": "infrastructure", "title": "Other Infrastructure"}
-        ]
-      }
+    "lang_english": {
+      "id": "template3",
+      "text": "Okay! Let's talk in English! Please select a service",
+      "main_menu": "services_menu"
     }
   },
-  "services": {
-    "school_info": {"type": "text", "message": "List of all schools in Buldhana district:\n1. XYZ School\n2. ABC School\n3. DEF School", "next": "education"},
-    "midday_meal": {"type": "text", "message": "Midday Meal Scheme ensures nutrition for students in all government schools. More info: https://buldhana.nic.in/education/midday-meal", "next": "education"},
-    "scholarships": {"type": "text", "message": "Scholarships available for students: Merit-based, SC/ST/OBC, and Minority Scholarships. Apply online at: https://buldhana.nic.in/education/scholarships", "next": "education"},
-
-    "hospitals": {"type": "text", "message": "List of Government Hospitals:\n1. Civil Hospital Buldhana\n2. Primary Health Centers\n3. Community Health Centers", "next": "health"},
-    "vaccination": {"type": "text", "message": "Vaccination schedule for children & adults is available at all government hospitals. More info: https://buldhana.nic.in/health/vaccination", "next": "health"},
-    "health_schemes": {"type": "text", "message": "Health Schemes: Ayushman Bharat, Free Medical Camps, Health Insurance for Low-income Families.", "next": "health"},
-
-    "farmer_schemes": {"type": "text", "message": "Farmer Schemes: PM-Kisan, Subsidies on seeds and fertilizers. Visit: https://buldhana.nic.in/agriculture/schemes", "next": "agriculture"},
-    "crop_info": {"type": "text", "message": "Crop Guidance: Information on sowing, pest control, and irrigation for all major crops in Buldhana.", "next": "agriculture"},
-    "soil_testing": {"type": "text", "message": "Soil Testing Centers: Locations and timings available at local Agriculture Offices.", "next": "agriculture"},
-
-    "pension_schemes": {"type": "text", "message": "Pension Schemes: Old Age Pension, Widow Pension, Disability Pension. Apply online at: https://buldhana.nic.in/social-welfare/pension", "next": "social_welfare"},
-    "welfare_programs": {"type": "text", "message": "Welfare Programs: Women Empowerment, Child Welfare, Tribal Welfare Programs.", "next": "social_welfare"},
-    "grievance_redressal": {"type": "text", "message": "Grievance Redressal: Submit complaints online or contact your nearest ZP office.", "next": "social_welfare"},
-
-    "road_projects": {"type": "text", "message": "Current Road Projects: Buldhana-Malkapur, Khamgaon-Buldhana, etc.", "next": "public_works"},
-    "water_supply": {"type": "text", "message": "Water Supply Projects: Rural water supply, new pipelines, maintenance updates.", "next": "public_works"},
-    "infrastructure": {"type": "text", "message": "Other Infrastructure Projects: Bridges, government buildings, and drainage projects.", "next": "public_works"}
+  "menus": {
+    "services_menu": {
+      "id": "main_services",
+      "type": "list",
+      "title": {
+        "en": "Choose Service",
+        "mr": "सेवा निवडा"
+      },
+      "options": [
+        {"id": "about_zp", "label": {"en": "About Z.P. Buldhana", "mr": "जि.प. Buldhana बद्दल"}},
+        {"id": "departments", "label": {"en": "Z.P. Departments", "mr": "जि.प. विभाग"}},
+        {"id": "schemes", "label": {"en": "Z.P. Schemes", "mr": "जि.प. योजना"}},
+        {"id": "cess_fund", "label": {"en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना"}},
+        {"id": "officers_contact", "label": {"en": "Officers' Contact", "mr": "अधिकारी यांचे संपर्क"}},
+        {"id": "online_complaint", "label": {"en": "Online Complaint", "mr": "ऑनलाईन तक्रार"}},
+        {"id": "citizen_charter", "label": {"en": "Citizens’ Charter", "mr": "नागरिकांची सनद"}},
+        {"id": "change_language", "label": {"en": "Change Language", "mr": "भाषा बदल"}}
+      ]
+    },
+    "about_zp": {
+      "id": "about_info",
+      "text": {
+        "mr": "📅 १ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते... (full Marathi text)",
+        "en": "📅 Before 1 May 1962, Janpad Sabhas existed in Maharashtra... (full English text)"
+      },
+      "submenu": "about_submenu"
+    },
+    "about_submenu": {
+      "id": "about_links",
+      "type": "list",
+      "title": {"en": "About Z.P. Buldhana", "mr": "जि.प. बद्दल"},
+      "options": [
+        {"id": "vision_mission", "label": {"en": "Vision and Mission", "mr": "दृष्टीकोन आणि ध्येय"}},
+        {"id": "admin_structure", "label": {"en": "Administrative Structure", "mr": "प्रशासकीय रचना"}},
+        {"id": "who_is_who", "label": {"en": "Who's Who", "mr": "कोण कोण आहेत"}},
+        {"id": "services_menu", "label": {"en": "Main Menu", "mr": "मुख्य मेनू"}}
+      ]
+    },
+    "departments": {
+      "id": "departments_list",
+      "type": "list",
+      "title": {"en": "Departments List", "mr": "विभागांची यादी"},
+      "options": [
+        {"id": "health", "label": {"en": "Health Department", "mr": "आरोग्य विभाग"}},
+        {"id": "primary_edu", "label": {"en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग"}},
+        {"id": "secondary_edu", "label": {"en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग"}},
+        {"id": "animal_husbandry", "label": {"en": "Animal Husbandry", "mr": "पशुसंवर्धन विभाग"}},
+        {"id": "agriculture", "label": {"en": "Agriculture", "mr": "कृषी विभाग"}},
+        {"id": "social_welfare", "label": {"en": "Social Welfare", "mr": "समाज कल्याण विभाग"}},
+        {"id": "finance", "label": {"en": "Finance", "mr": "वित्त विभाग"}},
+        {"id": "general_admin", "label": {"en": "General Administration", "mr": "सामान्य प्र विभाग"}},
+        {"id": "services_menu", "label": {"en": "Main Menu", "mr": "मुख्य मेनू"}}
+      ]
+    },
+    "health": {
+      "id": "health_info",
+      "text": {
+        "mr": "🏥 आरोग्य विभाग – जिल्हा परिषद, यवतमाळ... (full Marathi)",
+        "en": "🏥 Health Department – Zilla Parishad, Yavatmal... (full English)"
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          {"id": "contact_health", "label": "Contact"},
+          {"id": "departments", "label": "Departments"},
+          {"id": "services_menu", "label": "Main Menu"}
+        ]
+      }
+    },
+    "contact_health": {
+      "id": "health_contact",
+      "text": {
+        "mr": "श्री. संतोष ढोले - जिल्हा आरोग्य अधिकारी - 9405162034\nईमेल: dhozpyavatmal@gmail.com",
+        "en": "Mr. Santosh Dhole - District Health Officer - 9405162034\nEmail: dhozpyavatmal@gmail.com"
+      }
+    }
   }
 }
