@@ -12,7 +12,7 @@ VERIFY_TOKEN = creds["VERIFY_TOKEN"]
 PHONE_NUMBER_ID = creds["PHONE_NUMBER_ID"]
 
 # === Load Menu JSON ===
-with open("menu.json") as f:
+with open("zp_buldhana_flow.json") as f:
     MENU = json.load(f)
 
 # In-memory user states
