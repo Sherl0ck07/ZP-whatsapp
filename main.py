@@ -45,13 +45,49 @@ def webhook():
                 messages = value.get("messages", [])
                 for msg in messages:
                     from_number = msg.get("from")
-                    msg_body = msg.get("text", {}).get("body")
 
-                    if msg_body:
-                        reply_text, options, opt_type = get_response(from_number, msg_body.strip())
+                    msg_body = None
+                    # --- Handle button/list interactions only ---
+                    if "interactive" in msg:
+                        interactive_type = msg["interactive"]["type"]
+                        if interactive_type == "button_reply":
+                            msg_body = msg["interactive"]["button_reply"]["title"]
+                        elif interactive_type == "list_reply":
+                            msg_body = msg["interactive"]["list_reply"]["title"]
+
+                    # --- If user typed free text ---
+                    if not msg_body:
+                        reply_text = "❌ Sorry, we didn't understand that. Please select an option from the menu or type Restart."
+                        # Keep the menu options based on current state
+                        state = USER_STATE.get(from_number, {"stage": "opening", "language": "en"})
+                        lang = state["language"]
+                        if state["stage"] == "opening":
+                            options = [o["label"] for o in MENU["opening"]["options"]["choices"]]
+                            opt_type = "buttons"
+                        elif state["stage"] == "waiting_language":
+                            options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
+                            opt_type = "list"
+                        elif state["stage"] == "services_menu":
+                            options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
+                            opt_type = "list"
+                        elif state["stage"] == "about_submenu":
+                            options = [o["label"][lang] for o in MENU["menus"]["about_submenu"]["options"]]
+                            opt_type = "list"
+                        elif state["stage"] == "departments":
+                            options = [o["label"][lang] for o in MENU["menus"]["departments"]["options"]]
+                            opt_type = "list"
+                        else:
+                            options = []
+                            opt_type = "text"
                         send_whatsapp_message(from_number, reply_text, options, opt_type)
+                        continue  # skip get_response
+
+                    # --- Handle valid interaction ---
+                    reply_text, options, opt_type = get_response(from_number, msg_body.strip())
+                    send_whatsapp_message(from_number, reply_text, options, opt_type)
 
     return jsonify({"status": "ok"}), 200
+
 
 # === Generate Bot Response Based on User State ===
 def get_response(user_id, msg_text):
@@ -112,11 +148,13 @@ def get_response(user_id, msg_text):
     if state["stage"] in ["about_submenu", "departments"]:
         lang = state["language"]
         options = []
-        # Check if user wants Main Menu
+
+        # Main Menu
         if "main menu" in msg_text.lower() or "मुख्य" in msg_text:
             USER_STATE[user_id]["stage"] = "services_menu"
             options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
             return "Returning to main menu.", options, "list"
+
         # Stay in same submenu
         if state["stage"] == "about_submenu":
             options = [o["label"][lang] for o in MENU["menus"]["about_submenu"]["options"]]
