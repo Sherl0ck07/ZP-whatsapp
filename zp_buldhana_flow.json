@@ -1,404 +1,1323 @@
 {
-  "bot_name": "ZP Buldhana WhatsApp Bot",
-  "restart_trigger": "Restart",
-  "idle_followup": {
-    "timeout_minutes": 60,
-    "message": {
-      "en": "Knock Knock 👋 Are you still there?",
-      "mr": "नमस्कार 👋, आपण अजून तिकडे आहात का?"
+  "bot_metadata": {
+    "bot_name": "Sevadoot - ZP Buldhana Helpline",
+    "version": "1.0.0",
+    "created_date": "2025-01-15",
+    "organization": "Zilla Parishad Buldhana",
+    "default_language": "mr",
+    "supported_languages": ["mr", "en"],
+    "session_config": {
+      "timeout_minutes": 60,
+      "idle_followup_enabled": true,
+      "max_retries": 3,
+      "enable_analytics": true
     }
   },
-  "universal_options": [
-    {
-      "id": "main_menu",
-      "label": { "en": "Main Menu", "mr": "मुख्य मेनू" }
+
+  "global_triggers": {
+    "restart": {
+      "keywords": ["restart", "पुन्हा सुरू करा", "start", "सुरू", "reset"],
+      "action": "go_to_initial",
+      "clear_session": true
     },
-    {
-      "id": "restart",
-      "label": { "en": "Restart", "mr": "पुन्हा सुरू करा" }
-    }
-  ],
-  "opening": {
-    "id": "template1",
-    "text": {
-      "en": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana\nPlease select your preferred language to continue:",
-      "mr": "नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:"
+    "main_menu": {
+      "keywords": ["main menu", "मुख्य मेनू", "menu", "मेनू", "home", "होम"],
+      "action": "go_to_main_menu",
+      "preserve_language": true
     },
-    "options": {
-      "type": "buttons",
-      "choices": [
-        { "id": "lang_marathi", "label": { "en": "Marathi", "mr": "मराठी" } },
-        { "id": "lang_english", "label": { "en": "English", "mr": "English" } }
-      ]
+    "help": {
+      "keywords": ["help", "मदत", "?", "सहाय्य"],
+      "action": "show_help",
+      "message_key": "help_message"
     }
   },
-  "languages": {
-    "lang_marathi": {
-      "id": "template2",
-      "text": { "mr": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा", "en": "Okay! Let's talk in Marathi! Please select a service" },
-      "main_menu": "services_menu"
-    },
-    "lang_english": {
-      "id": "template3",
-      "text": { "en": "Okay! Let's talk in English! Please select a service", "mr": "ठीक आहे! आपण इंग्रजीत बोलूया! कृपया एक सेवा निवडा" },
-      "main_menu": "services_menu"
-    }
-  },
-  "menus": {
-    "services_menu": {
-      "id": "main_services",
-      "type": "list",
-      "title": { "en": "Choose Service", "mr": "सेवा निवडा" },
-      "options": [
-        { "id": "about_zp", "label": { "en": "About Z.P. Buldhana", "mr": "जि.प. Buldhana बद्दल" } },
-        { "id": "departments", "label": { "en": "Z.P. Departments", "mr": "जि.प. विभाग" } },
-        { "id": "schemes", "label": { "en": "Z.P. Schemes", "mr": "जि.प. योजना" } },
-        { "id": "cess_fund", "label": { "en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना" } },
-        { "id": "officers_contact", "label": { "en": "Officers' Contact", "mr": "अधिकारी यांचे संपर्क" } },
-        { "id": "online_complaint", "label": { "en": "Online Complaint", "mr": "ऑनलाईन तक्रार" } },
-        { "id": "citizen_charter", "label": { "en": "Citizens' Charter", "mr": "नागरिकांची सनद" } },
-        { "id": "change_language", "label": { "en": "Change Language", "mr": "भाषा बदल" } }
-      ]
-    },
-    "about_zp": {
-      "id": "about_info",
-      "text": {
-        "mr": "📅 १ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. स्थानिक स्वराज्य वाढविण्यासाठी, स्थानिकांना नियोजनात सामील करण्यासाठी आणि सत्तेचे विकेंद्रीकरण करण्यासाठी जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पारित करण्यात आला. १ मे १९६२ पासून जिल्ह्यांत जिल्हा परिषद व तालुक्यांत पंचायत समित्या (नगरपालिका क्षेत्र वगळता) स्थापन झाल्या.\n\n📍 यवतमाळ जिल्हा परिषदेअंतर्गत ६२ ग्रामीण मतदारसंघ आहेत.\n🗳️ सदस्य ५ वर्षांसाठी निवडले जातात\n👔 पदाधिकारी २.५ वर्षे कार्यरत राहतात.\n📈 शासन व झेडपीच्या योजना ग्रामीण भागात राबवल्या जातात.",
-        "en": "📅 Before 1 May 1962, Janpad Sabhas existed in Maharashtra. To strengthen local self-government and decentralize power, the Zilla Parishad and Panchayat Samiti Act 1961 was passed. From 1 May 1962 Zilla Parishads and Panchayat Samitis were established in districts (excluding municipal areas).\n\n📍 Z.P. Yavatmal covers 62 rural constituencies.\n🗳️ Members are elected for 5 years.\n👔 Officers serve for 2.5 years in certain posts.\n📈 State and ZP schemes are implemented in rural areas."
+
+  "conversation_states": {
+    "INITIAL": {
+      "state_id": "welcome_language_selection",
+      "state_name": "Welcome Screen",
+      "state_type": "interactive_button",
+      "entry_actions": ["clear_session", "log_session_start"],
+      "message_config": {
+        "message_key": "welcome_message",
+        "media_type": "text",
+        "emoji_enabled": true
       },
-      "submenu": "about_submenu"
-    },
-    "about_submenu": {
-      "id": "about_links",
-      "type": "list",
-      "title": { "en": "About Z.P. Buldhana", "mr": "जि.प. बद्दल" },
-      "options": [
-        { "id": "vision_mission", "label": { "en": "Vision and Mission", "mr": "दृष्टीकोन आणि ध्येय" } },
-        { "id": "admin_structure", "label": { "en": "Administrative Structure", "mr": "प्रशासकीय रचना" } },
-        { "id": "who_is_who", "label": { "en": "Who's Who", "mr": "कोण कोण आहेत" } },
-        { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-      ]
-    },
-    "departments": {
-      "id": "departments_list",
-      "type": "list",
-      "title": { "en": "Departments List", "mr": "विभागांची यादी" },
-      "options": [
-        { "id": "health", "label": { "en": "Health Department", "mr": "आरोग्य विभाग" } },
-        { "id": "primary_edu", "label": { "en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग" } },
-        { "id": "secondary_edu", "label": { "en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग" } },
-        { "id": "animal_husbandry", "label": { "en": "Animal Husbandry Department", "mr": "पशुसंवर्धन विभाग" } },
-        { "id": "agriculture", "label": { "en": "Agriculture Department", "mr": "कृषी विभाग" } },
-        { "id": "social_welfare", "label": { "en": "Social Welfare Department", "mr": "समाज कल्याण विभाग" } },
-        { "id": "finance", "label": { "en": "Finance Department", "mr": "वित्त विभाग" } },
-        { "id": "general_admin", "label": { "en": "General Administration", "mr": "सामान्य प्र विभाग" } },
-        { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-      ]
-    },
-    "dept_health": {
-      "id": "health_info",
-      "text": {
-        "mr": "🏥 आरोग्य विभाग – जिल्हा परिषद, यवतमाळ\n\n🔹 प्राथमिक आरोग्य सेवा: ग्रामीण भागातील PHC व SC आरोग्य सेवा पुरवतात.\n🔹 रोग प्रतिबंध व नियंत्रण: लसीकरण, रोग नियंत्रण मोहीम.\n🔹 माता-बाळ आरोग्य: सुरक्षित प्रसूती, पोषण.\n\nअधिक माहितीसाठी संपर्क करा.",
-        "en": "🏥 Health Department – Zilla Parishad, Yavatmal\n\n🔹 Primary health services through PHCs and sub-centres.\n🔹 Disease control and immunization programs.\n🔹 Maternal & child health services.\n\nFor more information contact the Health Officer."
-      },
-      "options": {
+      "interaction_config": {
         "type": "buttons",
-        "choices": [
-          { "id": "contact_health", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_health": {
-      "id": "health_contact",
-      "text": {
-        "mr": "आरोग्य विभाग\nश्री. संतोष ढोले - जिल्हा आरोग्य अधिकारी - 9405162034\nई-मेल: dhozpyavatmal@gmail.com",
-        "en": "Health Department\nMr. Santosh Dhole - District Health Officer - 9405162034\nEmail: dhozpyavatmal@gmail.com"
-      }
-    },
-    "dept_primary_edu": {
-      "id": "primary_edu_info",
-      "text": {
-        "mr": "📘 प्राथमिक शिक्षण विभाग – शाळांचे व्यवस्थापन, शिक्षक नेमणूक, मोफत पाठ्यपुस्तक व मध्यान्ह भोजन.",
-        "en": "📘 Primary Education Department – school management, teacher recruitment, free textbooks and mid-day meals."
+        "max_buttons": 2,
+        "timeout_seconds": 300
       },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_primary", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
+      "buttons": [
+        {
+          "id": "btn_select_marathi",
+          "button_type": "reply",
+          "label_key": "btn_marathi_label",
+          "icon": null,
+          "next_state": "LANGUAGE_SELECTED_MR",
+          "action": "set_language_marathi"
+        },
+        {
+          "id": "btn_select_english",
+          "button_type": "reply",
+          "label_key": "btn_english_label",
+          "icon": null,
+          "next_state": "LANGUAGE_SELECTED_EN",
+          "action": "set_language_english"
+        }
+      ],
+      "fallback": {
+        "invalid_response_message_key": "invalid_language_selection",
+        "retry_limit": 3,
+        "on_max_retry": "INITIAL"
       }
     },
-    "contact_primary": {
-      "id": "primary_contact",
-      "text": {
-        "mr": "प्राथमिक शिक्षण अधिकारी\nश्री. प्रकाश मिश्रा - 9850425271\nई-मेल: eopriytl@gmail.com",
-        "en": "Primary Education Officer\nMr. Prakash Mishra - 9850425271\nEmail: eopriytl@gmail.com"
-      }
-    },
-    "dept_secondary_edu": {
-      "id": "secondary_edu_info",
-      "text": {
-        "mr": "📝 माध्यमिक शिक्षण विभाग – शाळा निरीक्षण, अनुदान, गुणवत्ता सुधार.",
-        "en": "📝 Secondary Education Department – school inspections, grants, quality improvement."
+
+    "LANGUAGE_SELECTED_MR": {
+      "state_id": "main_menu_marathi",
+      "state_name": "Main Menu - Marathi",
+      "state_type": "interactive_list",
+      "entry_actions": ["set_language:mr", "log_language_selection"],
+      "message_config": {
+        "message_key": "main_menu_intro_mr",
+        "media_type": "text"
       },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_secondary", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_secondary": {
-      "id": "secondary_contact",
-      "text": {
-        "mr": "माध्यमिक शिक्षण अधिकारी\nश्री. रविंद्र काटोलकर - 9975864297\nई-मेल: eosecytl@gmail.com",
-        "en": "Secondary Education Officer\nMr. Ravindra Katolkar - 9975864297\nEmail: eosecytl@gmail.com"
-      }
-    },
-    "dept_animal": {
-      "id": "animal_info",
-      "text": {
-        "mr": "🐄 पशुसंवर्धन विभाग – पशुवैद्यकीय सेवा, लसीकरण, जाती सुधार योजनांचा प्रचार.",
-        "en": "🐄 Animal Husbandry Department – veterinary services, vaccination, breed improvement schemes."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_animal", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_animal": {
-      "id": "animal_contact",
-      "text": {
-        "mr": "जिल्हा पशुसंवर्धन अधिकारी\nडॉ. क्रांती काटोले - 7888036271\nई-मेल: dahoyeotmal@gmail.com",
-        "en": "District Animal Husbandry Officer\nDr. Kranti Katole - 7888036271\nEmail: dahoyeotmal@gmail.com"
-      }
-    },
-    "dept_agri": {
-      "id": "agri_info",
-      "text": {
-        "mr": "🌾 कृषी विभाग – आधुनिक शेती, बियाणे, सिंचन, कृषी यांत्रिकीकरण व अनुदाने.",
-        "en": "🌾 Agriculture Department – modern farming, seeds, irrigation, mechanization and subsidies."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_agri", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_agri": {
-      "id": "agri_contact",
-      "text": {
-        "mr": "कृषी विकास अधिकारी\nश्री. लहुदास आडे - 8275068639\nई-मेल: adoyavatmal@gmail.com",
-        "en": "Agriculture Development Officer\nMr. Lahudas Ade - 8275068639\nEmail: adoyavatmal@gmail.com"
-      }
-    },
-    "dept_social": {
-      "id": "social_info",
-      "text": {
-        "mr": "🤝 समाजकल्याण विभाग – कल्याणकारी योजना, शिष्यवृत्ती, ज्येष्ठ नागरिक व अपंग योजना.",
-        "en": "🤝 Social Welfare Department – welfare schemes, scholarships, senior citizen and disability programs."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_social", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_social": {
-      "id": "social_contact",
-      "text": {
-        "mr": "समाज कल्याण अधिकारी\nश्रीमती. मंगला मून - 8698577320\nई-मेल: swozpytl@gmail.com",
-        "en": "Social Welfare Officer\nMrs. Mangala Mun - 8698577320\nEmail: swozpytl@gmail.com"
-      }
-    },
-    "dept_finance": {
-      "id": "finance_info",
-      "text": {
-        "mr": "💰 वित्त विभाग – बजेट, निधी वाटप, लेखापरीक्षण व वित्तीय व्यवस्थापन.",
-        "en": "💰 Finance Department – budget, fund allocation, auditing and financial management."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_finance", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_finance": {
-      "id": "finance_contact",
-      "text": {
-        "mr": "मुख्य लेखा व वित्त अधिकारी\nश्री. तुकाराम भिसे - 7875918090\nई-मेल: financezpyavatmal@gmail.com",
-        "en": "Chief Accounts & Finance Officer\nMr. Tukaram Bhise - 7875918090\nEmail: financezpyavatmal@gmail.com"
-      }
-    },
-    "dept_gad": {
-      "id": "gad_info",
-      "text": {
-        "mr": "🏛️ सामान्य प्रशासन विभाग – कर्मचारी व्यवस्थापन, विभागीय समन्वय व कार्यालयीन प्रशासन.",
-        "en": "🏛️ General Administration Department – staff management, inter-department coordination and office administration."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "contact_gad", "label": { "en": "Contact", "mr": "संपर्क" } },
-          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "contact_gad": {
-      "id": "gad_contact",
-      "text": {
-        "mr": "उप मुख्य कार्यकारी अधिकारी (सामान्य प्रशासन)\nश्री. जालिंदर आभाळे - 9823617509\nई-मेल: dyceog_gad@yahoo.in",
-        "en": "Deputy CEO (General Administration)\nMr. Jalindar Abhale - 9823617509\nEmail: dyceog_gad@yahoo.in"
-      }
-    },
-    "schemes": {
-      "id": "schemes_menu",
-      "type": "list",
-      "title": { "en": "Z.P. Schemes", "mr": "जि.प. योजना" },
-      "intro": {
-        "en": "Zilla Parishad runs various central and state sponsored schemes across departments. Select a department for schemes.",
-        "mr": "जिल्हा परिषद विविध केंद्र/राज्य अनुदाने व झेडपी उपकर निधीतून योजना राबवते. कृपया विभाग निवडा."
-      },
-      "options": [
-        { "id": "schemes_health", "label": { "en": "Health Department Schemes", "mr": "आरोग्य विभाग योजना" } },
-        { "id": "schemes_education", "label": { "en": "Education Department Schemes", "mr": "शिक्षण योजना" } },
-        { "id": "schemes_wcd", "label": { "en": "Women & Child Development", "mr": "महिला व बालविकास" } },
-        { "id": "schemes_govt", "label": { "en": "Important Government Schemes", "mr": "शासनाच्या महत्त्वाच्या योजना" } },
-        { "id": "schemes_agri", "label": { "en": "Agriculture Schemes", "mr": "कृषी योजना" } },
-        { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-      ]
-    },
-    "schemes_health": {
-      "id": "schemes_health_info",
-      "text": {
-        "en": "Key health schemes:\n1) PMJAY – cashless treatment up to ₹5 lakh. Links: https://pmjay.gov.in\n2) JSSK – free maternal/newborn services. https://nhm.gov.in\n3) Immunization program. https://mohfw.gov.in\n4) TB program – NTEP. https://tbcindia.mohfw.gov.in",
-        "mr": "महत्त्वाच्या आरोग्य योजना:\n1) PMJAY – ₹5 लाखांपर्यंत कॅशलेस उपचार. https://pmjay.gov.in\n2) JSSK – मोफत प्रसूती व सेवाएँ. https://nhm.gov.in\n3) लसीकरण कार्यक्रम. https://mohfw.gov.in\n4) क्षयरोग निर्मूलन (NTEP). https://tbcindia.mohfw.gov.in"
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "schemes_link_more", "label": { "en": "More Links", "mr": "अधिक लिंक" } },
-          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "schemes_education": {
-      "id": "schemes_edu_info",
-      "text": {
-        "en": "Education schemes include uniform distribution, free textbooks (SSA), attendance incentives for SC, and school development programs. Links: https://zpyavatmal.gov.in/en/education-primary/",
-        "mr": "शिक्षण योजना: गणवेश वितरण, मोफत पाठ्यपुस्तक (SSA), SC उपस्थिती भत्ता, शाळा विकास. https://zpyavatmal.gov.in/en/education-primary/"
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "schemes_wcd": {
-      "id": "schemes_wcd_info",
-      "text": {
-        "en": "Women & Child schemes: tailoring-machine subsidy, MS-CIT training, bicycle distribution for girls, ICDS services, Sabala program links.",
-        "mr": "महिला व बालविकास योजना: शिलाई मशिन योजना, MS-CIT प्रशिक्षण, सायकल वाटप, ICDS, सबला."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "schemes_govt": {
-      "id": "schemes_govt_info",
-      "text": {
-        "en": "Important Govt schemes: PMAY-G (rural housing), MGNREGA, SBM-G (rural sanitation), UMEED/NRELM links and descriptions.",
-        "mr": "महत्त्वाच्या योजना: प्रधानमंत्री आवास योजना (ग्रामीण), मनरेगा, स्वच्छ भारत मिशन (ग्रामीण), उमेद/नॅशनल रिलायन्स लिंक."
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "cess_fund": {
-      "id": "cess_info",
-      "text": {
-        "en": "For detailed Cess Fund Schemes, visit the YOJANA portal: https://yavatmalyojana.com/",
-        "mr": "सेस फंड योजनांसाठी अधिक माहितीसाठी: https://yavatmalyojana.com/"
-      },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
-      }
-    },
-    "officers_contact": {
-      "id": "officers_contact_info",
-      "text": {
-        "mr": "अधिकाऱ्यांचे संपर्क माहिती उपलब्ध आहे. कृपया विभाग निवडा किंवा मुख्य मेनू वापरा.",
-        "en": "Officers contact list is available. Please select a department or return to Main Menu."
-      },
-      "options": {
+      "interaction_config": {
         "type": "list",
-        "choices": [
-          { "id": "contact_health", "label": { "en": "Health Officer", "mr": "आरोग्य अधिकारी" } },
-          { "id": "contact_primary", "label": { "en": "Primary Education Officer", "mr": "प्राथमिक शिक्षण अधिकारी" } },
-          { "id": "contact_agri", "label": { "en": "Agriculture Officer", "mr": "कृषी विकास अधिकारी" } },
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
+        "list_title_key": "main_menu_title_mr",
+        "button_text_key": "main_menu_button_mr",
+        "max_sections": 2,
+        "max_rows_per_section": 10
+      },
+      "sections": [
+        {
+          "section_id": "main_services_mr",
+          "section_title_key": "main_services_section_mr",
+          "rows": [
+            {
+              "id": "about_zp",
+              "row_type": "navigation",
+              "title_key": "about_zp_title_mr",
+              "description_key": "about_zp_desc_mr",
+              "icon": null,
+              "next_state": "ABOUT_ZP_MENU"
+            },
+            {
+              "id": "departments",
+              "row_type": "navigation",
+              "title_key": "departments_title_mr",
+              "description_key": "departments_desc_mr",
+              "next_state": "DEPARTMENTS_MENU"
+            },
+            {
+              "id": "schemes",
+              "row_type": "navigation",
+              "title_key": "schemes_title_mr",
+              "description_key": "schemes_desc_mr",
+              "next_state": "SCHEMES_MENU"
+            },
+            {
+              "id": "cess_fund",
+              "row_type": "navigation",
+              "title_key": "cess_fund_title_mr",
+              "description_key": "cess_fund_desc_mr",
+              "next_state": "CESS_FUND_INFO"
+            }
+          ]
+        },
+        {
+          "section_id": "contact_services_mr",
+          "section_title_key": "contact_services_section_mr",
+          "rows": [
+            {
+              "id": "officers_contact",
+              "row_type": "navigation",
+              "title_key": "officers_contact_title_mr",
+              "description_key": "officers_contact_desc_mr",
+              "next_state": "OFFICERS_CONTACT_MENU"
+            },
+            {
+              "id": "online_complaint",
+              "row_type": "navigation",
+              "title_key": "complaint_title_mr",
+              "description_key": "complaint_desc_mr",
+              "next_state": "ONLINE_COMPLAINT"
+            },
+            {
+              "id": "citizen_charter",
+              "row_type": "navigation",
+              "title_key": "charter_title_mr",
+              "description_key": "charter_desc_mr",
+              "next_state": "CITIZEN_CHARTER"
+            },
+            {
+              "id": "change_language",
+              "row_type": "navigation",
+              "title_key": "change_lang_title_mr",
+              "description_key": "change_lang_desc_mr",
+              "next_state": "INITIAL"
+            }
+          ]
+        }
+      ],
+      "fallback": {
+        "invalid_response_message_key": "invalid_menu_selection_mr",
+        "retry_limit": 3
       }
     },
-    "online_complaint": {
-      "id": "online_complaint_info",
-      "text": {
-        "en": "To file an online complaint, please visit the official grievance portal or contact your nearest ZP office. If you want the link, press Main Menu and use our website link.",
-        "mr": "ऑनलाईन तक्रार नोंदवण्यासाठी कृपया अधिकृत ग्रिव्हन्स पोर्टल किंवा जवळची झेडपी कार्यालयाची संपर्क माहिती वापरा."
+
+    "LANGUAGE_SELECTED_EN": {
+      "state_id": "main_menu_english",
+      "state_name": "Main Menu - English",
+      "state_type": "interactive_list",
+      "entry_actions": ["set_language:en", "log_language_selection"],
+      "message_config": {
+        "message_key": "main_menu_intro_en",
+        "media_type": "text"
       },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
+      "interaction_config": {
+        "type": "list",
+        "list_title_key": "main_menu_title_en",
+        "button_text_key": "main_menu_button_en",
+        "max_sections": 2,
+        "max_rows_per_section": 10
+      },
+      "sections": [
+        {
+          "section_id": "main_services_en",
+          "section_title_key": "main_services_section_en",
+          "rows": [
+            {
+              "id": "about_zp",
+              "row_type": "navigation",
+              "title_key": "about_zp_title_en",
+              "description_key": "about_zp_desc_en",
+              "next_state": "ABOUT_ZP_MENU"
+            },
+            {
+              "id": "departments",
+              "row_type": "navigation",
+              "title_key": "departments_title_en",
+              "description_key": "departments_desc_en",
+              "next_state": "DEPARTMENTS_MENU"
+            },
+            {
+              "id": "schemes",
+              "row_type": "navigation",
+              "title_key": "schemes_title_en",
+              "description_key": "schemes_desc_en",
+              "next_state": "SCHEMES_MENU"
+            },
+            {
+              "id": "cess_fund",
+              "row_type": "navigation",
+              "title_key": "cess_fund_title_en",
+              "description_key": "cess_fund_desc_en",
+              "next_state": "CESS_FUND_INFO"
+            }
+          ]
+        },
+        {
+          "section_id": "contact_services_en",
+          "section_title_key": "contact_services_section_en",
+          "rows": [
+            {
+              "id": "officers_contact",
+              "row_type": "navigation",
+              "title_key": "officers_contact_title_en",
+              "description_key": "officers_contact_desc_en",
+              "next_state": "OFFICERS_CONTACT_MENU"
+            },
+            {
+              "id": "online_complaint",
+              "row_type": "navigation",
+              "title_key": "complaint_title_en",
+              "description_key": "complaint_desc_en",
+              "next_state": "ONLINE_COMPLAINT"
+            },
+            {
+              "id": "citizen_charter",
+              "row_type": "navigation",
+              "title_key": "charter_title_en",
+              "description_key": "charter_desc_en",
+              "next_state": "CITIZEN_CHARTER"
+            },
+            {
+              "id": "change_language",
+              "row_type": "navigation",
+              "title_key": "change_lang_title_en",
+              "description_key": "change_lang_desc_en",
+              "next_state": "INITIAL"
+            }
+          ]
+        }
+      ],
+      "fallback": {
+        "invalid_response_message_key": "invalid_menu_selection_en",
+        "retry_limit": 3
       }
     },
-    "citizen_charter": {
-      "id": "citizen_charter_info",
-      "text": {
-        "en": "Citizens' Charter: Z.P. provides service commitments and timelines. For full charter, visit the ZP website or press Main Menu.",
-        "mr": "नागरिकांची सनद: सेवा देण्याचे निकष आणि कालमर्यादा. संपूर्ण माहिती वेबसाइटवर मिळेल."
+
+    "ABOUT_ZP_MENU": {
+      "state_id": "about_zp_submenu",
+      "state_name": "About ZP Submenu",
+      "state_type": "interactive_list",
+      "entry_actions": ["log_navigation"],
+      "message_config": {
+        "message_key": "about_zp_intro",
+        "media_type": "text"
       },
-      "options": {
-        "type": "buttons",
-        "choices": [
-          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
-        ]
+      "interaction_config": {
+        "type": "list",
+        "list_title_key": "about_zp_list_title",
+        "button_text_key": "about_zp_button_text"
+      },
+      "sections": [
+        {
+          "section_id": "about_details",
+          "section_title_key": "about_details_section",
+          "rows": [
+            {
+              "id": "vision_mission",
+              "title_key": "vision_mission_title",
+              "description_key": "vision_mission_desc",
+              "next_state": "VISION_MISSION"
+            },
+            {
+              "id": "admin_structure",
+              "title_key": "admin_structure_title",
+              "description_key": "admin_structure_desc",
+              "next_state": "ADMIN_STRUCTURE"
+            },
+            {
+              "id": "who_is_who",
+              "title_key": "who_is_who_title",
+              "description_key": "who_is_who_desc",
+              "next_state": "WHO_IS_WHO"
+            },
+            {
+              "id": "back_main",
+              "title_key": "back_main_menu",
+              "next_state": "MAIN_MENU"
+            }
+          ]
+        }
+      ]
+    },
+
+    "VISION_MISSION": {
+      "state_id": "vision_mission_details",
+      "state_name": "Vision and Mission",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "vision_mission_content",
+        "media_type": "text",
+        "formatting": "markdown"
+      },
+      "buttons": [
+        {
+          "id": "back_about",
+          "label_key": "back_button",
+          "next_state": "ABOUT_ZP_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "ADMIN_STRUCTURE": {
+      "state_id": "admin_structure_details",
+      "state_name": "Administrative Structure",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "admin_structure_content",
+        "media_type": "text",
+        "formatting": "markdown"
+      },
+      "buttons": [
+        {
+          "id": "back_about",
+          "label_key": "back_button",
+          "next_state": "ABOUT_ZP_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "WHO_IS_WHO": {
+      "state_id": "who_is_who_details",
+      "state_name": "Key Officers",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "who_is_who_content",
+        "media_type": "text",
+        "formatting": "markdown"
+      },
+      "buttons": [
+        {
+          "id": "back_about",
+          "label_key": "back_button",
+          "next_state": "ABOUT_ZP_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPARTMENTS_MENU": {
+      "state_id": "departments_main_list",
+      "state_name": "Departments List",
+      "state_type": "interactive_list",
+      "message_config": {
+        "message_key": "departments_intro"
+      },
+      "interaction_config": {
+        "type": "list",
+        "list_title_key": "departments_list_title",
+        "button_text_key": "departments_button_text"
+      },
+      "sections": [
+        {
+          "section_id": "core_departments",
+          "section_title_key": "core_departments_section",
+          "rows": [
+            {
+              "id": "dept_health",
+              "title_key": "health_dept_title",
+              "description_key": "health_dept_desc",
+              "next_state": "DEPT_HEALTH"
+            },
+            {
+              "id": "dept_primary_edu",
+              "title_key": "primary_edu_title",
+              "description_key": "primary_edu_desc",
+              "next_state": "DEPT_PRIMARY_EDU"
+            },
+            {
+              "id": "dept_secondary_edu",
+              "title_key": "secondary_edu_title",
+              "description_key": "secondary_edu_desc",
+              "next_state": "DEPT_SECONDARY_EDU"
+            },
+            {
+              "id": "dept_animal",
+              "title_key": "animal_dept_title",
+              "description_key": "animal_dept_desc",
+              "next_state": "DEPT_ANIMAL"
+            }
+          ]
+        },
+        {
+          "section_id": "support_departments",
+          "section_title_key": "support_departments_section",
+          "rows": [
+            {
+              "id": "dept_agriculture",
+              "title_key": "agriculture_dept_title",
+              "description_key": "agriculture_dept_desc",
+              "next_state": "DEPT_AGRICULTURE"
+            },
+            {
+              "id": "dept_social",
+              "title_key": "social_welfare_title",
+              "description_key": "social_welfare_desc",
+              "next_state": "DEPT_SOCIAL"
+            },
+            {
+              "id": "dept_finance",
+              "title_key": "finance_dept_title",
+              "description_key": "finance_dept_desc",
+              "next_state": "DEPT_FINANCE"
+            },
+            {
+              "id": "dept_gad",
+              "title_key": "gad_dept_title",
+              "description_key": "gad_dept_desc",
+              "next_state": "DEPT_GAD"
+            },
+            {
+              "id": "back_main",
+              "title_key": "back_main_menu",
+              "next_state": "MAIN_MENU"
+            }
+          ]
+        }
+      ]
+    },
+
+    "DEPT_HEALTH": {
+      "state_id": "health_dept_details",
+      "state_name": "Health Department Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "health_dept_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_health",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_HEALTH"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_HEALTH": {
+      "state_id": "health_contact_info",
+      "state_name": "Health Department Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "health_contact_details",
+        "contact_info": {
+          "officer_name_key": "health_officer_name",
+          "phone_key": "health_officer_phone",
+          "email_key": "health_officer_email"
+        }
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_HEALTH"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_PRIMARY_EDU": {
+      "state_id": "primary_edu_details",
+      "state_name": "Primary Education Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "primary_edu_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_primary",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_PRIMARY_EDU"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_PRIMARY_EDU": {
+      "state_id": "primary_edu_contact_info",
+      "state_name": "Primary Education Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "primary_edu_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_PRIMARY_EDU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_SECONDARY_EDU": {
+      "state_id": "secondary_edu_details",
+      "state_name": "Secondary Education Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "secondary_edu_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_secondary",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_SECONDARY_EDU"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_SECONDARY_EDU": {
+      "state_id": "secondary_edu_contact_info",
+      "state_name": "Secondary Education Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "secondary_edu_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_SECONDARY_EDU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_ANIMAL": {
+      "state_id": "animal_husbandry_details",
+      "state_name": "Animal Husbandry Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "animal_dept_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_animal",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_ANIMAL"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_ANIMAL": {
+      "state_id": "animal_contact_info",
+      "state_name": "Animal Husbandry Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "animal_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_ANIMAL"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_AGRICULTURE": {
+      "state_id": "agriculture_details",
+      "state_name": "Agriculture Department Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "agriculture_dept_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_agri",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_AGRICULTURE"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_AGRICULTURE": {
+      "state_id": "agriculture_contact_info",
+      "state_name": "Agriculture Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "agriculture_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_AGRICULTURE"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_SOCIAL": {
+      "state_id": "social_welfare_details",
+      "state_name": "Social Welfare Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "social_welfare_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_social",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_SOCIAL"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_SOCIAL": {
+      "state_id": "social_welfare_contact_info",
+      "state_name": "Social Welfare Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "social_welfare_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_SOCIAL"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_FINANCE": {
+      "state_id": "finance_details",
+      "state_name": "Finance Department Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "finance_dept_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_finance",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_FINANCE"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_FINANCE": {
+      "state_id": "finance_contact_info",
+      "state_name": "Finance Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "finance_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_FINANCE"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "DEPT_GAD": {
+      "state_id": "gad_details",
+      "state_name": "General Administration Details",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "gad_dept_content"
+      },
+      "buttons": [
+        {
+          "id": "contact_gad",
+          "label_key": "contact_button",
+          "next_state": "CONTACT_GAD"
+        },
+        {
+          "id": "back_dept",
+          "label_key": "back_departments",
+          "next_state": "DEPARTMENTS_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CONTACT_GAD": {
+      "state_id": "gad_contact_info",
+      "state_name": "GAD Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "gad_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_dept",
+          "label_key": "back_button",
+          "next_state": "DEPT_GAD"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "SCHEMES_MENU": {
+      "state_id": "schemes_main_menu",
+      "state_name": "Schemes Main Menu",
+      "state_type": "interactive_list",
+      "message_config": {
+        "message_key": "schemes_intro"
+      },
+      "interaction_config": {
+        "type": "list",
+        "list_title_key": "schemes_list_title",
+        "button_text_key": "schemes_button_text"
+      },
+      "sections": [
+        {
+          "section_id": "schemes_by_dept",
+          "section_title_key": "schemes_by_department",
+          "rows": [
+            {
+              "id": "schemes_health",
+              "title_key": "health_schemes_title",
+              "description_key": "health_schemes_desc",
+              "next_state": "SCHEMES_HEALTH"
+            },
+            {
+              "id": "schemes_education",
+              "title_key": "education_schemes_title",
+              "description_key": "education_schemes_desc",
+              "next_state": "SCHEMES_EDUCATION"
+            },
+            {
+              "id": "schemes_wcd",
+              "title_key": "wcd_schemes_title",
+              "description_key": "wcd_schemes_desc",
+              "next_state": "SCHEMES_WCD"
+            },
+            {
+              "id": "schemes_govt",
+              "title_key": "govt_schemes_title",
+              "description_key": "govt_schemes_desc",
+              "next_state": "SCHEMES_GOVT"
+            },
+            {
+              "id": "schemes_agri",
+              "title_key": "agri_schemes_title",
+              "description_key": "agri_schemes_desc",
+              "next_state": "SCHEMES_AGRICULTURE"
+            },
+            {
+              "id": "schemes_social",
+              "title_key": "social_schemes_title",
+              "description_key": "social_schemes_desc",
+              "next_state": "SCHEMES_SOCIAL"
+            },
+            {
+              "id": "back_main",
+              "title_key": "back_main_menu",
+              "next_state": "MAIN_MENU"
+            }
+          ]
+        }
+      ]
+    },
+
+    "SCHEMES_HEALTH": {
+      "state_id": "health_schemes_list",
+      "state_name": "Health Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "health_schemes_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "back_schemes",
+          "label_key": "back_schemes_menu",
+          "next_state": "SCHEMES_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "SCHEMES_EDUCATION": {
+      "state_id": "education_schemes_list",
+      "state_name": "Education Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "education_schemes_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "back_schemes",
+          "label_key": "back_schemes_menu",
+          "next_state": "SCHEMES_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "SCHEMES_WCD": {
+      "state_id": "wcd_schemes_list",
+      "state_name": "Women & Child Development Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "wcd_schemes_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "back_schemes",
+          "label_key": "back_schemes_menu",
+          "next_state": "SCHEMES_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "SCHEMES_GOVT": {
+      "state_id": "govt_schemes_list",
+      "state_name": "Important Government Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "govt_schemes_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "back_schemes",
+          "label_key": "back_schemes_menu",
+          "next_state": "SCHEMES_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "SCHEMES_AGRICULTURE": {
+      "state_id": "agri_schemes_list",
+      "state_name": "Agriculture Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "agri_schemes_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "back_schemes",
+          "label_key": "back_schemes_menu",
+          "next_state": "SCHEMES_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "SCHEMES_SOCIAL": {
+      "state_id": "social_schemes_list",
+      "state_name": "Social Welfare Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "social_schemes_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "back_schemes",
+          "label_key": "back_schemes_menu",
+          "next_state": "SCHEMES_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CESS_FUND_INFO": {
+      "state_id": "cess_fund_details",
+      "state_name": "Cess Fund Schemes",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "cess_fund_content",
+        "include_links": true,
+        "external_link": "https://yavatmalyojana.com/"
+      },
+      "buttons": [
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "OFFICERS_CONTACT_MENU": {
+      "state_id": "officers_contact_main",
+      "state_name": "Officers Contact Menu",
+      "state_type": "interactive_list",
+      "message_config": {
+        "message_key": "officers_contact_intro"
+      },
+      "interaction_config": {
+        "type": "list",
+        "list_title_key": "officers_list_title",
+        "button_text_key": "officers_button_text"
+      },
+      "sections": [
+        {
+          "section_id": "dept_officers",
+          "section_title_key": "department_officers",
+          "rows": [
+            {
+              "id": "contact_ceo",
+              "title_key": "ceo_title",
+              "description_key": "ceo_desc",
+              "next_state": "CONTACT_CEO"
+            },
+            {
+              "id": "contact_health",
+              "title_key": "health_officer_title",
+              "description_key": "health_officer_desc",
+              "next_state": "CONTACT_HEALTH"
+            },
+            {
+              "id": "contact_primary",
+              "title_key": "primary_edu_officer_title",
+              "description_key": "primary_edu_officer_desc",
+              "next_state": "CONTACT_PRIMARY_EDU"
+            },
+            {
+              "id": "contact_secondary",
+              "title_key": "secondary_edu_officer_title",
+              "description_key": "secondary_edu_officer_desc",
+              "next_state": "CONTACT_SECONDARY_EDU"
+            },
+            {
+              "id": "contact_animal",
+              "title_key": "animal_officer_title",
+              "description_key": "animal_officer_desc",
+              "next_state": "CONTACT_ANIMAL"
+            },
+            {
+              "id": "contact_agri",
+              "title_key": "agri_officer_title",
+              "description_key": "agri_officer_desc",
+              "next_state": "CONTACT_AGRICULTURE"
+            },
+            {
+              "id": "contact_social",
+              "title_key": "social_officer_title",
+              "description_key": "social_officer_desc",
+              "next_state": "CONTACT_SOCIAL"
+            },
+            {
+              "id": "contact_finance",
+              "title_key": "finance_officer_title",
+              "description_key": "finance_officer_desc",
+              "next_state": "CONTACT_FINANCE"
+            },
+            {
+              "id": "contact_gad",
+              "title_key": "gad_officer_title",
+              "description_key": "gad_officer_desc",
+              "next_state": "CONTACT_GAD"
+            },
+            {
+              "id": "back_main",
+              "title_key": "back_main_menu",
+              "next_state": "MAIN_MENU"
+            }
+          ]
+        }
+      ]
+    },
+
+    "CONTACT_CEO": {
+      "state_id": "ceo_contact_info",
+      "state_name": "CEO Contact",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "ceo_contact_details"
+      },
+      "buttons": [
+        {
+          "id": "back_officers",
+          "label_key": "back_button",
+          "next_state": "OFFICERS_CONTACT_MENU"
+        },
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "ONLINE_COMPLAINT": {
+      "state_id": "complaint_registration",
+      "state_name": "Online Complaint",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "complaint_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "CITIZEN_CHARTER": {
+      "state_id": "charter_details",
+      "state_name": "Citizens Charter",
+      "state_type": "text_with_buttons",
+      "message_config": {
+        "message_key": "charter_content",
+        "include_links": true
+      },
+      "buttons": [
+        {
+          "id": "main_menu",
+          "label_key": "main_menu_button",
+          "next_state": "MAIN_MENU"
+        }
+      ]
+    },
+
+    "MAIN_MENU": {
+      "state_id": "return_to_main_menu",
+      "state_name": "Return to Main Menu",
+      "state_type": "redirect",
+      "redirect_logic": {
+        "check_language": true,
+        "if_marathi": "LANGUAGE_SELECTED_MR",
+        "if_english": "LANGUAGE_SELECTED_EN",
+        "default": "INITIAL"
       }
+    }
+  },
+
+  "message_templates": {
+    "welcome_message": {
+      "en": "PLACEHOLDER_TEXT",
+      "mr": "PLACEHOLDER_TEXT"
+    },
+    "btn_marathi_label": {
+      "en": "Marathi",
+      "mr": "मराठी"
+    },
+    "btn_english_label": {
+      "en": "English",
+      "mr": "English"
+    },
+    "main_menu_intro_mr": {
+      "mr": "PLACEHOLDER_TEXT"
+    },
+    "main_menu_intro_en": {
+      "en": "PLACEHOLDER_TEXT"
+    },
+    "main_menu_title_mr": {
+      "mr": "सेवा निवडा"
+    },
+    "main_menu_title_en": {
+      "en": "Choose Service"
+    },
+    "main_menu_button_mr": {
+      "mr": "सेवा यादी"
+    },
+    "main_menu_button_en": {
+      "en": "Service List"
+    },
+    "back_button": {
+      "en": "← Back",
+      "mr": "← मागे"
+    },
+    "main_menu_button": {
+      "en": "Main Menu",
+      "mr": "मुख्य मेनू"
+    },
+    "contact_button": {
+      "en": "Contact",
+      "mr": "संपर्क"
+    },
+    "back_departments": {
+      "en": "← Departments",
+      "mr": "← विभाग"
+    },
+    "back_schemes_menu": {
+      "en": "← Schemes Menu",
+      "mr": "← योजना मेनू"
+    },
+    "back_main_menu": {
+      "en": "← Main Menu",
+      "mr": "← मुख्य मेनू"
+    },
+    "invalid_language_selection": {
+      "en": "Please select a valid language option.",
+      "mr": "कृपया वैध भाषा पर्याय निवडा."
+    },
+    "invalid_menu_selection_mr": {
+      "mr": "कृपया वैध पर्याय निवडा."
+    },
+    "invalid_menu_selection_en": {
+      "en": "Please select a valid option."
+    },
+    "help_message": {
+      "en": "PLACEHOLDER_HELP_TEXT",
+      "mr": "PLACEHOLDER_HELP_TEXT"
+    }
+  },
+
+  "state_machine_config": {
+    "error_handling": {
+      "max_retries": 3,
+      "fallback_state": "MAIN_MENU",
+      "timeout_action": "send_idle_followup",
+      "invalid_input_message_key": "invalid_input_message"
+    },
+    "session_management": {
+      "store_user_language": true,
+      "store_navigation_history": true,
+      "max_history_length": 10,
+      "enable_back_navigation": true
+    },
+    "analytics": {
+      "track_state_transitions": true,
+      "track_user_selections": true,
+      "track_session_duration": true,
+      "track_popular_departments": true,
+      "track_popular_schemes": true
+    }
+  },
+
+  "webhook_config": {
+    "whatsapp_business_api": {
+      "api_version": "v18.0",
+      "message_types": {
+        "interactive_button": {
+          "type": "button",
+          "max_buttons": 3
+        },
+        "interactive_list": {
+          "type": "list",
+          "max_sections": 10,
+          "max_rows_per_section": 10
+        },
+        "text": {
+          "type": "text",
+          "max_length": 4096
+        }
+      }
+    },
+    "endpoints": {
+      "incoming_webhook": "/webhook/whatsapp/incoming",
+      "outgoing_webhook": "/webhook/whatsapp/outgoing",
+      "status_webhook": "/webhook/whatsapp/status"
+    },
+    "security": {
+      "verify_token": "PLACEHOLDER_VERIFY_TOKEN",
+      "webhook_secret": "PLACEHOLDER_WEBHOOK_SECRET"
     }
   }
 }
