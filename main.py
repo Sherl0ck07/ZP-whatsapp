@@ -18,7 +18,6 @@ app = Flask(__name__)
 USER_STATE = {}
 LAST_ACTIVE = {}
 
-# --- Restart Command Handler ---
 def handle_restart(user_id, user_text):
     """
     Check if the user wants to restart the bot and reset state accordingly.
@@ -32,17 +31,16 @@ def handle_restart(user_id, user_text):
             "expecting_reply": True
         }
 
-        # Send restart message
-        lang = USER_STATE.get(user_id, {}).get("language") or MENU["default_language"]
+        # Send restart confirmation
+        lang = MENU["default_language"]
         restart_msg = MENU["restart"]["msg"].get(lang, "Restarting the bot...")
         send_whatsapp_message(user_id, restart_msg)
 
-        # Send opening menu **after a short delay** to avoid API conflicts
-        time.sleep(0.5)
-        send_bot_message(user_id)
-        return True  # Indicates restart was handled
+        return True  # restart handled
 
-    return False  # Not a restart command
+    return False
+
+
 
 
 # === Helper Functions ===
@@ -143,7 +141,8 @@ def webhook():
                     # --- Restart Command ---
                     if user_text:
                         if handle_restart(from_number, user_text):
-                            # **Skip all other processing for this message**
+                            send_bot_message(from_number)   # show opening menu
+
                             continue
 
                     # --- Handle input ---
