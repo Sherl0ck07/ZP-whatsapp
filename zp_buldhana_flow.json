@@ -131,7 +131,7 @@
     "en": "📚 Primary Education Department\n\nManages primary schools (Std 1-7) in rural areas.\n\nSelect an option:",
     "mr": "📚 शिक्षण प्राथमिक विभाग\n\nग्रामीण भागातील प्राथमिक शाळा (इ १-७) व्यवस्थापन.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "primary_edu_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
