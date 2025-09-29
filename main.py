@@ -75,6 +75,13 @@ def verify_webhook():
         return challenge, 200
     return "Verification failed ❌", 403
 
+# === Helper Function to Clean Incoming Messages ===
+def clean_msg(text):
+    """Remove newlines, carriage returns, extra spaces and lowercase the text."""
+    if not text:
+        return ""
+    return text.replace("\n", "").replace("\r", "").strip().lower()
+
 # === Webhook Message Handler ===
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -92,25 +99,34 @@ def webhook():
                     LAST_ACTIVE[from_number] = time.time()
                     schedule_followup(from_number)
 
-                    # Interactive messages
+                    # --- Determine message content ---
                     msg_body = None
+                    user_text = None
+
                     if "interactive" in msg:
                         interactive = msg["interactive"]
                         if interactive["type"] == "button_reply":
-                            msg_body = interactive["button_reply"]["title"]
+                            msg_body = clean_msg(interactive["button_reply"]["title"])
                         elif interactive["type"] == "list_reply":
-                            msg_body = interactive["list_reply"]["title"]
+                            msg_body = clean_msg(interactive["list_reply"]["title"])
 
-                    user_text = msg.get("text", {}).get("body", "").strip() if msg.get("text") else None
+                    if msg.get("text"):
+                        user_text = clean_msg(msg["text"].get("body"))
 
                     # --- Restart Command ---
-                    if user_text and user_text.lower() in ["restart", "पुन्हा सुरू करा"]:
+                    if user_text in ["restart", "पुन्हा सुरू करा"]:
                         lang = USER_STATE.get(from_number, {}).get("language", MENU["default_language"])
-                        USER_STATE[from_number] = {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": True}
+                        USER_STATE[from_number] = {
+                            "stage": "INIT",
+                            "language": None,
+                            "current_menu": "opening",
+                            "expecting_reply": True
+                        }
                         send_whatsapp_message(from_number, MENU["restart"]["msg"].get(lang))
                         send_bot_message(from_number)
                         continue
 
+                    # --- Handle input ---
                     if msg_body:
                         handle_user_input(from_number, msg_body)
                         continue
@@ -144,8 +160,7 @@ def handle_free_text(user_id, user_text):
 
 # === Handle User Input ===
 def handle_user_input(user_id, msg_text):
-    # --- Clean message text ---
-    msg_text_clean = msg_text.strip().replace("\n", "").lower()
+    msg_text_clean = clean_msg(msg_text)
 
     state = USER_STATE.get(user_id, {
         "stage": "INIT",
@@ -165,11 +180,12 @@ def handle_user_input(user_id, msg_text):
                 "expecting_reply": True
             }
             send_bot_message(user_id)
+            return
         else:
-            # Re-send opening message if invalid
-            menu_data = MENU["opening"]["English"]  # default English
+            # Invalid language, resend opening
+            menu_data = MENU["opening"]["English"]
             send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
-        return
+            return
 
     # --- Change Language Command ---
     if msg_text_clean in ["change language", "भाषा बदल"]:
@@ -194,7 +210,7 @@ def handle_user_input(user_id, msg_text):
     # --- Options Handling ---
     if "options" in menu_data:
         for opt in menu_data["options"]:
-            if msg_text_clean == opt["label"].strip().lower():
+            if msg_text_clean == clean_msg(opt["label"]):
                 USER_STATE[user_id]["current_menu"] = opt["key"]
                 USER_STATE[user_id]["expecting_reply"] = True
                 send_bot_message(user_id)
@@ -221,18 +237,16 @@ def handle_user_input(user_id, msg_text):
                 USER_STATE[user_id]["language"] = None
                 USER_STATE[user_id]["current_menu"] = "opening"
                 USER_STATE[user_id]["expecting_reply"] = True
-                send_bot_message(user_id)
             else:
                 USER_STATE[user_id]["current_menu"] = selected_key
                 USER_STATE[user_id]["expecting_reply"] = True
-                send_bot_message(user_id)
+            send_bot_message(user_id)
             return
 
     # --- Fallback if reply invalid ---
     if state.get("expecting_reply", False):
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         send_bot_message(user_id)
-
 
 
 def send_bot_message(user_id):
