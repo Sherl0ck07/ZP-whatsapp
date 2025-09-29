@@ -5,13 +5,12 @@
     "follow_up": "If bot is active for someone & no response in 1 hr, send 'Knock Knock 👋 Are you there?'"
   },
   "opening": {
-    "msg": {
-      "en": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language to continue:",
-      "mr": "नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:"
-    },
+    "msg": 
+       "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language to continue:\nनमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:"
+    ,
     "buttons": [
-      { "id": "language_en", "en": "English", "mr": "English" },
-      { "id": "language_mr", "en": "Marathi", "mr": "मराठी" }
+      { "id": "language_en", "Value": "English" },
+      { "id": "language_mr","Value": "मराठी" }
     ]
   },
   "menus": {
