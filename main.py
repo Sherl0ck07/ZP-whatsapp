@@ -212,35 +212,35 @@ def send_bot_message(user_id):
     current_menu = state.get("current_menu")
     lang = state.get("language") or MENU["default_language"]
 
-    # Opening menu (language selection)
-    if current_menu == "initial_greet":
-        menu_data = MENU["opening"].get(lang, {})
+    # Determine which part of MENU to use
+    if current_menu in MENU["flow"][lang]:
+        menu_data = MENU["flow"][lang][current_menu]
+    elif current_menu in MENU["flow"][lang].get("department_details", {}):
+        menu_data = MENU["flow"][lang]["department_details"][current_menu]
     else:
-        menu_data = MENU["flow"].get(lang, {}).get(current_menu, {})
-
-    if not menu_data:
-        send_whatsapp_message(user_id, MENU["fallback"]["msg"].get(lang, "Sorry, I didn't understand that."))
+        # fallback
+        send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         return
 
     text = menu_data.get("msg", "")
     options, opt_type = [], "text"
 
-    if current_menu == "initial_greet":
-        options = menu_data.get("buttons", [])
-        opt_type = "buttons"
-        USER_STATE[user_id]["expecting_reply"] = True
-    elif "options" in menu_data:
+    if "options" in menu_data:
         options = [o["label"] for o in menu_data["options"]]
         opt_type = "list"
-        USER_STATE[user_id]["expecting_reply"] = True
+        state["expecting_reply"] = True
     elif "buttons" in menu_data:
         options = menu_data["buttons"]
         opt_type = "buttons"
-        USER_STATE[user_id]["expecting_reply"] = True
+        state["expecting_reply"] = True
     else:
-        USER_STATE[user_id]["expecting_reply"] = False
+        state["expecting_reply"] = False
 
     send_whatsapp_message(user_id, text, options, opt_type)
+
+    # Update state
+    USER_STATE[user_id] = state
+
 
 
 # === Send Department / Scheme Info ===
