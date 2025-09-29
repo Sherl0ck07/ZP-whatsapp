@@ -136,6 +136,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "primary_edu_contact": {
+  "id": "primary_edu_contact",
+  "parent_id": "primary_edu",
+  "msg": {
+    "en": "📞 Primary Education Contact:\n\nShri Ramesh Patil\nEducation Officer (Primary)\nMobile: 9876543210",
+    "mr": "📞 प्राथमिक शिक्षण संपर्क:\n\nश्री रमेश पाटील\nशिक्षण अधिकारी (प्राथमिक)\nमोबाईल: 9876543210"
+  },
+  "buttons": [
+    { "id": "primary_edu", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "secondary_edu": {
       "id": "secondary_edu",
       "parent_id": "departments",
@@ -148,6 +160,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "secondary_edu_contact": {
+  "id": "secondary_edu_contact",
+  "parent_id": "secondary_edu",
+  "msg": {
+    "en": "📞 Secondary Education Contact:\n\nShri Ajay Deshmukh\nEducation Officer (Secondary)\nMobile: 9876501234",
+    "mr": "📞 माध्यमिक शिक्षण संपर्क:\n\nश्री अजय देशमुख\nशिक्षण अधिकारी (माध्यमिक)\nमोबाईल: 9876501234"
+  },
+  "buttons": [
+    { "id": "secondary_edu", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "animal": {
       "id": "animal",
       "parent_id": "departments",
@@ -160,6 +184,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "animal_contact": {
+  "id": "animal_contact",
+  "parent_id": "animal",
+  "msg": {
+    "en": "📞 Animal Husbandry Contact:\n\nDr. Kavita More\nDistrict Animal Husbandry Officer\nMobile: 9876512345",
+    "mr": "📞 पशुसंवर्धन संपर्क:\n\nडॉ. कविता मोरे\nजिल्हा पशुसंवर्धन अधिकारी\nमोबाईल: 9876512345"
+  },
+  "buttons": [
+    { "id": "animal", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "agriculture": {
       "id": "agriculture",
       "parent_id": "departments",
@@ -172,6 +208,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "agriculture_contact": {
+  "id": "agriculture_contact",
+  "parent_id": "agriculture",
+  "msg": {
+    "en": "📞 Agriculture Department Contact:\n\nShri Sunil Pawar\nDistrict Agriculture Officer\nMobile: 9876523456",
+    "mr": "📞 कृषी विभाग संपर्क:\n\nश्री सुनील पवार\nजिल्हा कृषी अधिकारी\nमोबाईल: 9876523456"
+  },
+  "buttons": [
+    { "id": "agriculture", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "social_welfare": {
       "id": "social_welfare",
       "parent_id": "departments",
@@ -184,6 +232,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "social_welfare_contact": {
+  "id": "social_welfare_contact",
+  "parent_id": "social_welfare",
+  "msg": {
+    "en": "📞 Social Welfare Contact:\n\nSmt. Meena Jadhav\nDistrict Social Welfare Officer\nMobile: 9876534567",
+    "mr": "📞 समाज कल्याण संपर्क:\n\nसौ. मीना जाधव\nजिल्हा समाज कल्याण अधिकारी\nमोबाईल: 9876534567"
+  },
+  "buttons": [
+    { "id": "social_welfare", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "finance": {
       "id": "finance",
       "parent_id": "departments",
@@ -196,6 +256,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "finance_contact": {
+  "id": "finance_contact",
+  "parent_id": "finance",
+  "msg": {
+    "en": "📞 Finance Department Contact:\n\nShri Rajesh Kulkarni\nFinance & Accounts Officer\nMobile: 9876545678",
+    "mr": "📞 वित्त विभाग संपर्क:\n\nश्री राजेश कुलकर्णी\nवित्त व लेखाधिकारी\nमोबाईल: 9876545678"
+  },
+  "buttons": [
+    { "id": "finance", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "general_admin": {
       "id": "general_admin",
       "parent_id": "departments",
@@ -208,6 +280,18 @@
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
+    "general_admin_contact": {
+  "id": "general_admin_contact",
+  "parent_id": "general_admin",
+  "msg": {
+    "en": "📞 General Administration Contact:\n\nShri Prakash Shinde\nDistrict Administration Officer\nMobile: 9876556789",
+    "mr": "📞 सामान्य प्रशासन संपर्क:\n\nश्री प्रकाश शिंदे\nजिल्हा प्रशासन अधिकारी\nमोबाईल: 9876556789"
+  },
+  "buttons": [
+    { "id": "general_admin", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "schemes": {
       "id": "schemes",
       "parent_id": "main_menu",
