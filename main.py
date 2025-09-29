@@ -139,24 +139,41 @@ def webhook():
 
 # === Handle Free Text / Fallback ===
 def handle_free_text(user_id, user_text):
-    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": False})
+    state = USER_STATE.get(user_id, {
+        "stage": "INIT",
+        "language": None,
+        "current_menu": "opening",
+        "expecting_reply": False,
+        "last_menu": "opening"
+    })
+
+    lang = state.get("language") or MENU["default_language"]
 
     if state["stage"] == "INIT":
         if user_text.lower() in [l.lower() for l in MENU["languages"]]:
-            USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": user_text, "current_menu": "main_menu", "expecting_reply": True}
+            USER_STATE[user_id] = {
+                "stage": "LANG_SELECTED",
+                "language": user_text,
+                "current_menu": "main_menu",
+                "expecting_reply": True,
+                "last_menu": "main_menu"
+            }
             send_bot_message(user_id)
         else:
-            lang = MENU["default_language"]
-            send_whatsapp_message(user_id, MENU["opening"][lang]["msg"], MENU["opening"][lang]["buttons"], "buttons")
+            menu_data = MENU["opening"][lang]
+            send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
     if state.get("expecting_reply", False):
-        lang = state.get("language", MENU["default_language"])
-        reply_text = MENU["fallback"]["msg"].get(lang)
-        send_whatsapp_message(user_id, reply_text)
+        # send fallback message
+        send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
+        # go back to last valid menu
+        last_menu = state.get("last_menu", "main_menu")
+        USER_STATE[user_id]["current_menu"] = last_menu
         send_bot_message(user_id)
     else:
         send_bot_message(user_id)
+
 
 # === Handle User Input ===
 # === Handle User Input ===
@@ -248,15 +265,16 @@ def handle_user_input(user_id, msg_text):
 def send_bot_message(user_id):
     state = USER_STATE[user_id]
     current_menu = state.get("current_menu")
+    
+    # Store last valid menu
+    if current_menu:
+        USER_STATE[user_id]["last_menu"] = current_menu
+
     lang = state.get("language") or MENU["default_language"]
 
-    # Determine which part of MENU to use
     if current_menu in MENU["flow"][lang]:
         menu_data = MENU["flow"][lang][current_menu]
-    elif current_menu in MENU["flow"][lang].get("department_details", {}):
-        menu_data = MENU["flow"][lang]["department_details"][current_menu]
     else:
-        # fallback
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         return
 
@@ -275,9 +293,8 @@ def send_bot_message(user_id):
         state["expecting_reply"] = False
 
     send_whatsapp_message(user_id, text, options, opt_type)
-
-    # Update state
     USER_STATE[user_id] = state
+
 
 
 
