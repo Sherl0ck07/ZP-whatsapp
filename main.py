@@ -54,42 +54,45 @@ def webhook():
                         elif interactive["type"] == "list_reply":
                             msg_body = interactive["list_reply"]["title"]
 
-                    # Handle restart
-                    if msg.get("text"):
-                        user_text = msg["text"].get("body", "").strip()
-                        if user_text.lower() in ["restart", "पुन्हा सुरू करा"]:
-                            USER_STATE[from_number] = {"stage": "INIT", "language": None, "current_menu": "initial_greet"}
-                            send_bot_message(from_number)
-                            continue
-                        if not msg_body:
-                            handle_free_text(from_number)
-                            continue
+                    # Handle free text
+                    user_text = msg.get("text", {}).get("body", "").strip() if msg.get("text") else None
 
-                    # Normal flow
+                    # --- Restart Command ---
+                    if user_text and user_text.lower() in ["restart", "पुन्हा सुरू करा"]:
+                        USER_STATE[from_number] = {"stage": "INIT", "language": None, "current_menu": "initial_greet"}
+                        send_whatsapp_message(from_number, MENU["restart"]["msg"])
+                        send_bot_message(from_number)
+                        continue
+
+                    # --- Handle Free Text ---
+                    if user_text and not msg_body:
+                        handle_free_text(from_number, user_text)
+                        continue
+
+                    # --- Handle Interactive Messages ---
                     if msg_body:
                         handle_user_input(from_number, msg_body)
 
     return jsonify({"status": "ok"}), 200
 
 # === Handle Free Text / Fallback ===
-def handle_free_text(user_id):
+def handle_free_text(user_id, user_text):
     state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "initial_greet"})
+
+    # If stage is INIT, treat free text as language selection
+    if state["stage"] == "INIT":
+        if user_text.lower() in ["english", "marathi"]:
+            USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": user_text, "current_menu": "main_menu"}
+            send_bot_message(user_id)
+        else:
+            # send initial greet again
+            menu_data = MENU.get("initial_greet", {})
+            send_whatsapp_message(user_id, menu_data.get("msg", MENU["fallback"]["msg"]), menu_data.get("options", []), "list")
+        return
+
+    # Otherwise, fallback message
     reply_text = MENU["fallback"]["msg"]
-    options, opt_type = [], "text"
-
-    # Provide relevant options based on last menu
-    current_menu = state.get("current_menu")
-    if current_menu and current_menu in MENU["menus"]:
-        lang = state.get("language") or MENU["default_language"]
-        menu_data = MENU["menus"][current_menu].get(lang, {})
-        if "options" in menu_data:
-            options = [o["label"] for o in menu_data["options"]]
-            opt_type = "list"
-        elif "buttons" in menu_data:
-            options = menu_data["buttons"]
-            opt_type = "buttons"
-
-    send_whatsapp_message(user_id, reply_text, options, opt_type)
+    send_whatsapp_message(user_id, reply_text)
 
 # === Handle User Input ===
 def handle_user_input(user_id, msg_text):
@@ -122,17 +125,15 @@ def handle_user_input(user_id, msg_text):
                 if key in MENU["menus"]:
                     send_bot_message(user_id)
                 else:
-                    # handle department_details or other info
                     send_info(user_id, key, lang)
                 matched = True
                 break
         if not matched:
-            handle_free_text(user_id)
+            handle_free_text(user_id, msg_text)
     elif "buttons" in menu_data:
-        # Handle button clicks
         send_info(user_id, msg_text, lang)
     else:
-        handle_free_text(user_id)
+        handle_free_text(user_id, msg_text)
 
 # === Send Bot Message Based on Current Menu ===
 def send_bot_message(user_id):
@@ -169,7 +170,6 @@ def send_info(user_id, key, lang):
         options = dept.get("buttons", [])
         send_whatsapp_message(user_id, text, options, "buttons")
     else:
-        # fallback for unknown key
         send_whatsapp_message(user_id, MENU["fallback"]["msg"])
 
 # === Sanitize Titles ===
