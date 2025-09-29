@@ -5,12 +5,10 @@
     "follow_up": "If bot is active for someone & no response in 1 hr, send 'Knock Knock 👋 Are you there?'"
   },
   "opening": {
-    "msg": 
-       "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language to continue:\nनमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:"
-    ,
+    "msg": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language to continue:\nनमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:",
     "buttons": [
       { "id": "language_en", "Value": "English" },
-      { "id": "language_mr","Value": "मराठी" }
+      { "id": "language_mr", "Value": "मराठी" }
     ]
   },
   "menus": {
@@ -18,17 +16,17 @@
       "id": "main_menu",
       "parent_id": null,
       "msg": {
-        "en": "Okay! Let's talk in English! Please select a service",
-        "mr": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा"
+        "en": "Okay! Let's talk in English! Please select a service:",
+        "mr": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा:"
       },
       "options": [
         { "id": "about_zp", "en": "About Z.P. Buldhana", "mr": "जि.प. बुलढाणा बद्दल" },
         { "id": "departments", "en": "Z.P. Departments", "mr": "जि.प. विभाग" },
         { "id": "schemes", "en": "Z.P. Schemes", "mr": "जि.प. योजना" },
-        { "id": "cess_fund", "en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना" },
-        { "id": "officers_contact", "en": "Officers’ Contact", "mr": "अधिकारी यांचे संपर्क" },
+        { "id": "cess_fund", "en": "Z.P. Cess Fund", "mr": "जि.प. सेस फंड" },
+        { "id": "officers_contact", "en": "Officers' Contact", "mr": "अधिकारी संपर्क" },
         { "id": "complaint", "en": "Online Complaint", "mr": "ऑनलाईन तक्रार" },
-        { "id": "citizens_charter", "en": "Citizens’ Charter", "mr": "नागरिकांची सनद" },
+        { "id": "citizens_charter", "en": "Citizens' Charter", "mr": "नागरिकांची सनद" },
         { "id": "change_language", "en": "Change Language", "mr": "भाषा बदल" }
       ]
     },
@@ -36,25 +34,25 @@
       "id": "about_zp",
       "parent_id": "main_menu",
       "msg": {
-        "en": "📅 Before 5 May 1962, Maharashtra had Janapad Sabhas. To strengthen local self-governance and decentralize power, the ZP & Panchayat Samiti Act 1961 was passed...",
-        "mr": "📅 ५ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. स्थानिक स्वराज्य वाढविण्यासाठी आणि सत्तेचे विकेंद्रीकरण करण्यासाठी जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पारित झाला..."
+        "en": "📅 Before 5 May 1962, Maharashtra had Janapad Sabhas. To strengthen local self-governance and decentralize power, the ZP & Panchayat Samiti Act 1961 was passed.\n\nSelect an option to know more:",
+        "mr": "📅 ५ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. स्थानिक स्वराज्य वाढविण्यासाठी आणि सत्तेचे विकेंद्रीकरण करण्यासाठी जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पारित झाला.\n\nअधिक माहितीसाठी पर्याय निवडा:"
       },
       "options": [
         { "id": "vision_mission", "en": "Vision & Mission", "mr": "दृष्टीकोन आणि ध्येय" },
-        { "id": "admin_structure", "en": "Administrative Structure", "mr": "प्रशासकीय रचना" },
+        { "id": "admin_structure", "en": "Admin Structure", "mr": "प्रशासकीय रचना" },
         { "id": "who_is_who", "en": "Who's Who", "mr": "कोण कोण आहेत" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
     "vision_mission": {
       "id": "vision_mission",
       "parent_id": "about_zp",
       "msg": {
-        "en": "🎯 Vision: Rural development, sustainable progress and better living standards.\n🚀 Mission: Deliver good governance and essential services in rural areas.",
-        "mr": "🎯 दृष्टीकोन: ग्रामीण विकास, शाश्वत प्रगती व चांगल्या जीवनमानासाठी प्रयत्न.\n🚀 ध्येय: ग्रामीण भागात चांगले प्रशासन व सेवा देणे."
+        "en": "🎯 Vision: Rural development, sustainable progress and better living standards.\n\n🚀 Mission: Deliver good governance and essential services in rural areas.",
+        "mr": "🎯 दृष्टीकोन: ग्रामीण विकास, शाश्वत प्रगती व चांगल्या जीवनमानासाठी प्रयत्न.\n\n🚀 ध्येय: ग्रामीण भागात चांगले प्रशासन व सेवा देणे."
       },
       "buttons": [
-        { "id": "about_zp", "en": "Back", "mr": "मागे" },
+        { "id": "about_zp", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
@@ -62,11 +60,11 @@
       "id": "admin_structure",
       "parent_id": "about_zp",
       "msg": {
-        "en": "👥 Administrative Structure:\n* Chief Executive Officer (IAS)\n* Additional CEO\n* Project Director (DRDA)...",
-        "mr": "👥 प्रशासकीय रचना:\n* मुख्य कार्यकारी अधिकारी (भा.प्र.से.)\n* अतिरिक्त मुख्य कार्यकारी अधिकारी\n* प्रकल्प संचालक (DRDA)..."
+        "en": "👥 Administrative Structure:\n• Chief Executive Officer (IAS)\n• Additional CEO\n• Project Director (DRDA)\n• District Planning Officer\n• Various Department Officers",
+        "mr": "👥 प्रशासकीय रचना:\n• मुख्य कार्यकारी अधिकारी (भा.प्र.से.)\n• अतिरिक्त मुख्य कार्यकारी अधिकारी\n• प्रकल्प संचालक (DRDA)\n• जिल्हा नियोजन अधिकारी\n• विविध विभाग अधिकारी"
       },
       "buttons": [
-        { "id": "about_zp", "en": "Back", "mr": "मागे" },
+        { "id": "about_zp", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
@@ -78,7 +76,7 @@
         "mr": "👤 प्रमुख अधिकारी:\n1. श्री मंदार पत्की (भा प्र से) - मुख्य कार्यकारी अधिकारी\n2. श्री संतोष धोत्रे - अति मुख्य कार्यकारी अधिकारी"
       },
       "buttons": [
-        { "id": "about_zp", "en": "Back", "mr": "मागे" },
+        { "id": "about_zp", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
@@ -86,31 +84,31 @@
       "id": "departments",
       "parent_id": "main_menu",
       "msg": {
-        "en": "Great! Let's start with the departments. ZP Buldhana has 15 departments. Select one:",
-        "mr": "मस्त! विभागांपासून सुरुवात करूया. जिल्हा परिषद बुलढाणा मध्ये १५ विभाग आहेत. निवडा:"
+        "en": "Great! Let's start with the departments. ZP Buldhana has 15 departments.\n\nSelect one:",
+        "mr": "मस्त! विभागांपासून सुरुवात करूया. जिल्हा परिषद बुलढाणा मध्ये १५ विभाग आहेत.\n\nनिवडा:"
       },
       "options": [
         { "id": "health", "en": "Health Department", "mr": "आरोग्य विभाग" },
-        { "id": "primary_edu", "en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग" },
-        { "id": "secondary_edu", "en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग" },
-        { "id": "animal", "en": "Animal Husbandry Department", "mr": "पशुसंवर्धन विभाग" },
-        { "id": "agriculture", "en": "Agriculture Department", "mr": "कृषी विभाग" },
-        { "id": "social_welfare", "en": "Social Welfare Department", "mr": "समाज कल्याण विभाग" },
-        { "id": "finance", "en": "Finance Department", "mr": "वित्त विभाग" },
-        { "id": "general_admin", "en": "General Administration", "mr": "सामान्य प्र विभाग" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+        { "id": "primary_edu", "en": "Primary Education", "mr": "शिक्षण प्रा विभाग" },
+        { "id": "secondary_edu", "en": "Secondary Education", "mr": "शिक्षण माध्यम विभाग" },
+        { "id": "animal", "en": "Animal Husbandry", "mr": "पशुसंवर्धन विभाग" },
+        { "id": "agriculture", "en": "Agriculture Dept", "mr": "कृषी विभाग" },
+        { "id": "social_welfare", "en": "Social Welfare", "mr": "समाज कल्याण विभाग" },
+        { "id": "finance", "en": "Finance Dept", "mr": "वित्त विभाग" },
+        { "id": "general_admin", "en": "General Admin", "mr": "सामान्य प्र विभाग" },
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
     "health": {
       "id": "health",
       "parent_id": "departments",
       "msg": {
-        "en": "🏥 Health Dept – Provides healthcare in rural areas via PHCs & Sub-Centres.",
-        "mr": "🏥 आरोग्य विभाग – ग्रामीण भागात PHC व उपकेंद्रांद्वारे आरोग्य सेवा."
+        "en": "🏥 Health Department\n\nProvides healthcare services in rural areas via Primary Health Centres (PHCs) & Sub-Centres.\n\nSelect an option:",
+        "mr": "🏥 आरोग्य विभाग\n\nग्रामीण भागात PHC व उपकेंद्रांद्वारे आरोग्य सेवा प्रदान करते.\n\nपर्याय निवडा:"
       },
       "options": [
-        { "id": "health_contact", "en": "Contact", "mr": "संपर्क" },
-        { "id": "departments", "en": "Back", "mr": "मागे" },
+        { "id": "health_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+        { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
@@ -118,11 +116,95 @@
       "id": "health_contact",
       "parent_id": "health",
       "msg": {
-        "en": "Dr. Santosh Dhole – District Health Officer – 9405162034",
-        "mr": "डॉ. संतोष ढोले – जिल्हा आरोग्य अधिकारी – 9405162034"
+        "en": "📞 Health Department Contact:\n\nDr. Santosh Dhole\nDistrict Health Officer\nMobile: 9405162034",
+        "mr": "📞 आरोग्य विभाग संपर्क:\n\nडॉ. संतोष ढोले\nजिल्हा आरोग्य अधिकारी\nमोबाईल: 9405162034"
       },
       "buttons": [
-        { "id": "health", "en": "Back", "mr": "मागे" },
+        { "id": "health", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "primary_edu": {
+      "id": "primary_edu",
+      "parent_id": "departments",
+      "msg": {
+        "en": "📚 Primary Education Department\n\nManages primary schools (Std 1-7) in rural areas.",
+        "mr": "📚 शिक्षण प्राथमिक विभाग\n\nग्रामीण भागातील प्राथमिक शाळा (इ १-७) व्यवस्थापन."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "secondary_edu": {
+      "id": "secondary_edu",
+      "parent_id": "departments",
+      "msg": {
+        "en": "🎓 Secondary Education Department\n\nManages secondary schools (Std 8-12) in rural areas.",
+        "mr": "🎓 शिक्षण माध्यमिक विभाग\n\nग्रामीण भागातील माध्यमिक शाळा (इ ८-१२) व्यवस्थापन."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "animal": {
+      "id": "animal",
+      "parent_id": "departments",
+      "msg": {
+        "en": "🐄 Animal Husbandry Department\n\nProvides veterinary services and promotes livestock development.",
+        "mr": "🐄 पशुसंवर्धन विभाग\n\nपशुवैद्यकीय सेवा व पशुधन विकास."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "agriculture": {
+      "id": "agriculture",
+      "parent_id": "departments",
+      "msg": {
+        "en": "🌾 Agriculture Department\n\nProvides agricultural extension services and implements farming schemes.",
+        "mr": "🌾 कृषी विभाग\n\nकृषी विस्तार सेवा व शेती योजना राबवते."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "social_welfare": {
+      "id": "social_welfare",
+      "parent_id": "departments",
+      "msg": {
+        "en": "🤝 Social Welfare Department\n\nImplements welfare schemes for backward classes, SC/ST and other communities.",
+        "mr": "🤝 समाज कल्याण विभाग\n\nमागासवर्गीय, अनुसूचित जाती/जमाती व इतर समाजांसाठी कल्याण योजना."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "finance": {
+      "id": "finance",
+      "parent_id": "departments",
+      "msg": {
+        "en": "💰 Finance Department\n\nManages financial accounts, budgets and audit for ZP.",
+        "mr": "💰 वित्त विभाग\n\nजि.प. चे आर्थिक लेखे, अर्थसंकल्प व लेखापरीक्षण."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "general_admin": {
+      "id": "general_admin",
+      "parent_id": "departments",
+      "msg": {
+        "en": "📋 General Administration\n\nHandles administrative matters, personnel and establishment.",
+        "mr": "📋 सामान्य प्रशासन विभाग\n\nप्रशासकीय बाबी, कर्मचारी व स्थापना व्यवस्थापन."
+      },
+      "buttons": [
+        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
@@ -130,16 +212,88 @@
       "id": "schemes",
       "parent_id": "main_menu",
       "msg": {
-        "en": "ZP Buldhana implements Central, State and ZP-funded schemes. Select one:",
-        "mr": "जि.प. बुलढाणा विविध केंद्रीय, राज्य व झेडपी योजना राबवते. निवडा:"
+        "en": "📋 ZP Buldhana implements various Central, State and ZP-funded schemes.\n\nSelect a category:",
+        "mr": "📋 जि.प. बुलढाणा विविध केंद्रीय, राज्य व झेडपी योजना राबवते.\n\nश्रेणी निवडा:"
       },
       "options": [
         { "id": "health_schemes", "en": "Health Schemes", "mr": "आरोग्य योजना" },
         { "id": "edu_schemes", "en": "Education Schemes", "mr": "शिक्षण योजना" },
-        { "id": "women_child", "en": "Women & Child Development", "mr": "महिला व बालविकास योजना" },
-        { "id": "govt_schemes", "en": "Important Govt. Schemes", "mr": "महत्त्वाच्या शासन योजना" },
+        { "id": "women_child", "en": "Women & Child Dev", "mr": "महिला बालविकास" },
+        { "id": "govt_schemes", "en": "Important Govt Schemes", "mr": "महत्त्वाच्या योजना" },
         { "id": "agri_schemes", "en": "Agriculture Schemes", "mr": "कृषी योजना" },
-        { "id": "sw_schemes", "en": "Social Welfare Schemes", "mr": "समाज कल्याण योजना" },
+        { "id": "sw_schemes", "en": "Social Welfare", "mr": "समाज कल्याण योजना" },
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
+      ]
+    },
+    "health_schemes": {
+      "id": "health_schemes",
+      "parent_id": "schemes",
+      "msg": {
+        "en": "🏥 Health Schemes:\n• Ayushman Bharat\n• National Health Mission\n• Pradhan Mantri Jan Arogya Yojana\n• Immunization Programs\n• Maternal & Child Health",
+        "mr": "🏥 आरोग्य योजना:\n• आयुष्मान भारत\n• राष्ट्रीय आरोग्य अभियान\n• प्रधानमंत्री जन आरोग्य योजना\n• लसीकरण कार्यक्रम\n• मातृ व बाल आरोग्य"
+      },
+      "buttons": [
+        { "id": "schemes", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "edu_schemes": {
+      "id": "edu_schemes",
+      "parent_id": "schemes",
+      "msg": {
+        "en": "📚 Education Schemes:\n• Mid-Day Meal Scheme\n• Sarva Shiksha Abhiyan\n• Scholarship Programs\n• Free Textbooks\n• Uniform & Cycle Distribution",
+        "mr": "📚 शिक्षण योजना:\n• मध्यान्ह भोजन योजना\n• सर्व शिक्षा अभियान\n• शिष्यवृत्ती कार्यक्रम\n• मोफत पाठ्यपुस्तके\n• गणवेश व सायकल वितरण"
+      },
+      "buttons": [
+        { "id": "schemes", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "women_child": {
+      "id": "women_child",
+      "parent_id": "schemes",
+      "msg": {
+        "en": "👶 Women & Child Development:\n• Integrated Child Development Services (ICDS)\n• Anganwadi Services\n• Nutrition Programs\n• Beti Bachao Beti Padhao\n• Women Empowerment Schemes",
+        "mr": "👶 महिला व बालविकास:\n• एकात्मिक बालविकास सेवा (ICDS)\n• अंगणवाडी सेवा\n• पोषण कार्यक्रम\n• बेटी बचाओ बेटी पढाओ\n• महिला सबलीकरण योजना"
+      },
+      "buttons": [
+        { "id": "schemes", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "govt_schemes": {
+      "id": "govt_schemes",
+      "parent_id": "schemes",
+      "msg": {
+        "en": "🏛️ Important Government Schemes:\n• PM Kisan Samman Nidhi\n• Swachh Bharat Mission\n• PM Awas Yojana (Rural)\n• MGNREGA\n• Pradhan Mantri Gram Sadak Yojana",
+        "mr": "🏛️ महत्त्वाच्या शासकीय योजना:\n• पीएम किसान सन्मान निधी\n• स्वच्छ भारत अभियान\n• पीएम आवास योजना (ग्रामीण)\n• मनरेगा\n• प्रधानमंत्री ग्राम सडक योजना"
+      },
+      "buttons": [
+        { "id": "schemes", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "agri_schemes": {
+      "id": "agri_schemes",
+      "parent_id": "schemes",
+      "msg": {
+        "en": "🌾 Agriculture Schemes:\n• PM Fasal Bima Yojana\n• Soil Health Card Scheme\n• Krishi Vigyan Kendra\n• Organic Farming Support\n• Drip Irrigation Subsidy",
+        "mr": "🌾 कृषी योजना:\n• पीएम फसल बीमा योजना\n• मृदा आरोग्य कार्ड योजना\n• कृषी विज्ञान केंद्र\n• सेंद्रिय शेती समर्थन\n• ठिबक सिंचन अनुदान"
+      },
+      "buttons": [
+        { "id": "schemes", "en": "◀ Back", "mr": "◀ मागे" },
+        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+      ]
+    },
+    "sw_schemes": {
+      "id": "sw_schemes",
+      "parent_id": "schemes",
+      "msg": {
+        "en": "🤝 Social Welfare Schemes:\n• Scholarship for SC/ST/OBC\n• Pre-Matric & Post-Matric Scholarships\n• Hostel Facilities\n• Skill Development Programs\n• Financial Assistance",
+        "mr": "🤝 समाज कल्याण योजना:\n• अ.जा./अ.ज.जा./इ.म.व. शिष्यवृत्ती\n• प्री-मॅट्रिक व पोस्ट-मॅट्रिक शिष्यवृत्ती\n• वसतिगृह सुविधा\n• कौशल्य विकास कार्यक्रम\n• आर्थिक सहाय्य"
+      },
+      "buttons": [
+        { "id": "schemes", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
     },
@@ -147,56 +301,56 @@
       "id": "cess_fund",
       "parent_id": "main_menu",
       "msg": {
-        "en": "💰 For Z.P. Cess Fund Scheme details, please visit:\n🔗 https://yavatmalyojana.com/",
-        "mr": "💰 जि.प. सेस फंड योजनांची अधिक माहिती:\n🔗 https://yavatmalyojana.com/"
+        "en": "💰 For Z.P. Cess Fund Scheme details, please visit:\n\n🔗 https://yavatmalyojana.com/\n\nYou can find complete information about all cess fund schemes here.",
+        "mr": "💰 जि.प. सेस फंड योजनांची अधिक माहिती:\n\n🔗 https://yavatmalyojana.com/\n\nयेथे सर्व सेस फंड योजनांची संपूर्ण माहिती मिळेल."
       },
       "buttons": [
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
     "officers_contact": {
       "id": "officers_contact",
       "parent_id": "main_menu",
       "msg": {
-        "en": "📞 Officers’ Contact – Directory of ZP Buldhana officials.",
-        "mr": "📞 अधिकारी यांचे संपर्क – जिल्हा परिषद बुलढाणा अधिकारी माहिती."
+        "en": "📞 Officers' Contact Directory\n\nFor complete list of ZP Buldhana officials and their contact details, please visit the official website or contact the main office.\n\nMain Office: 07263-222222",
+        "mr": "📞 अधिकारी यांचे संपर्क\n\nजिल्हा परिषद बुलढाणा अधिकारी व त्यांच्या संपर्क तपशीलांसाठी अधिकृत वेबसाईट भेट द्या किंवा मुख्य कार्यालयात संपर्क करा.\n\nमुख्य कार्यालय: 07263-222222"
       },
       "buttons": [
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
     "complaint": {
       "id": "complaint",
       "parent_id": "main_menu",
       "msg": {
-        "en": "📝 Online Complaint – Submit your grievance via official portal.",
-        "mr": "📝 ऑनलाईन तक्रार – अधिकृत पोर्टलवरून नोंदणी करा."
+        "en": "📝 Online Complaint Registration\n\nTo register your complaint, please visit the official grievance portal or contact:\n\n📧 Email: zpbuldana@gmail.com\n📞 Phone: 07263-222222\n\nYou can also visit the ZP office during working hours.",
+        "mr": "📝 ऑनलाईन तक्रार नोंदणी\n\nआपली तक्रार नोंदवण्यासाठी अधिकृत तक्रार निवारण पोर्टल भेट द्या किंवा संपर्क करा:\n\n📧 ईमेल: zpbuldana@gmail.com\n📞 फोन: 07263-222222\n\nकार्यालयीन वेळेत जि.प. कार्यालयात भेट देखील देऊ शकता."
       },
       "buttons": [
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
     "citizens_charter": {
       "id": "citizens_charter",
       "parent_id": "main_menu",
       "msg": {
-        "en": "📜 Citizens’ Charter – Rights & responsibilities of citizens.",
-        "mr": "📜 नागरिकांची सनद – नागरिकांचे अधिकार व जबाबदाऱ्या."
+        "en": "📜 Citizens' Charter\n\nThe Citizens' Charter outlines:\n• Your rights as a citizen\n• Service delivery standards\n• Time frames for services\n• Grievance redressal mechanism\n\nFor detailed charter, visit ZP office or official website.",
+        "mr": "📜 नागरिकांची सनद\n\nनागरिकांच्या सनदात समाविष्ट:\n• नागरिक म्हणून आपले अधिकार\n• सेवा वितरण मानके\n• सेवांसाठी कालमर्यादा\n• तक्रार निवारण यंत्रणा\n\nतपशीलवार सनदसाठी जि.प. कार्यालय किंवा अधिकृत वेबसाईट भेट द्या."
       },
       "buttons": [
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+        { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
     "change_language": {
       "id": "change_language",
       "parent_id": "main_menu",
       "msg": {
-        "en": "Please select your preferred language:",
-        "mr": "कृपया आपली पसंतीची भाषा निवडा:"
+        "en": "Please select your preferred language:\nकृपया आपली पसंतीची भाषा निवडा:",
+        "mr": "Please select your preferred language:\nकृपया आपली पसंतीची भाषा निवडा:"
       },
       "buttons": [
         { "id": "language_en", "en": "English", "mr": "English" },
-        { "id": "language_mr", "en": "Marathi", "mr": "मराठी" }
+        { "id": "language_mr", "en": "मराठी", "mr": "मराठी" }
       ]
     }
   }

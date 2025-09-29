@@ -26,7 +26,7 @@ LAST_ACTIVE = {}
 def sanitize_title(title):
     return str(title).strip()[:20] if title else "Option"
 
-# Send WhatsApp message
+# Send WhatsApp message with proper formatting
 def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
     url = f"https://graph.facebook.com/v22.0/{PHONE_NUMBER_ID}/messages"
     headers = {
@@ -35,12 +35,17 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
     }
     payload = {"messaging_product": "whatsapp", "to": to}
 
-    if opt_type == "buttons" and options:
+    if opt_type == "buttons" and options and len(options) <= 3:
         payload["type"] = "interactive"
         payload["interactive"] = {
             "type": "button",
             "body": {"text": message_text},
-            "action": {"buttons": [{"type": "reply", "reply": {"id": b, "title": sanitize_title(b)}} for b in options]}
+            "action": {
+                "buttons": [
+                    {"type": "reply", "reply": {"id": opt["id"], "title": sanitize_title(opt["title"])}} 
+                    for opt in options
+                ]
+            }
         }
     elif opt_type == "list" and options:
         payload["type"] = "interactive"
@@ -49,7 +54,13 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
             "body": {"text": message_text},
             "action": {
                 "button": "Choose",
-                "sections": [{"title": "Options", "rows": [{"id": b, "title": sanitize_title(b)} for b in options]}]
+                "sections": [{
+                    "title": "Options",
+                    "rows": [
+                        {"id": opt["id"], "title": sanitize_title(opt["title"])} 
+                        for opt in options
+                    ]
+                }]
             }
         }
     else:
@@ -70,6 +81,12 @@ def schedule_followup(user_id):
             if last and time.time() - last >= followup_timeout:
                 msg = MENU.get("rules", {}).get("follow_up", "Knock Knock 👋 Are you there?")
                 send_whatsapp_message(user_id, msg)
+                # Send main menu after follow-up
+                state = USER_STATE.get(user_id)
+                if state and state.get("language"):
+                    send_menu_by_id(user_id, "main_menu", state["language"])
+                else:
+                    send_opening_menu(user_id)
         except Exception as e:
             print("⚠️ Follow-up thread error:", e)
     threading.Thread(target=followup, daemon=True).start()
@@ -82,8 +99,14 @@ def clean_msg(text):
 
 # Handle 'Restart'
 def handle_restart(user_id, user_text):
-    if user_text.strip().lower() in ["restart", "पुन्हा सुरू करा"]:
-        USER_STATE[user_id] = {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": True}
+    restart_keywords = ["restart", "पुन्हा सुरू करा", "start", "begin", "सुरू करा"]
+    if user_text.strip().lower() in restart_keywords:
+        USER_STATE[user_id] = {
+            "stage": "INIT", 
+            "language": None, 
+            "current_menu": "opening", 
+            "expecting_reply": True
+        }
         send_opening_menu(user_id)
         return True
     return False
@@ -91,8 +114,10 @@ def handle_restart(user_id, user_text):
 # Send opening menu
 def send_opening_menu(user_id):
     opening = MENU["opening"]
-    lang = "en"
-    buttons = [b["id"] for b in opening["buttons"]]
+    buttons = [
+        {"id": btn["id"], "title": btn["Value"]} 
+        for btn in opening["buttons"]
+    ]
     send_whatsapp_message(user_id, opening["msg"], buttons, "buttons")
 
 # Find menu node
@@ -127,56 +152,125 @@ def webhook():
                     schedule_followup(from_number)
 
                     msg_body, user_text = None, None
+                    
+                    # Handle interactive messages (buttons/lists)
                     if "interactive" in msg:
                         interactive = msg["interactive"]
                         if interactive["type"] == "button_reply":
                             msg_body = interactive["button_reply"]["id"]
                         elif interactive["type"] == "list_reply":
                             msg_body = interactive["list_reply"]["id"]
+                    
+                    # Handle text messages
                     if msg.get("text"):
                         user_text = clean_msg(msg["text"].get("body"))
 
-                    # Restart
+                    # Check for restart command
                     if user_text and handle_restart(from_number, user_text):
                         continue
 
-                    # Interactive reply
+                    # Handle interactive reply (button/list selection)
                     if msg_body:
                         handle_user_input(from_number, msg_body)
                         continue
 
-                    # Free text (language selection)
+                    # Handle free text (for language selection or unknown input)
                     if user_text:
                         handle_free_text(from_number, user_text)
                         continue
 
     return jsonify({"status": "ok"}), 200
 
-# Handle free text (language)
+# Handle free text input
 def handle_free_text(user_id, user_text):
-    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": False})
-    if state["stage"] == "INIT":
+    state = USER_STATE.get(user_id, {
+        "stage": "INIT", 
+        "language": None, 
+        "current_menu": "opening", 
+        "expecting_reply": False
+    })
+    
+    # Language selection via text
+    if state["stage"] == "INIT" or state.get("current_menu") == "opening":
         lang_text = user_text.lower()
-        if lang_text in ["english", "english"]:
-            USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": "en", "current_menu": "main_menu", "expecting_reply": True}
+        if "english" in lang_text or lang_text == "en":
+            USER_STATE[user_id] = {
+                "stage": "LANG_SELECTED", 
+                "language": "en", 
+                "current_menu": "main_menu", 
+                "expecting_reply": True
+            }
             send_menu_by_id(user_id, "main_menu", "en")
             return
-        elif lang_text in ["marathi", "मराठी"]:
-            USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": "mr", "current_menu": "main_menu", "expecting_reply": True}
+        elif "marathi" in lang_text or "मराठी" in lang_text or lang_text == "mr":
+            USER_STATE[user_id] = {
+                "stage": "LANG_SELECTED", 
+                "language": "mr", 
+                "current_menu": "main_menu", 
+                "expecting_reply": True
+            }
             send_menu_by_id(user_id, "main_menu", "mr")
             return
-    send_opening_menu(user_id)
+    
+    # Unknown input - resend current menu or opening
+    lang = state.get("language", "en")
+    current_menu = state.get("current_menu", "opening")
+    
+    if current_menu == "opening" or not state.get("language"):
+        send_opening_menu(user_id)
+    else:
+        # Send help message with current menu
+        help_msg = {
+            "en": "Please use the buttons below to continue:",
+            "mr": "कृपया पुढे जाण्यासाठी खालील बटणे वापरा:"
+        }
+        send_whatsapp_message(user_id, help_msg.get(lang, help_msg["en"]))
+        send_menu_by_id(user_id, current_menu, lang)
 
-# Handle user input
+# Handle user button/list input
 def handle_user_input(user_id, selected_id):
-    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": False})
+    state = USER_STATE.get(user_id, {
+        "stage": "INIT", 
+        "language": None, 
+        "current_menu": "opening", 
+        "expecting_reply": False
+    })
+    
+    # Handle language selection buttons
+    if selected_id == "language_en":
+        USER_STATE[user_id] = {
+            "stage": "LANG_SELECTED", 
+            "language": "en", 
+            "current_menu": "main_menu", 
+            "expecting_reply": True
+        }
+        send_menu_by_id(user_id, "main_menu", "en")
+        return
+    elif selected_id == "language_mr":
+        USER_STATE[user_id] = {
+            "stage": "LANG_SELECTED", 
+            "language": "mr", 
+            "current_menu": "main_menu", 
+            "expecting_reply": True
+        }
+        send_menu_by_id(user_id, "main_menu", "mr")
+        return
+    
+    # Get language
     lang = state.get("language") or "en"
+    
+    # Find the selected menu item
     item = find_menu_item_by_id(selected_id)
     if not item:
+        # Invalid selection - resend current menu
         send_menu_by_id(user_id, state.get("current_menu", "main_menu"), lang)
         return
+    
+    # Update state
     USER_STATE[user_id]["current_menu"] = selected_id
     USER_STATE[user_id]["expecting_reply"] = True
+    
+    # Send the selected menu
     send_menu_item(user_id, item, lang)
 
 # Send menu by ID
@@ -187,20 +281,30 @@ def send_menu_by_id(user_id, menu_id, lang):
     else:
         send_menu_item(user_id, find_menu_item_by_id("main_menu"), lang)
 
-# Send menu item
+# Send menu item with proper button/list formatting
 def send_menu_item(user_id, item, lang):
+    # Get message text based on language
     msg_text = item.get("msg")
     if isinstance(msg_text, dict):
         msg_text = msg_text.get(lang, msg_text.get("en", ""))
 
-    # Options/buttons
+    # Prepare options/buttons
     options = []
     opt_type = "text"
+    
     if "options" in item:
-        options = [o["id"] for o in item["options"]]
+        # List options
+        options = [
+            {"id": opt["id"], "title": opt.get(lang, opt.get("en", opt["id"]))} 
+            for opt in item["options"]
+        ]
         opt_type = "list"
     elif "buttons" in item:
-        options = [b["id"] for b in item["buttons"]]
+        # Button options
+        options = [
+            {"id": btn["id"], "title": btn.get(lang, btn.get("en", btn["id"]))} 
+            for btn in item["buttons"]
+        ]
         opt_type = "buttons" if len(options) <= 3 else "list"
 
     send_whatsapp_message(user_id, msg_text, options, opt_type)
@@ -211,4 +315,4 @@ def home():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=False)
