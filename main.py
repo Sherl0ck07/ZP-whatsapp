@@ -147,7 +147,7 @@ def handle_free_text(user_id, user_text):
             send_bot_message(user_id)
         else:
             lang = MENU["default_language"]
-            send_whatsapp_message(user_id, MENU["opening"][lang]["msg"], MENU["opening"][lang]["buttons"], "buttons")
+            send_whatsapp_message(user_id, MENU["opening"]["msg"], MENU["opening"]["buttons"], "buttons")
         return
 
     if state.get("expecting_reply", False):
@@ -198,7 +198,7 @@ def handle_user_input(user_id, msg_text):
         }
         # Send language selection directly
         lang = "English"  # Use default for opening message
-        menu_data = MENU["opening"][lang]
+        menu_data = MENU["opening"]
         send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
