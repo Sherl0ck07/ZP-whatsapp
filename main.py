@@ -110,6 +110,7 @@ def clean_msg(text):
     return text.replace("\n", "").replace("\r", "").strip().lower()
 
 # === Webhook Message Handler ===
+# --- Webhook Message Handler ---
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
@@ -126,7 +127,6 @@ def webhook():
                     LAST_ACTIVE[from_number] = time.time()
                     schedule_followup(from_number)
 
-                    # --- Determine message content ---
                     msg_body = None
                     user_text = None
 
@@ -142,13 +142,9 @@ def webhook():
 
                     # --- Restart Command ---
                     if user_text:
-                        # Handle restart robustly
                         if handle_restart(from_number, user_text):
-                            continue  # Skip other handlers, restart already done
-
-                        # If not restart, handle free text
-                        handle_free_text(from_number, user_text)
-
+                            # **Skip all other processing for this message**
+                            continue
 
                     # --- Handle input ---
                     if msg_body:
@@ -160,6 +156,7 @@ def webhook():
                         continue
 
     return jsonify({"status": "ok"}), 200
+
 
 # === Handle Free Text / Fallback ===
 def handle_free_text(user_id, user_text):
