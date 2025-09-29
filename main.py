@@ -18,6 +18,33 @@ app = Flask(__name__)
 USER_STATE = {}
 LAST_ACTIVE = {}
 
+# --- Restart Command Handler ---
+def handle_restart(user_id, user_text):
+    """
+    Check if the user wants to restart the bot and reset state accordingly.
+    """
+    if user_text.strip().lower() in ["restart", "पुन्हा सुरू करा"]:
+        # Reset user state
+        USER_STATE[user_id] = {
+            "stage": "INIT",
+            "language": None,
+            "current_menu": "opening",
+            "expecting_reply": True
+        }
+
+        # Send restart message
+        lang = USER_STATE.get(user_id, {}).get("language") or MENU["default_language"]
+        restart_msg = MENU["restart"]["msg"].get(lang, "Restarting the bot...")
+        send_whatsapp_message(user_id, restart_msg)
+
+        # Send opening menu **after a short delay** to avoid API conflicts
+        time.sleep(0.5)
+        send_bot_message(user_id)
+        return True  # Indicates restart was handled
+
+    return False  # Not a restart command
+
+
 # === Helper Functions ===
 
 def sanitize_title(title):
@@ -114,17 +141,14 @@ def webhook():
                         user_text = clean_msg(msg["text"].get("body"))
 
                     # --- Restart Command ---
-                    if user_text in ["restart", "पुन्हा सुरू करा"]:
-                        lang = USER_STATE.get(from_number, {}).get("language", MENU["default_language"])
-                        USER_STATE[from_number] = {
-                            "stage": "INIT",
-                            "language": None,
-                            "current_menu": "opening",
-                            "expecting_reply": True
-                        }
-                        send_whatsapp_message(from_number, MENU["restart"]["msg"].get(lang))
-                        send_bot_message(from_number)
-                        continue
+                    if user_text:
+                        # Handle restart robustly
+                        if handle_restart(from_number, user_text):
+                            continue  # Skip other handlers, restart already done
+
+                        # If not restart, handle free text
+                        handle_free_text(from_number, user_text)
+
 
                     # --- Handle input ---
                     if msg_body:
