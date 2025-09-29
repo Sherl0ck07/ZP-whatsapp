@@ -4,235 +4,375 @@
   "default_language": "English",
 
   "restart": {
-    "msg": "Restarting the bot... / बॉट पुन्हा सुरू करत आहे...",
+    "msg": {
+      "Marathi": "बॉट पुन्हा सुरू करत आहे...",
+      "English": "Restarting the bot..."
+    },
     "action": "go_to_opening"
   },
 
   "timed_followup": {
     "timeout": 3600,
-    "msg": "Knock Knock! Are you still there? / तुम्ही अद्याप आहात का?"
+    "msg": {
+      "Marathi": "नमस्कार! आपण अद्याप येथे आहात का?",
+      "English": "Knock Knock! Are you still there?"
+    }
   },
 
   "fallback": {
-    "msg": "Sorry, I didn't understand that. कृपया पुन्हा निवडा / Please select again.",
+    "msg": {
+      "Marathi": "माफ करा, मला ते समजले नाही. कृपया पुन्हा निवडा.",
+      "English": "Sorry, I didn't understand that. Please select again."
+    },
     "actions": ["repeat_last_menu", "go_to_main_menu"]
   },
 
   "opening": {
-    "msg": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana\nनमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद Buldhana च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nPlease select your preferred language to continue:\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा",
-    "buttons": ["Marathi", "English"]
-  },
-
-  "main_menu": {
     "Marathi": {
-      "msg": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा",
-      "list_title": "सेवा निवडा",
-      "options": [
-        {"key": "about_zp", "label": "जि.प. बुलढाणा बद्दल"},
-        {"key": "departments", "label": "जि.प. विभाग"},
-        {"key": "schemes", "label": "जि.प. योजना"},
-        {"key": "cess_fund", "label": "जि.प. सेस फंड योजना"},
-        {"key": "officers_contact", "label": "अधिकारी यांचे संपर्क"},
-        {"key": "online_complaint", "label": "ऑनलाईन तक्रार"},
-        {"key": "citizens_charter", "label": "नागरिकांची सनद"},
-        {"key": "change_language", "label": "भाषा बदल"}
-      ]
+      "msg": "नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nकृपया पुढे जाण्यासाठी एक भाषा निवडा:",
+      "buttons": ["मराठी", "इंग्रजी"]
     },
     "English": {
-      "msg": "Okay! Let's talk in English! Please select a service",
-      "list_title": "Choose Service",
-      "options": [
-        {"key": "about_zp", "label": "About Z.P. Buldhana"},
-        {"key": "departments", "label": "Z.P. Departments"},
-        {"key": "schemes", "label": "Z.P. Schemes"},
-        {"key": "cess_fund", "label": "Z.P. Cess Fund Schemes"},
-        {"key": "officers_contact", "label": "Officers’ Contact"},
-        {"key": "online_complaint", "label": "Online Complaint"},
-        {"key": "citizens_charter", "label": "Citizens’ Charter"},
-        {"key": "change_language", "label": "Change Language"}
-      ]
+      "msg": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language:",
+      "buttons": ["Marathi", "English"]
     }
   },
 
-  "about_zp": {
+  "flow": {
     "Marathi": {
-      "msg": "📅 ५ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते... (Sample Info)",
-      "list_title": "Z.P. विभाग",
-      "options": [
-        {"key": "vision_mission", "label": "दृष्टीकोन आणि ध्येय"},
-        {"key": "administrative_structure", "label": "प्रशासकीय रचना"},
-        {"key": "who_is_who", "label": "कोण कोण आहेत"},
-        {"key": "main_menu", "label": "मुख्य मेनू"}
-      ]
-    },
-    "English": {
-      "msg": "📅 Before May 5, 1962, there were district boards... (Sample Info)",
-      "list_title": "Z.P. Departments",
-      "options": [
-        {"key": "vision_mission", "label": "Vision and Mission"},
-        {"key": "administrative_structure", "label": "Administrative Structure"},
-        {"key": "who_is_who", "label": "Who’s Who"},
-        {"key": "main_menu", "label": "Main Menu"}
-      ]
-    }
-  },
+      "main_menu": {
+        "msg": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा",
+        "list_title": "सेवा निवडा",
+        "options": [
+          {"key": "about_zp", "label": "जि.प. बुलढाणा बद्दल"},
+          {"key": "departments", "label": "जि.प. विभाग"},
+          {"key": "schemes", "label": "जि.प. योजना"},
+          {"key": "cess_fund", "label": "जि.प. सेस फंड योजना"},
+          {"key": "officers_contact", "label": "अधिकारी यांचे संपर्क"},
+          {"key": "online_complaint", "label": "ऑनलाईन तक्रार"},
+          {"key": "citizens_charter", "label": "नागरिकांची सनद"},
+          {"key": "change_language", "label": "भाषा बदल"}
+        ]
+      },
 
-  "vision_mission": {
-    "Marathi": {
-      "msg": "🎯 दृष्टीकोन: ग्रामीण विकास, शाश्वत प्रगती...\n🚀 ध्येय: शिक्षण, आरोग्य, शेती...",
-      "buttons": ["Back to About ZP", "Main Menu"]
-    },
-    "English": {
-      "msg": "🎯 Vision: Rural development, sustainable progress...\n🚀 Mission: Education, health, agriculture...",
-      "buttons": ["Back to About ZP", "Main Menu"]
-    }
-  },
+      "about_zp": {
+        "msg": "📅 ५ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते... जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पासून यांची स्थापना झाली.",
+        "list_title": "जि.प. बद्दल",
+        "options": [
+          {"key": "vision_mission", "label": "दृष्टीकोन आणि ध्येय"},
+          {"key": "administrative_structure", "label": "प्रशासकीय रचना"},
+          {"key": "who_is_who", "label": "कोण कोण आहेत"},
+          {"key": "main_menu", "label": "मुख्य मेनू"}
+        ]
+      },
 
-  "administrative_structure": {
-    "Marathi": {
-      "msg": "👥 प्रशासकीय रचना: मुख्य कार्यकारी अधिकारी, अतिरिक्त मुख्य कार्यकारी अधिकारी...",
-      "buttons": ["Back to About ZP", "Main Menu"]
-    },
-    "English": {
-      "msg": "👥 Administrative Structure: CEO, Additional CEO...",
-      "buttons": ["Back to About ZP", "Main Menu"]
-    }
-  },
+      "vision_mission": {
+        "msg": "🎯 दृष्टीकोन: ग्रामीण विकास, शाश्वत प्रगती व चांगल्या जीवनमानासाठी कार्यरत\n🚀 ध्येय: शिक्षण, आरोग्य, पायाभूत सुविधा याचा समतोल विकास",
+        "buttons": ["जि.प. बद्दल", "मुख्य मेनू"]
+      },
 
-  "who_is_who": {
-    "Marathi": {
-      "msg": "👤 प्रमुख अधिकारी: श्री मंदार पत्की - मुख्य कार्यकारी अधिकारी...",
-      "buttons": ["Back to About ZP", "Main Menu"]
-    },
-    "English": {
-      "msg": "👤 Key Officers: Mr. Mandar Patki - CEO...",
-      "buttons": ["Back to About ZP", "Main Menu"]
-    }
-  },
+      "administrative_structure": {
+        "msg": "👥 प्रशासकीय रचना:\n* मुख्य कार्यकारी अधिकारी\n* अतिरिक्त मुख्य कार्यकारी अधिकारी",
+        "buttons": ["जि.प. बद्दल", "मुख्य मेनू"]
+      },
 
-  "departments": {
-    "Marathi": {
-      "msg": "मस्त! विभागांपासून सुरुवात करूया...",
-      "list_title": "📋 विभागांची यादी",
-      "options": [
-        {"key": "health", "label": "आरोग्य विभाग"},
-        {"key": "primary_edu", "label": "शिक्षण प्रा विभाग"},
-        {"key": "secondary_edu", "label": "शिक्षण माध्य विभाग"},
-        {"key": "animal_husbandry", "label": "पशुसंवर्धन विभाग"},
-        {"key": "agriculture", "label": "कृषी विभाग"},
-        {"key": "social_welfare", "label": "समाज कल्याण विभाग"},
-        {"key": "finance", "label": "वित्त विभाग"},
-        {"key": "general_admin", "label": "सामान्य प्र विभाग"},
-        {"key": "main_menu", "label": "मुख्य मेनू"}
-      ]
-    },
-    "English": {
-      "msg": "Great! Let's start with departments...",
-      "list_title": "📋 Departments List",
-      "options": [
-        {"key": "health", "label": "Health Department"},
-        {"key": "primary_edu", "label": "Primary Education Department"},
-        {"key": "secondary_edu", "label": "Secondary Education Department"},
-        {"key": "animal_husbandry", "label": "Animal Husbandry Department"},
-        {"key": "agriculture", "label": "Agriculture Department"},
-        {"key": "social_welfare", "label": "Social Welfare Department"},
-        {"key": "finance", "label": "Finance Department"},
-        {"key": "general_admin", "label": "General Administration Department"},
-        {"key": "main_menu", "label": "Main Menu"}
-      ]
-    }
-  },
+      "who_is_who": {
+        "msg": "👤 प्रमुख अधिकारी:\n1. श्री मंदार पत्की (भा प्र से) - मुख्य कार्यकारी अधिकारी\n2. श्री संतोष धोत्रे - अति मुख्य कार्यकारी अधिकारी",
+        "buttons": ["जि.प. बद्दल", "मुख्य मेनू"]
+      },
 
-  "department_details": {
-    "health": {
-      "Marathi": {
-        "msg": "🏥 आरोग्य विभाग – ग्रामीण आरोग्य संवर्धनासाठी महत्त्वाची भूमिका...",
-        "buttons": ["Contact", "Departments", "Main Menu"],
-        "contact": {
-          "name": "श्री. संतोष ढोले",
-          "designation": "जिल्हा आरोग्य अधिकारी",
-          "phone": "9405162034"
+      "departments": {
+        "msg": "मस्त! विभागांपासून सुरुवात करूया...",
+        "list_title": "📋 विभागांची यादी",
+        "options": [
+          {"key": "health", "label": "आरोग्य विभाग"},
+          {"key": "primary_edu", "label": "शिक्षण प्रा विभाग"},
+          {"key": "secondary_edu", "label": "शिक्षण माध्य विभाग"},
+          {"key": "animal_husbandry", "label": "पशुसंवर्धन विभाग"},
+          {"key": "agriculture", "label": "कृषी विभाग"},
+          {"key": "social_welfare", "label": "समाज कल्याण विभाग"},
+          {"key": "finance", "label": "वित्त विभाग"},
+          {"key": "general_admin", "label": "सामान्य प्र विभाग"},
+          {"key": "main_menu", "label": "मुख्य मेनू"}
+        ]
+      },
+
+      "department_details": {
+        "health": {
+          "msg": "🏥 आरोग्य विभाग – ग्रामीण आरोग्य संवर्धनासाठी महत्त्वाची भूमिका...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्री. संतोष ढोले",
+            "designation": "जिल्हा आरोग्य अधिकारी",
+            "phone": "9405162034"
+          }
+        },
+        "primary_edu": {
+          "msg": "📘 प्राथमिक शिक्षण विभाग – शाळांचे व्यवस्थापन...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्री. प्रकाश मिश्रा",
+            "designation": "शिक्षणाधिकारी प्राथमिक",
+            "phone": "9850425271"
+          }
+        },
+        "secondary_edu": {
+          "msg": "📝 माध्यमिक शिक्षण विभाग – उच्च व माध्यमिक शाळा...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्री. रवींद्र काटोलकर",
+            "designation": "शिक्षणाधिकारी माध्यमिक",
+            "phone": "9975864297"
+          }
+        },
+        "animal_husbandry": {
+          "msg": "🐄 पशुसंवर्धन विभाग – ग्रामीण पशुवैद्यकीय सेवा...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "डॉ. क्रांती काटोले",
+            "designation": "जिल्हा पशुसंवर्धन अधिकारी",
+            "phone": "7888036271"
+          }
+        },
+        "agriculture": {
+          "msg": "🌾 कृषी विभाग – शेतकऱ्यांसाठी विविध योजना...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्री. लहुदास आडे",
+            "designation": "कृषी विकास अधिकारी",
+            "phone": "8275068639"
+          }
+        },
+        "social_welfare": {
+          "msg": "🤝 समाज कल्याण विभाग – दुर्बल घटकांसाठी सेवा...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्रीमती मंगला मून (प्र.)",
+            "designation": "समाज कल्याण अधिकारी",
+            "phone": "8698577320"
+          }
+        },
+        "finance": {
+          "msg": "💰 वित्त विभाग – आर्थिक व्यवहारांची देखरेख...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्री. तुकाराम भिसे",
+            "designation": "मुख्य लेखा व वित्त अधिकारी",
+            "phone": "7875918090"
+          }
+        },
+        "general_admin": {
+          "msg": "🏛 सामान्य प्रशासन विभाग – कर्मचाऱ्यांचे व्यवस्थापन...",
+          "buttons": ["विभाग", "मुख्य मेनू"],
+          "contact": {
+            "name": "श्री. जालिंदर आभाळे",
+            "designation": "उप मुख्य कार्यकारी अधिकारी",
+            "phone": "9823617509"
+          }
         }
       },
-      "English": {
-        "msg": "🏥 Health Department – Plays a vital role in rural healthcare...",
-        "buttons": ["Contact", "Departments", "Main Menu"],
-        "contact": {
-          "name": "Mr. Santosh Dhole",
-          "designation": "District Health Officer",
-          "phone": "9405162034"
-        }
+
+      "schemes": {
+        "msg": "जिल्हा परिषद बुलढाणा विविध योजना चालवते...",
+        "list_title": "योजना यादी",
+        "options": [
+          {"key": "health_schemes", "label": "आरोग्य विभाग"},
+          {"key": "education_schemes", "label": "शिक्षण विभाग"},
+          {"key": "women_child_schemes", "label": "महिला व बालविकास विभाग"},
+          {"key": "important_govt_schemes", "label": "शासनाच्या महत्त्वाच्या योजना"},
+          {"key": "agriculture_schemes", "label": "कृषी विभाग"},
+          {"key": "social_welfare_schemes", "label": "समाज कल्याण विभाग"},
+          {"key": "main_menu", "label": "मुख्य मेनू"}
+        ]
+      },
+
+      "cess_fund": {
+        "msg": "सेस फंड माहिती: https://yavatmalyojana.com/",
+        "buttons": ["मुख्य मेनू"]
+      },
+
+      "officers_contact": {
+        "msg": "अधिकारी संपर्क माहिती...",
+        "buttons": ["मुख्य मेनू"]
+      },
+
+      "online_complaint": {
+        "msg": "ऑनलाईन तक्रार फॉर्म...",
+        "buttons": ["मुख्य मेनू"]
+      },
+
+      "citizens_charter": {
+        "msg": "नागरिकांची सनद...",
+        "buttons": ["मुख्य मेनू"]
       }
     },
-    "primary_edu": {
-      "Marathi": {
-        "msg": "📘 प्राथमिक शिक्षण विभाग – शाळांचे व्यवस्थापन...",
-        "buttons": ["Contact", "Departments", "Main Menu"],
-        "contact": {
-          "name": "श्री. प्रकाश मिश्रा",
-          "designation": "शिक्षणाधिकारी प्राथमिक",
-          "phone": "9850425271"
+
+    "English": {
+      "main_menu": {
+        "msg": "Okay! Let's talk in English! Please select a service",
+        "list_title": "Choose Service",
+        "options": [
+          {"key": "about_zp", "label": "About Z.P. Buldhana"},
+          {"key": "departments", "label": "Z.P. Departments"},
+          {"key": "schemes", "label": "Z.P. Schemes"},
+          {"key": "cess_fund", "label": "Z.P. Cess Fund Schemes"},
+          {"key": "officers_contact", "label": "Officers' Contact"},
+          {"key": "online_complaint", "label": "Online Complaint"},
+          {"key": "citizens_charter", "label": "Citizens' Charter"},
+          {"key": "change_language", "label": "Change Language"}
+        ]
+      },
+
+      "about_zp": {
+        "msg": "📅 Before May 5, 1962, there were district boards... The 1961 Act established Zilla Parishad and Panchayat Samitis.",
+        "list_title": "About Zilla Parishad",
+        "options": [
+          {"key": "vision_mission", "label": "Vision and Mission"},
+          {"key": "administrative_structure", "label": "Administrative Structure"},
+          {"key": "who_is_who", "label": "Who's Who"},
+          {"key": "main_menu", "label": "Main Menu"}
+        ]
+      },
+
+      "vision_mission": {
+        "msg": "🎯 Vision: Rural development, sustainable growth and better living standards\n🚀 Mission: Balanced development in education, health, agriculture and infrastructure",
+        "buttons": ["About ZP", "Main Menu"]
+      },
+
+      "administrative_structure": {
+        "msg": "👥 Administrative Structure:\n* Chief Executive Officer\n* Additional CEO",
+        "buttons": ["About ZP", "Main Menu"]
+      },
+
+      "who_is_who": {
+        "msg": "👤 Key Officers:\n1. Mr. Mandar Patki (IAS) - Chief Executive Officer\n2. Mr. Santosh Dhotre - Additional CEO",
+        "buttons": ["About ZP", "Main Menu"]
+      },
+
+      "departments": {
+        "msg": "Great! Let's start with departments...",
+        "list_title": "📋 Departments List",
+        "options": [
+          {"key": "health", "label": "Health Department"},
+          {"key": "primary_edu", "label": "Primary Education Department"},
+          {"key": "secondary_edu", "label": "Secondary Education Department"},
+          {"key": "animal_husbandry", "label": "Animal Husbandry Department"},
+          {"key": "agriculture", "label": "Agriculture Department"},
+          {"key": "social_welfare", "label": "Social Welfare Department"},
+          {"key": "finance", "label": "Finance Department"},
+          {"key": "general_admin", "label": "General Administration Department"},
+          {"key": "main_menu", "label": "Main Menu"}
+        ]
+      },
+
+      "department_details": {
+        "health": {
+          "msg": "🏥 Health Department – Plays a vital role in rural healthcare...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Santosh Dhole",
+            "designation": "District Health Officer",
+            "phone": "9405162034"
+          }
+        },
+        "primary_edu": {
+          "msg": "📘 Primary Education Department – Manages schools...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Prakash Mishra",
+            "designation": "Primary Education Officer",
+            "phone": "9850425271"
+          }
+        },
+        "secondary_edu": {
+          "msg": "📝 Secondary Education Department – Supervises high schools...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Ravindra Katolkar",
+            "designation": "Secondary Education Officer",
+            "phone": "9975864297"
+          }
+        },
+        "animal_husbandry": {
+          "msg": "🐄 Animal Husbandry Department – Provides veterinary services...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Dr. Kranti Katole",
+            "designation": "District Animal Husbandry Officer",
+            "phone": "7888036271"
+          }
+        },
+        "agriculture": {
+          "msg": "🌾 Agriculture Department – Provides schemes and training for farmers...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Lahudas Aade",
+            "designation": "Agriculture Development Officer",
+            "phone": "8275068639"
+          }
+        },
+        "social_welfare": {
+          "msg": "🤝 Social Welfare Department – Works for backward sections...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mrs. Mangala Moon (Incharge)",
+            "designation": "Social Welfare Officer",
+            "phone": "8698577320"
+          }
+        },
+        "finance": {
+          "msg": "💰 Finance Department – Keeps watch over accounts and budget...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Tukaram Bhise",
+            "designation": "Chief Accounts & Finance Officer",
+            "phone": "7875918090"
+          }
+        },
+        "general_admin": {
+          "msg": "🏛 General Administration Department – Manages recruitment and staff transfers...",
+          "buttons": ["Departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Jalinder Abhale",
+            "designation": "Deputy CEO, GAD",
+            "phone": "9823617509"
+          }
         }
       },
-      "English": {
-        "msg": "📘 Primary Education Department – Manages schools...",
-        "buttons": ["Contact", "Departments", "Main Menu"],
-        "contact": {
-          "name": "Mr. Prakash Mishra",
-          "designation": "Primary Education Officer",
-          "phone": "9850425271"
-        }
+
+      "schemes": {
+        "msg": "ZP Buldhana runs several schemes...",
+        "list_title": "Schemes List",
+        "options": [
+          {"key": "health_schemes", "label": "Health Department"},
+          {"key": "education_schemes", "label": "Education Department"},
+          {"key": "women_child_schemes", "label": "Women & Child Development Department"},
+          {"key": "important_govt_schemes", "label": "Important Government Schemes"},
+          {"key": "agriculture_schemes", "label": "Agriculture Department"},
+          {"key": "social_welfare_schemes", "label": "Social Welfare Department"},
+          {"key": "main_menu", "label": "Main Menu"}
+        ]
+      },
+
+      "cess_fund": {
+        "msg": "Cess Fund Info: https://yavatmalyojana.com/",
+        "buttons": ["Main Menu"]
+      },
+
+      "officers_contact": {
+        "msg": "Officers’ Contact Info...",
+        "buttons": ["Main Menu"]
+      },
+
+      "online_complaint": {
+        "msg": "Online Complaint Form...",
+        "buttons": ["Main Menu"]
+      },
+
+      "citizens_charter": {
+        "msg": "Citizens’ Charter...",
+        "buttons": ["Main Menu"]
       }
     }
-    
-  },
-
-  "schemes": {
-    "Marathi": {
-      "msg": "जिल्हा परिषद बुलढाणा विविध योजना...",
-      "list_title": "योजना यादी",
-      "options": [
-        {"key": "health_schemes", "label": "आरोग्य विभाग"},
-        {"key": "education_schemes", "label": "शिक्षण प्रा विभाग"},
-        {"key": "women_child_schemes", "label": "महिला व बालविकास विभाग"},
-        {"key": "important_govt_schemes", "label": "शासनाच्या महत्त्वाच्या योजना"},
-        {"key": "agriculture_schemes", "label": "कृषी विभाग"},
-        {"key": "social_welfare_schemes", "label": "समाज कल्याण विभाग"},
-        {"key": "main_menu", "label": "मुख्य मेनू"}
-      ]
-    },
-    "English": {
-      "msg": "ZP Buldhana runs various schemes...",
-      "list_title": "Schemes List",
-      "options": [
-        {"key": "health_schemes", "label": "Health Department"},
-        {"key": "education_schemes", "label": "Education Department"},
-        {"key": "women_child_schemes", "label": "Women & Child Development Department"},
-        {"key": "important_govt_schemes", "label": "Important Government Schemes"},
-        {"key": "agriculture_schemes", "label": "Agriculture Department"},
-        {"key": "social_welfare_schemes", "label": "Social Welfare Department"},
-        {"key": "main_menu", "label": "Main Menu"}
-      ]
-    }
-  },
-
-  "cess_fund": {
-    "Marathi": {"msg": "सेस फंड माहिती: https://yavatmalyojana.com/", "buttons": ["Main Menu"]},
-    "English": {"msg": "Cess Fund Info: https://yavatmalyojana.com/", "buttons": ["Main Menu"]}
-  },
-
-  "officers_contact": {
-    "Marathi": {"msg": "अधिकारी संपर्क माहिती...", "buttons": ["Main Menu"]},
-    "English": {"msg": "Officers Contact Info...", "buttons": ["Main Menu"]}
-  },
-
-  "online_complaint": {
-    "Marathi": {"msg": "ऑनलाईन तक्रार फॉर्म...", "buttons": ["Main Menu"]},
-    "English": {"msg": "Online Complaint Form...", "buttons": ["Main Menu"]}
-  },
-
-  "citizens_charter": {
-    "Marathi": {"msg": "नागरिकांची सनद...", "buttons": ["Main Menu"]},
-    "English": {"msg": "Citizens’ Charter...", "buttons": ["Main Menu"]}
   }
 }
