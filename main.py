@@ -144,12 +144,20 @@ def handle_free_text(user_id, user_text):
 
 # === Handle User Input ===
 def handle_user_input(user_id, msg_text):
-    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "initial_greet", "expecting_reply": False})
-    msg_text = msg_text.strip().replace("\n", "")
+    # --- Clean message text ---
+    msg_text_clean = msg_text.strip().replace("\n", "").lower()
+
+    state = USER_STATE.get(user_id, {
+        "stage": "INIT",
+        "language": None,
+        "current_menu": "initial_greet",
+        "expecting_reply": False
+    })
+
     # --- Initial Stage: Language Selection ---
     if state["stage"] == "INIT":
-        if msg_text.lower() in ["english", "marathi", "इंग्रजी", "मराठी"]:
-            lang = "English" if msg_text.lower() in ["english", "इंग्रजी"] else "Marathi"
+        if msg_text_clean in ["english", "marathi", "इंग्रजी", "मराठी"]:
+            lang = "English" if msg_text_clean in ["english", "इंग्रजी"] else "Marathi"
             USER_STATE[user_id] = {
                 "stage": "LANG_SELECTED",
                 "language": lang,
@@ -163,13 +171,13 @@ def handle_user_input(user_id, msg_text):
             send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
-    # --- Change Language ---
-    if msg_text.lower() in ["change language", "भाषा बदल"]:
+    # --- Change Language Command ---
+    if msg_text_clean in ["change language", "भाषा बदल"]:
         USER_STATE[user_id] = {
             "stage": "INIT",
             "language": None,
-            "current_menu": "initial_greet",
-            "expecting_reply": False
+            "current_menu": "opening",
+            "expecting_reply": True
         }
         send_bot_message(user_id)
         return
@@ -184,51 +192,47 @@ def handle_user_input(user_id, msg_text):
         return
 
     # --- Options Handling ---
-    options = []
     if "options" in menu_data:
-        options = [o["label"] for o in menu_data["options"]]
         for opt in menu_data["options"]:
-            if msg_text.strip().lower() == opt["label"].strip().lower():
+            if msg_text_clean == opt["label"].strip().lower():
                 USER_STATE[user_id]["current_menu"] = opt["key"]
                 USER_STATE[user_id]["expecting_reply"] = True
                 send_bot_message(user_id)
                 return
 
     # --- Buttons Handling ---
-    # --- Buttons Handling ---
     if "buttons" in menu_data:
-        if msg_text.strip() in menu_data["buttons"]:
-            # Map buttons to menu keys
-            button_mapping = {
-                "Main Menu": "main_menu", "मुख्य मेनू": "main_menu",
-                "About ZP": "about_zp", "जि.प. बद्दल": "about_zp",
-                "Departments": "departments", "विभाग": "departments",
-                "Schemes": "schemes", "योजना": "schemes",
-                "Cess Fund": "cess_fund", "सेस फंड": "cess_fund",
-                "Officers Contact": "officers_contact", "अधिकारी यांचे संपर्क": "officers_contact",
-                "Online Complaint": "online_complaint", "ऑनलाईन तक्रार": "online_complaint",
-                "Citizens Charter": "citizens_charter", "नागरिकांची सनद": "citizens_charter",
-                "Change Language": "change_language", "भाषा बदल": "change_language"
-            }
+        button_mapping = {
+            "main menu": "main_menu", "मुख्य मेनू": "main_menu",
+            "about zp": "about_zp", "जि.प. बद्दल": "about_zp",
+            "departments": "departments", "विभाग": "departments",
+            "schemes": "schemes", "योजना": "schemes",
+            "cess fund": "cess_fund", "सेस फंड": "cess_fund",
+            "officers contact": "officers_contact", "अधिकारी यांचे संपर्क": "officers_contact",
+            "online complaint": "online_complaint", "ऑनलाईन तक्रार": "online_complaint",
+            "citizens charter": "citizens_charter", "नागरिकांची सनद": "citizens_charter",
+            "change language": "change_language", "भाषा बदल": "change_language"
+        }
 
-        selected_key = button_mapping.get(msg_text.strip())
+        selected_key = button_mapping.get(msg_text_clean)
         if selected_key:
-            # Update current_menu accordingly
             if selected_key == "change_language":
                 USER_STATE[user_id]["stage"] = "INIT"
                 USER_STATE[user_id]["language"] = None
                 USER_STATE[user_id]["current_menu"] = "opening"
+                USER_STATE[user_id]["expecting_reply"] = True
+                send_bot_message(user_id)
             else:
                 USER_STATE[user_id]["current_menu"] = selected_key
                 USER_STATE[user_id]["expecting_reply"] = True
                 send_bot_message(user_id)
             return
 
-
-    # --- If reply invalid and bot expects input ---
+    # --- Fallback if reply invalid ---
     if state.get("expecting_reply", False):
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         send_bot_message(user_id)
+
 
 
 def send_bot_message(user_id):
