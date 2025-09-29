@@ -4,10 +4,13 @@ import requests, os, json, threading, time
 # === Load JSON Flow ===
 with open("zp_buldhana_flow.json") as f:
     MENU = json.load(f)
+    
+with open("credentials.json", "r") as f:
+    creds = json.load(f)
 
-ACCESS_TOKEN = "YOUR_WHATSAPP_ACCESS_TOKEN"
-VERIFY_TOKEN = "YOUR_VERIFY_TOKEN"
-PHONE_NUMBER_ID = "YOUR_PHONE_NUMBER_ID"
+ACCESS_TOKEN = creds.get("ACCESS_TOKEN")
+VERIFY_TOKEN = creds.get("VERIFY_TOKEN")
+PHONE_NUMBER_ID = creds.get("PHONE_NUMBER_ID")
 
 app = Flask(__name__)
 
