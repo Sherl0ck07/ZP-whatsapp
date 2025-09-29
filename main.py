@@ -32,22 +32,24 @@ def verify_webhook():
         return challenge, 200
     return "Verification failed ❌", 403
 
+
 # === Handle Incoming Messages ===
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
-    print("📩 Received webhook:", data)
+    print("📩 Received webhook:", json.dumps(data, indent=2, ensure_ascii=False))
 
     if data and "entry" in data:
         for entry in data["entry"]:
             for change in entry.get("changes", []):
                 value = change.get("value", {})
                 messages = value.get("messages", [])
+
                 for msg in messages:
                     from_number = msg.get("from")
-
                     msg_body = None
-                    # --- Handle button/list interactions only ---
+
+                    # --- Handle button/list interactions ---
                     if "interactive" in msg:
                         interactive_type = msg["interactive"]["type"]
                         if interactive_type == "button_reply":
@@ -55,38 +57,55 @@ def webhook():
                         elif interactive_type == "list_reply":
                             msg_body = msg["interactive"]["list_reply"]["title"]
 
-                    # --- If user typed free text ---
-                    if not msg_body:
-                        reply_text = "❌ Sorry, we didn't understand that. Please select an option from the menu or type Restart."
-                        # Keep the menu options based on current state
-                        state = USER_STATE.get(from_number, {"stage": "opening", "language": "en"})
-                        lang = state["language"]
-                        if state["stage"] == "opening":
+                    # --- Handle Restart ---
+                    if msg.get("text"):
+                        user_text = msg["text"].get("body", "").strip()
+                        if user_text.lower() in ["restart", "पुन्हा सुरू करा"]:
+                            USER_STATE[from_number] = {"stage": "opening", "language": "en"}
+                            text = MENU["opening"]["text"]["en"]
                             options = [o["label"] for o in MENU["opening"]["options"]["choices"]]
-                            opt_type = "buttons"
-                        elif state["stage"] == "waiting_language":
-                            options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
-                            opt_type = "list"
-                        elif state["stage"] == "services_menu":
-                            options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
-                            opt_type = "list"
-                        elif state["stage"] == "about_submenu":
-                            options = [o["label"][lang] for o in MENU["menus"]["about_submenu"]["options"]]
-                            opt_type = "list"
-                        elif state["stage"] == "departments":
-                            options = [o["label"][lang] for o in MENU["menus"]["departments"]["options"]]
-                            opt_type = "list"
-                        else:
-                            options = []
-                            opt_type = "text"
-                        send_whatsapp_message(from_number, reply_text, options, opt_type)
-                        continue  # skip get_response
+                            send_whatsapp_message(from_number, text, options, "buttons")
+                            continue
+                        # If not Restart, treat as free text
+                        if not msg_body:
+                            handle_free_text(from_number)
+                            continue
+
+                    # --- If still no valid input, fallback ---
+                    if not msg_body:
+                        handle_free_text(from_number)
+                        continue
 
                     # --- Handle valid interaction ---
                     reply_text, options, opt_type = get_response(from_number, msg_body.strip())
                     send_whatsapp_message(from_number, reply_text, options, opt_type)
 
     return jsonify({"status": "ok"}), 200
+
+
+# === Handle Free Text Fallback ===
+def handle_free_text(user_id):
+    state = USER_STATE.get(user_id, {"stage": "opening", "language": "en"})
+    lang = state.get("language", "en")
+
+    reply_text = "❌ Sorry, we didn't understand that. Please select from the menu or type Restart."
+
+    if state["stage"] == "opening":
+        options = [o["label"] for o in MENU["opening"]["options"]["choices"]]
+        opt_type = "buttons"
+    elif state["stage"] in ["waiting_language", "services_menu"]:
+        options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
+        opt_type = "list"
+    elif state["stage"] == "about_submenu":
+        options = [o["label"][lang] for o in MENU["menus"]["about_submenu"]["options"]]
+        opt_type = "list"
+    elif state["stage"] == "departments":
+        options = [o["label"][lang] for o in MENU["menus"]["departments"]["options"]]
+        opt_type = "list"
+    else:
+        options, opt_type = [], "text"
+
+    send_whatsapp_message(user_id, reply_text, options, opt_type)
 
 
 # === Generate Bot Response Based on User State ===
@@ -103,11 +122,9 @@ def get_response(user_id, msg_text):
     # --- Language Selection ---
     if state["stage"] == "waiting_language":
         if msg_text.lower() in ["मराठी", "marathi"]:
-            lang_key = "lang_marathi"
-            lang = "mr"
+            lang_key, lang = "lang_marathi", "mr"
         else:
-            lang_key = "lang_english"
-            lang = "en"
+            lang_key, lang = "lang_english", "en"
 
         USER_STATE[user_id] = {"stage": "services_menu", "language": lang}
         text = MENU["languages"][lang_key]["text"]
@@ -119,52 +136,46 @@ def get_response(user_id, msg_text):
         lang = state["language"]
         selected = msg_text.lower()
 
-        # Change Language
         if "change language" in selected or "भाषा" in selected:
             USER_STATE[user_id] = {"stage": "opening", "language": "en"}
             text = MENU["opening"]["text"]["en"]
             options = [o["label"] for o in MENU["opening"]["options"]["choices"]]
             return text, options, "buttons"
 
-        # About ZP
         if "about zp" in selected or "बद्दल" in selected:
             USER_STATE[user_id]["stage"] = "about_submenu"
             text = MENU["menus"]["about_zp"]["text"][lang]
             options = [o["label"][lang] for o in MENU["menus"]["about_submenu"]["options"]]
             return text, options, "list"
 
-        # Departments
         if "departments" in selected or "विभाग" in selected:
             USER_STATE[user_id]["stage"] = "departments"
             text = "Select Department:"
             options = [o["label"][lang] for o in MENU["menus"]["departments"]["options"]]
             return text, options, "list"
 
-        # Default fallback
         options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
         return "Service not recognized. Please select from menu.", options, "list"
 
-    # --- About Submenu or Departments ---
+    # --- Submenus ---
     if state["stage"] in ["about_submenu", "departments"]:
         lang = state["language"]
-        options = []
 
-        # Main Menu
         if "main menu" in msg_text.lower() or "मुख्य" in msg_text:
             USER_STATE[user_id]["stage"] = "services_menu"
             options = [o["label"][lang] for o in MENU["menus"]["services_menu"]["options"]]
             return "Returning to main menu.", options, "list"
 
-        # Stay in same submenu
         if state["stage"] == "about_submenu":
             options = [o["label"][lang] for o in MENU["menus"]["about_submenu"]["options"]]
             return "Select an option from About Z.P.", options, "list"
+
         if state["stage"] == "departments":
             options = [o["label"][lang] for o in MENU["menus"]["departments"]["options"]]
             return "Select a department.", options, "list"
 
-    # --- Fallback ---
     return "Sorry, I didn't understand.", [], "text"
+
 
 # === Send WhatsApp Message ===
 def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
@@ -181,7 +192,8 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
         payload["interactive"] = {
             "type": "button",
             "body": {"text": message_text},
-            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": b}} for i, b in enumerate(options, 1)]}
+            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": b}}
+                                   for i, b in enumerate(options, 1)]}
         }
     elif opt_type == "list" and options:
         payload["type"] = "interactive"
@@ -190,7 +202,8 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
             "body": {"text": message_text},
             "action": {
                 "button": "Choose",
-                "sections": [{"title": "Options", "rows": [{"id": str(i), "title": b} for i, b in enumerate(options, 1)]}]
+                "sections": [{"title": "Options", "rows": [{"id": str(i), "title": b}
+                                                           for i, b in enumerate(options, 1)]}]
             }
         }
     else:
@@ -200,10 +213,12 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
     print("📤 Send message response:", resp.status_code, resp.text)
     return resp.json()
 
+
 # === Root Endpoint ===
 @app.route("/")
 def home():
     return "🚀 WhatsApp Bot is running!", 200
+
 
 # === Run App ===
 if __name__ == "__main__":

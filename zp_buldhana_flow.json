@@ -3,8 +3,21 @@
   "restart_trigger": "Restart",
   "idle_followup": {
     "timeout_minutes": 60,
-    "message": "Knock Knock 👋 Are you still there?"
+    "message": {
+      "en": "Knock Knock 👋 Are you still there?",
+      "mr": "नमस्कार 👋, आपण अजून तिकडे आहात का?"
+    }
   },
+  "universal_options": [
+    {
+      "id": "main_menu",
+      "label": { "en": "Main Menu", "mr": "मुख्य मेनू" }
+    },
+    {
+      "id": "restart",
+      "label": { "en": "Restart", "mr": "पुन्हा सुरू करा" }
+    }
+  ],
   "opening": {
     "id": "template1",
     "text": {
@@ -14,20 +27,20 @@
     "options": {
       "type": "buttons",
       "choices": [
-        {"id": "lang_marathi", "label": "मराठी"},
-        {"id": "lang_english", "label": "English"}
+        { "id": "lang_marathi", "label": { "en": "Marathi", "mr": "मराठी" } },
+        { "id": "lang_english", "label": { "en": "English", "mr": "English" } }
       ]
     }
   },
   "languages": {
     "lang_marathi": {
       "id": "template2",
-      "text": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा",
+      "text": { "mr": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा", "en": "Okay! Let's talk in Marathi! Please select a service" },
       "main_menu": "services_menu"
     },
     "lang_english": {
       "id": "template3",
-      "text": "Okay! Let's talk in English! Please select a service",
+      "text": { "en": "Okay! Let's talk in English! Please select a service", "mr": "ठीक आहे! आपण इंग्रजीत बोलूया! कृपया एक सेवा निवडा" },
       "main_menu": "services_menu"
     }
   },
@@ -35,76 +48,356 @@
     "services_menu": {
       "id": "main_services",
       "type": "list",
-      "title": {
-        "en": "Choose Service",
-        "mr": "सेवा निवडा"
-      },
+      "title": { "en": "Choose Service", "mr": "सेवा निवडा" },
       "options": [
-        {"id": "about_zp", "label": {"en": "About Z.P. Buldhana", "mr": "जि.प. Buldhana बद्दल"}},
-        {"id": "departments", "label": {"en": "Z.P. Departments", "mr": "जि.प. विभाग"}},
-        {"id": "schemes", "label": {"en": "Z.P. Schemes", "mr": "जि.प. योजना"}},
-        {"id": "cess_fund", "label": {"en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना"}},
-        {"id": "officers_contact", "label": {"en": "Officers' Contact", "mr": "अधिकारी यांचे संपर्क"}},
-        {"id": "online_complaint", "label": {"en": "Online Complaint", "mr": "ऑनलाईन तक्रार"}},
-        {"id": "citizen_charter", "label": {"en": "Citizens’ Charter", "mr": "नागरिकांची सनद"}},
-        {"id": "change_language", "label": {"en": "Change Language", "mr": "भाषा बदल"}}
+        { "id": "about_zp", "label": { "en": "About Z.P. Buldhana", "mr": "जि.प. Buldhana बद्दल" } },
+        { "id": "departments", "label": { "en": "Z.P. Departments", "mr": "जि.प. विभाग" } },
+        { "id": "schemes", "label": { "en": "Z.P. Schemes", "mr": "जि.प. योजना" } },
+        { "id": "cess_fund", "label": { "en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना" } },
+        { "id": "officers_contact", "label": { "en": "Officers' Contact", "mr": "अधिकारी यांचे संपर्क" } },
+        { "id": "online_complaint", "label": { "en": "Online Complaint", "mr": "ऑनलाईन तक्रार" } },
+        { "id": "citizen_charter", "label": { "en": "Citizens' Charter", "mr": "नागरिकांची सनद" } },
+        { "id": "change_language", "label": { "en": "Change Language", "mr": "भाषा बदल" } }
       ]
     },
     "about_zp": {
       "id": "about_info",
       "text": {
-        "mr": "📅 १ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते... (full Marathi text)",
-        "en": "📅 Before 1 May 1962, Janpad Sabhas existed in Maharashtra... (full English text)"
+        "mr": "📅 १ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. स्थानिक स्वराज्य वाढविण्यासाठी, स्थानिकांना नियोजनात सामील करण्यासाठी आणि सत्तेचे विकेंद्रीकरण करण्यासाठी जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पारित करण्यात आला. १ मे १९६२ पासून जिल्ह्यांत जिल्हा परिषद व तालुक्यांत पंचायत समित्या (नगरपालिका क्षेत्र वगळता) स्थापन झाल्या.\n\n📍 यवतमाळ जिल्हा परिषदेअंतर्गत ६२ ग्रामीण मतदारसंघ आहेत.\n🗳️ सदस्य ५ वर्षांसाठी निवडले जातात\n👔 पदाधिकारी २.५ वर्षे कार्यरत राहतात.\n📈 शासन व झेडपीच्या योजना ग्रामीण भागात राबवल्या जातात.",
+        "en": "📅 Before 1 May 1962, Janpad Sabhas existed in Maharashtra. To strengthen local self-government and decentralize power, the Zilla Parishad and Panchayat Samiti Act 1961 was passed. From 1 May 1962 Zilla Parishads and Panchayat Samitis were established in districts (excluding municipal areas).\n\n📍 Z.P. Yavatmal covers 62 rural constituencies.\n🗳️ Members are elected for 5 years.\n👔 Officers serve for 2.5 years in certain posts.\n📈 State and ZP schemes are implemented in rural areas."
       },
       "submenu": "about_submenu"
     },
     "about_submenu": {
       "id": "about_links",
       "type": "list",
-      "title": {"en": "About Z.P. Buldhana", "mr": "जि.प. बद्दल"},
+      "title": { "en": "About Z.P. Buldhana", "mr": "जि.प. बद्दल" },
       "options": [
-        {"id": "vision_mission", "label": {"en": "Vision and Mission", "mr": "दृष्टीकोन आणि ध्येय"}},
-        {"id": "admin_structure", "label": {"en": "Administrative Structure", "mr": "प्रशासकीय रचना"}},
-        {"id": "who_is_who", "label": {"en": "Who's Who", "mr": "कोण कोण आहेत"}},
-        {"id": "services_menu", "label": {"en": "Main Menu", "mr": "मुख्य मेनू"}}
+        { "id": "vision_mission", "label": { "en": "Vision and Mission", "mr": "दृष्टीकोन आणि ध्येय" } },
+        { "id": "admin_structure", "label": { "en": "Administrative Structure", "mr": "प्रशासकीय रचना" } },
+        { "id": "who_is_who", "label": { "en": "Who's Who", "mr": "कोण कोण आहेत" } },
+        { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
       ]
     },
     "departments": {
       "id": "departments_list",
       "type": "list",
-      "title": {"en": "Departments List", "mr": "विभागांची यादी"},
+      "title": { "en": "Departments List", "mr": "विभागांची यादी" },
       "options": [
-        {"id": "health", "label": {"en": "Health Department", "mr": "आरोग्य विभाग"}},
-        {"id": "primary_edu", "label": {"en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग"}},
-        {"id": "secondary_edu", "label": {"en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग"}},
-        {"id": "animal_husbandry", "label": {"en": "Animal Husbandry", "mr": "पशुसंवर्धन विभाग"}},
-        {"id": "agriculture", "label": {"en": "Agriculture", "mr": "कृषी विभाग"}},
-        {"id": "social_welfare", "label": {"en": "Social Welfare", "mr": "समाज कल्याण विभाग"}},
-        {"id": "finance", "label": {"en": "Finance", "mr": "वित्त विभाग"}},
-        {"id": "general_admin", "label": {"en": "General Administration", "mr": "सामान्य प्र विभाग"}},
-        {"id": "services_menu", "label": {"en": "Main Menu", "mr": "मुख्य मेनू"}}
+        { "id": "health", "label": { "en": "Health Department", "mr": "आरोग्य विभाग" } },
+        { "id": "primary_edu", "label": { "en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग" } },
+        { "id": "secondary_edu", "label": { "en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग" } },
+        { "id": "animal_husbandry", "label": { "en": "Animal Husbandry Department", "mr": "पशुसंवर्धन विभाग" } },
+        { "id": "agriculture", "label": { "en": "Agriculture Department", "mr": "कृषी विभाग" } },
+        { "id": "social_welfare", "label": { "en": "Social Welfare Department", "mr": "समाज कल्याण विभाग" } },
+        { "id": "finance", "label": { "en": "Finance Department", "mr": "वित्त विभाग" } },
+        { "id": "general_admin", "label": { "en": "General Administration", "mr": "सामान्य प्र विभाग" } },
+        { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
       ]
     },
-    "health": {
+    "dept_health": {
       "id": "health_info",
       "text": {
-        "mr": "🏥 आरोग्य विभाग – जिल्हा परिषद, यवतमाळ... (full Marathi)",
-        "en": "🏥 Health Department – Zilla Parishad, Yavatmal... (full English)"
+        "mr": "🏥 आरोग्य विभाग – जिल्हा परिषद, यवतमाळ\n\n🔹 प्राथमिक आरोग्य सेवा: ग्रामीण भागातील PHC व SC आरोग्य सेवा पुरवतात.\n🔹 रोग प्रतिबंध व नियंत्रण: लसीकरण, रोग नियंत्रण मोहीम.\n🔹 माता-बाळ आरोग्य: सुरक्षित प्रसूती, पोषण.\n\nअधिक माहितीसाठी संपर्क करा.",
+        "en": "🏥 Health Department – Zilla Parishad, Yavatmal\n\n🔹 Primary health services through PHCs and sub-centres.\n🔹 Disease control and immunization programs.\n🔹 Maternal & child health services.\n\nFor more information contact the Health Officer."
       },
       "options": {
         "type": "buttons",
         "choices": [
-          {"id": "contact_health", "label": "Contact"},
-          {"id": "departments", "label": "Departments"},
-          {"id": "services_menu", "label": "Main Menu"}
+          { "id": "contact_health", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
         ]
       }
     },
     "contact_health": {
       "id": "health_contact",
       "text": {
-        "mr": "श्री. संतोष ढोले - जिल्हा आरोग्य अधिकारी - 9405162034\nईमेल: dhozpyavatmal@gmail.com",
-        "en": "Mr. Santosh Dhole - District Health Officer - 9405162034\nEmail: dhozpyavatmal@gmail.com"
+        "mr": "आरोग्य विभाग\nश्री. संतोष ढोले - जिल्हा आरोग्य अधिकारी - 9405162034\nई-मेल: dhozpyavatmal@gmail.com",
+        "en": "Health Department\nMr. Santosh Dhole - District Health Officer - 9405162034\nEmail: dhozpyavatmal@gmail.com"
+      }
+    },
+    "dept_primary_edu": {
+      "id": "primary_edu_info",
+      "text": {
+        "mr": "📘 प्राथमिक शिक्षण विभाग – शाळांचे व्यवस्थापन, शिक्षक नेमणूक, मोफत पाठ्यपुस्तक व मध्यान्ह भोजन.",
+        "en": "📘 Primary Education Department – school management, teacher recruitment, free textbooks and mid-day meals."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_primary", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_primary": {
+      "id": "primary_contact",
+      "text": {
+        "mr": "प्राथमिक शिक्षण अधिकारी\nश्री. प्रकाश मिश्रा - 9850425271\nई-मेल: eopriytl@gmail.com",
+        "en": "Primary Education Officer\nMr. Prakash Mishra - 9850425271\nEmail: eopriytl@gmail.com"
+      }
+    },
+    "dept_secondary_edu": {
+      "id": "secondary_edu_info",
+      "text": {
+        "mr": "📝 माध्यमिक शिक्षण विभाग – शाळा निरीक्षण, अनुदान, गुणवत्ता सुधार.",
+        "en": "📝 Secondary Education Department – school inspections, grants, quality improvement."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_secondary", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_secondary": {
+      "id": "secondary_contact",
+      "text": {
+        "mr": "माध्यमिक शिक्षण अधिकारी\nश्री. रविंद्र काटोलकर - 9975864297\nई-मेल: eosecytl@gmail.com",
+        "en": "Secondary Education Officer\nMr. Ravindra Katolkar - 9975864297\nEmail: eosecytl@gmail.com"
+      }
+    },
+    "dept_animal": {
+      "id": "animal_info",
+      "text": {
+        "mr": "🐄 पशुसंवर्धन विभाग – पशुवैद्यकीय सेवा, लसीकरण, जाती सुधार योजनांचा प्रचार.",
+        "en": "🐄 Animal Husbandry Department – veterinary services, vaccination, breed improvement schemes."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_animal", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_animal": {
+      "id": "animal_contact",
+      "text": {
+        "mr": "जिल्हा पशुसंवर्धन अधिकारी\nडॉ. क्रांती काटोले - 7888036271\nई-मेल: dahoyeotmal@gmail.com",
+        "en": "District Animal Husbandry Officer\nDr. Kranti Katole - 7888036271\nEmail: dahoyeotmal@gmail.com"
+      }
+    },
+    "dept_agri": {
+      "id": "agri_info",
+      "text": {
+        "mr": "🌾 कृषी विभाग – आधुनिक शेती, बियाणे, सिंचन, कृषी यांत्रिकीकरण व अनुदाने.",
+        "en": "🌾 Agriculture Department – modern farming, seeds, irrigation, mechanization and subsidies."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_agri", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_agri": {
+      "id": "agri_contact",
+      "text": {
+        "mr": "कृषी विकास अधिकारी\nश्री. लहुदास आडे - 8275068639\nई-मेल: adoyavatmal@gmail.com",
+        "en": "Agriculture Development Officer\nMr. Lahudas Ade - 8275068639\nEmail: adoyavatmal@gmail.com"
+      }
+    },
+    "dept_social": {
+      "id": "social_info",
+      "text": {
+        "mr": "🤝 समाजकल्याण विभाग – कल्याणकारी योजना, शिष्यवृत्ती, ज्येष्ठ नागरिक व अपंग योजना.",
+        "en": "🤝 Social Welfare Department – welfare schemes, scholarships, senior citizen and disability programs."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_social", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_social": {
+      "id": "social_contact",
+      "text": {
+        "mr": "समाज कल्याण अधिकारी\nश्रीमती. मंगला मून - 8698577320\nई-मेल: swozpytl@gmail.com",
+        "en": "Social Welfare Officer\nMrs. Mangala Mun - 8698577320\nEmail: swozpytl@gmail.com"
+      }
+    },
+    "dept_finance": {
+      "id": "finance_info",
+      "text": {
+        "mr": "💰 वित्त विभाग – बजेट, निधी वाटप, लेखापरीक्षण व वित्तीय व्यवस्थापन.",
+        "en": "💰 Finance Department – budget, fund allocation, auditing and financial management."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_finance", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_finance": {
+      "id": "finance_contact",
+      "text": {
+        "mr": "मुख्य लेखा व वित्त अधिकारी\nश्री. तुकाराम भिसे - 7875918090\nई-मेल: financezpyavatmal@gmail.com",
+        "en": "Chief Accounts & Finance Officer\nMr. Tukaram Bhise - 7875918090\nEmail: financezpyavatmal@gmail.com"
+      }
+    },
+    "dept_gad": {
+      "id": "gad_info",
+      "text": {
+        "mr": "🏛️ सामान्य प्रशासन विभाग – कर्मचारी व्यवस्थापन, विभागीय समन्वय व कार्यालयीन प्रशासन.",
+        "en": "🏛️ General Administration Department – staff management, inter-department coordination and office administration."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "contact_gad", "label": { "en": "Contact", "mr": "संपर्क" } },
+          { "id": "departments", "label": { "en": "Departments", "mr": "विभाग" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "contact_gad": {
+      "id": "gad_contact",
+      "text": {
+        "mr": "उप मुख्य कार्यकारी अधिकारी (सामान्य प्रशासन)\nश्री. जालिंदर आभाळे - 9823617509\nई-मेल: dyceog_gad@yahoo.in",
+        "en": "Deputy CEO (General Administration)\nMr. Jalindar Abhale - 9823617509\nEmail: dyceog_gad@yahoo.in"
+      }
+    },
+    "schemes": {
+      "id": "schemes_menu",
+      "type": "list",
+      "title": { "en": "Z.P. Schemes", "mr": "जि.प. योजना" },
+      "intro": {
+        "en": "Zilla Parishad runs various central and state sponsored schemes across departments. Select a department for schemes.",
+        "mr": "जिल्हा परिषद विविध केंद्र/राज्य अनुदाने व झेडपी उपकर निधीतून योजना राबवते. कृपया विभाग निवडा."
+      },
+      "options": [
+        { "id": "schemes_health", "label": { "en": "Health Department Schemes", "mr": "आरोग्य विभाग योजना" } },
+        { "id": "schemes_education", "label": { "en": "Education Department Schemes", "mr": "शिक्षण योजना" } },
+        { "id": "schemes_wcd", "label": { "en": "Women & Child Development", "mr": "महिला व बालविकास" } },
+        { "id": "schemes_govt", "label": { "en": "Important Government Schemes", "mr": "शासनाच्या महत्त्वाच्या योजना" } },
+        { "id": "schemes_agri", "label": { "en": "Agriculture Schemes", "mr": "कृषी योजना" } },
+        { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+      ]
+    },
+    "schemes_health": {
+      "id": "schemes_health_info",
+      "text": {
+        "en": "Key health schemes:\n1) PMJAY – cashless treatment up to ₹5 lakh. Links: https://pmjay.gov.in\n2) JSSK – free maternal/newborn services. https://nhm.gov.in\n3) Immunization program. https://mohfw.gov.in\n4) TB program – NTEP. https://tbcindia.mohfw.gov.in",
+        "mr": "महत्त्वाच्या आरोग्य योजना:\n1) PMJAY – ₹5 लाखांपर्यंत कॅशलेस उपचार. https://pmjay.gov.in\n2) JSSK – मोफत प्रसूती व सेवाएँ. https://nhm.gov.in\n3) लसीकरण कार्यक्रम. https://mohfw.gov.in\n4) क्षयरोग निर्मूलन (NTEP). https://tbcindia.mohfw.gov.in"
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "schemes_link_more", "label": { "en": "More Links", "mr": "अधिक लिंक" } },
+          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "schemes_education": {
+      "id": "schemes_edu_info",
+      "text": {
+        "en": "Education schemes include uniform distribution, free textbooks (SSA), attendance incentives for SC, and school development programs. Links: https://zpyavatmal.gov.in/en/education-primary/",
+        "mr": "शिक्षण योजना: गणवेश वितरण, मोफत पाठ्यपुस्तक (SSA), SC उपस्थिती भत्ता, शाळा विकास. https://zpyavatmal.gov.in/en/education-primary/"
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "schemes_wcd": {
+      "id": "schemes_wcd_info",
+      "text": {
+        "en": "Women & Child schemes: tailoring-machine subsidy, MS-CIT training, bicycle distribution for girls, ICDS services, Sabala program links.",
+        "mr": "महिला व बालविकास योजना: शिलाई मशिन योजना, MS-CIT प्रशिक्षण, सायकल वाटप, ICDS, सबला."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "schemes_govt": {
+      "id": "schemes_govt_info",
+      "text": {
+        "en": "Important Govt schemes: PMAY-G (rural housing), MGNREGA, SBM-G (rural sanitation), UMEED/NRELM links and descriptions.",
+        "mr": "महत्त्वाच्या योजना: प्रधानमंत्री आवास योजना (ग्रामीण), मनरेगा, स्वच्छ भारत मिशन (ग्रामीण), उमेद/नॅशनल रिलायन्स लिंक."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "schemes_menu_back", "label": { "en": "Back to Schemes", "mr": "योजनांकडे परत जा" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "cess_fund": {
+      "id": "cess_info",
+      "text": {
+        "en": "For detailed Cess Fund Schemes, visit the YOJANA portal: https://yavatmalyojana.com/",
+        "mr": "सेस फंड योजनांसाठी अधिक माहितीसाठी: https://yavatmalyojana.com/"
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "officers_contact": {
+      "id": "officers_contact_info",
+      "text": {
+        "mr": "अधिकाऱ्यांचे संपर्क माहिती उपलब्ध आहे. कृपया विभाग निवडा किंवा मुख्य मेनू वापरा.",
+        "en": "Officers contact list is available. Please select a department or return to Main Menu."
+      },
+      "options": {
+        "type": "list",
+        "choices": [
+          { "id": "contact_health", "label": { "en": "Health Officer", "mr": "आरोग्य अधिकारी" } },
+          { "id": "contact_primary", "label": { "en": "Primary Education Officer", "mr": "प्राथमिक शिक्षण अधिकारी" } },
+          { "id": "contact_agri", "label": { "en": "Agriculture Officer", "mr": "कृषी विकास अधिकारी" } },
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "online_complaint": {
+      "id": "online_complaint_info",
+      "text": {
+        "en": "To file an online complaint, please visit the official grievance portal or contact your nearest ZP office. If you want the link, press Main Menu and use our website link.",
+        "mr": "ऑनलाईन तक्रार नोंदवण्यासाठी कृपया अधिकृत ग्रिव्हन्स पोर्टल किंवा जवळची झेडपी कार्यालयाची संपर्क माहिती वापरा."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
+      }
+    },
+    "citizen_charter": {
+      "id": "citizen_charter_info",
+      "text": {
+        "en": "Citizens' Charter: Z.P. provides service commitments and timelines. For full charter, visit the ZP website or press Main Menu.",
+        "mr": "नागरिकांची सनद: सेवा देण्याचे निकष आणि कालमर्यादा. संपूर्ण माहिती वेबसाइटवर मिळेल."
+      },
+      "options": {
+        "type": "buttons",
+        "choices": [
+          { "id": "main_menu", "label": { "en": "Main Menu", "mr": "मुख्य मेनू" } }
+        ]
       }
     }
   }
