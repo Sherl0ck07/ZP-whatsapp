@@ -192,7 +192,7 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
         payload["interactive"] = {
             "type": "button",
             "body": {"text": message_text},
-            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": b}}
+            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": str(b)}}
                                    for i, b in enumerate(options, 1)]}
         }
     elif opt_type == "list" and options:
@@ -202,7 +202,7 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
             "body": {"text": message_text},
             "action": {
                 "button": "Choose",
-                "sections": [{"title": "Options", "rows": [{"id": str(i), "title": b}
+                "sections": [{"title": "Options", "rows": [{"id": str(i), "title": str(b)}
                                                            for i, b in enumerate(options, 1)]}]
             }
         }
