@@ -106,7 +106,7 @@
         "en": "🏥 Health Department\n\nProvides healthcare services in rural areas via Primary Health Centres (PHCs) & Sub-Centres.\n\nSelect an option:",
         "mr": "🏥 आरोग्य विभाग\n\nग्रामीण भागात PHC व उपकेंद्रांद्वारे आरोग्य सेवा प्रदान करते.\n\nपर्याय निवडा:"
       },
-      "options": [
+      "buttons": [
         { "id": "health_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
         { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -156,7 +156,7 @@
     "en": "🎓 Secondary Education Department\n\nManages secondary schools (Std 8-12) in rural areas.\n\nSelect an option:",
     "mr": "🎓 शिक्षण माध्यमिक विभाग\n\nग्रामीण भागातील माध्यमिक शाळा (इ ८-१२) व्यवस्थापन.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "secondary_edu_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -181,7 +181,7 @@
     "en": "🐄 Animal Husbandry Department\n\nProvides veterinary services and promotes livestock development.\n\nSelect an option:",
     "mr": "🐄 पशुसंवर्धन विभाग\n\nपशुवैद्यकीय सेवा व पशुधन विकास.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "animal_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -206,7 +206,7 @@
     "en": "🌾 Agriculture Department\n\nProvides agricultural extension services and implements farming schemes.\n\nSelect an option:",
     "mr": "🌾 कृषी विभाग\n\nकृषी विस्तार सेवा व शेती योजना राबवते.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "agriculture_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -231,7 +231,7 @@
     "en": "🤝 Social Welfare Department\n\nImplements welfare schemes for backward classes, SC/ST and other communities.\n\nSelect an option:",
     "mr": "🤝 समाज कल्याण विभाग\n\nमागासवर्गीय, अनुसूचित जाती/जमाती व इतर समाजांसाठी कल्याण योजना.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "social_welfare_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -256,7 +256,7 @@
     "en": "💰 Finance Department\n\nManages financial accounts, budgets and audit for ZP.\n\nSelect an option:",
     "mr": "💰 वित्त विभाग\n\nजि.प. चे आर्थिक लेखे, अर्थसंकल्प व लेखापरीक्षण.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "finance_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -281,7 +281,7 @@
     "en": "📋 General Administration\n\nHandles administrative matters, personnel and establishment.\n\nSelect an option:",
     "mr": "📋 सामान्य प्रशासन विभाग\n\nप्रशासकीय बाबी, कर्मचारी व स्थापना व्यवस्थापन.\n\nपर्याय निवडा:"
   },
-  "options": [
+  "buttons": [
     { "id": "general_admin_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
