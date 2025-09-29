@@ -82,6 +82,14 @@ def webhook():
 
     return jsonify({"status": "ok"}), 200
 
+def sanitize_title(title):
+    if not title or str(title).strip() == "":
+        return "Option"  # fallback if empty
+    t = str(title).strip()
+    if len(t) > 20:
+        t = t[:20]  # truncate to 20 chars
+    return t
+
 
 # === Handle Free Text Fallback ===
 def handle_free_text(user_id):
@@ -192,7 +200,7 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
         payload["interactive"] = {
             "type": "button",
             "body": {"text": message_text},
-            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": str(b)}}
+            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": sanitize_title(b)}}
                                    for i, b in enumerate(options, 1)]}
         }
     elif opt_type == "list" and options:
@@ -202,7 +210,7 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
             "body": {"text": message_text},
             "action": {
                 "button": "Choose",
-                "sections": [{"title": "Options", "rows": [{"id": str(i), "title": str(b)}
+                "sections": [{"title": "Options", "rows": [{"id": str(i), "title": sanitize_title(b)}
                                                            for i, b in enumerate(options, 1)]}]
             }
         }
