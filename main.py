@@ -110,9 +110,11 @@ def handle_user_input(user_id, msg_text):
 
     # Handle "Change Language"
     if msg_text.lower() in ["change language", "भाषा बदल"]:
+    # Reset state to INIT for language selection
         USER_STATE[user_id] = {"stage": "INIT", "language": None, "current_menu": "initial_greet"}
-        send_bot_message(user_id)
-        return
+        send_bot_message(user_id)  # Send initial greet with language buttons
+    return
+
 
     # Navigate menus
     menu_data = MENU["menus"].get(current_menu, {}).get(lang, {})
@@ -136,6 +138,7 @@ def handle_user_input(user_id, msg_text):
         handle_free_text(user_id, msg_text)
 
 # === Send Bot Message Based on Current Menu ===
+# === Send Bot Message Based on Current Menu ===
 def send_bot_message(user_id):
     state = USER_STATE[user_id]
     current_menu = state.get("current_menu")
@@ -148,19 +151,20 @@ def send_bot_message(user_id):
 
     text = menu_data.get("msg", "")
     options, opt_type = [], "text"
-    if "options" in menu_data:
+
+    # At initial greet, use buttons for language selection
+    if current_menu == "initial_greet":
+        options = MENU["initial_greet"]["options"]
+        opt_type = "buttons"
+    elif "options" in menu_data:
         options = [o["label"] for o in menu_data["options"]]
         opt_type = "list"
     elif "buttons" in menu_data:
         options = menu_data["buttons"]
         opt_type = "buttons"
-    elif "submenu" in menu_data:
-        for sub in menu_data["submenu"]:
-            USER_STATE[user_id]["current_menu"] = sub
-            send_bot_message(user_id)
-        return
 
     send_whatsapp_message(user_id, text, options, opt_type)
+
 
 # === Send Info for Departments / Schemes / Contacts ===
 def send_info(user_id, key, lang):
