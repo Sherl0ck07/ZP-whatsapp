@@ -144,41 +144,68 @@ def handle_free_text(user_id, user_text):
 
 # === Handle User Input ===
 def handle_user_input(user_id, msg_text):
-    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": False})
-    lang = state.get("language", MENU["default_language"])
+    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "initial_greet", "expecting_reply": False})
 
+    # --- Initial Stage: Language Selection ---
     if state["stage"] == "INIT":
-        USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": msg_text, "current_menu": "main_menu", "expecting_reply": True}
-        send_bot_message(user_id)
+        if msg_text.lower() in ["english", "marathi", "इंग्रजी", "मराठी"]:
+            lang = "English" if msg_text.lower() in ["english", "इंग्रजी"] else "Marathi"
+            USER_STATE[user_id] = {
+                "stage": "LANG_SELECTED",
+                "language": lang,
+                "current_menu": "main_menu",
+                "expecting_reply": True
+            }
+            send_bot_message(user_id)
+        else:
+            # Re-send opening message if invalid
+            menu_data = MENU["opening"]["English"]  # default English
+            send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
+    # --- Change Language ---
     if msg_text.lower() in ["change language", "भाषा बदल"]:
-        USER_STATE[user_id] = {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": True}
+        USER_STATE[user_id] = {
+            "stage": "INIT",
+            "language": None,
+            "current_menu": "initial_greet",
+            "expecting_reply": False
+        }
         send_bot_message(user_id)
         return
 
+    # --- Menu Navigation ---
     current_menu = state.get("current_menu")
+    lang = state.get("language") or MENU["default_language"]
     menu_data = MENU["flow"][lang].get(current_menu, {})
 
+    if not menu_data:
+        send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
+        return
+
+    # --- Options Handling ---
+    options = []
     if "options" in menu_data:
-        matched = False
+        options = [o["label"] for o in menu_data["options"]]
         for opt in menu_data["options"]:
             if msg_text.strip().lower() == opt["label"].strip().lower():
-                key = opt["key"]
-                USER_STATE[user_id]["current_menu"] = key
+                USER_STATE[user_id]["current_menu"] = opt["key"]
                 USER_STATE[user_id]["expecting_reply"] = True
-                if key in MENU["flow"][lang]:
-                    send_bot_message(user_id)
-                else:
-                    send_info(user_id, key, lang)
-                matched = True
-                break
-        if not matched:
-            handle_free_text(user_id, msg_text)
-    elif "buttons" in menu_data:
-        send_info(user_id, msg_text, lang)
-    else:
-        handle_free_text(user_id, msg_text)
+                send_bot_message(user_id)
+                return
+
+    # --- Buttons Handling ---
+    if "buttons" in menu_data:
+        if msg_text.strip() in menu_data["buttons"]:
+            # Move back to parent menu if needed
+            send_bot_message(user_id)
+            return
+
+    # --- If reply invalid and bot expects input ---
+    if state.get("expecting_reply", False):
+        send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
+        send_bot_message(user_id)
+
 
 def send_bot_message(user_id):
     state = USER_STATE[user_id]
