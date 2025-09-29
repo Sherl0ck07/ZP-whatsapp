@@ -2,10 +2,10 @@ from flask import Flask, request, jsonify
 import requests, os, json, threading, time
 
 # === Load JSON Flow ===
-with open("zp_buldhana_flow.json") as f:
+with open("zp_buldhana_flow.json", encoding="utf-8") as f:
     MENU = json.load(f)
 
-with open("credentials.json", "r") as f:
+with open("credentials.json", encoding="utf-8") as f:
     creds = json.load(f)
 
 ACCESS_TOKEN = creds.get("ACCESS_TOKEN")
@@ -18,33 +18,23 @@ app = Flask(__name__)
 USER_STATE = {}
 LAST_ACTIVE = {}
 
+# === Restart Handling ===
 def handle_restart(user_id, user_text):
-    """
-    Check if the user wants to restart the bot and reset state accordingly.
-    """
     if user_text.strip().lower() in ["restart", "पुन्हा सुरू करा"]:
-        # Reset user state
         USER_STATE[user_id] = {
             "stage": "INIT",
             "language": None,
             "current_menu": "opening",
             "expecting_reply": True
         }
-
-        # Send restart confirmation
-        lang = MENU["default_language"]
+        lang = MENU.get("default_language", "English")
         restart_msg = MENU["restart"]["msg"].get(lang, "Restarting the bot...")
         send_whatsapp_message(user_id, restart_msg)
-
-        return True  # restart handled
-
+        send_bot_message(user_id)
+        return True
     return False
 
-
-
-
 # === Helper Functions ===
-
 def sanitize_title(title):
     return str(title).strip()[:20] if title else "Option"
 
@@ -58,8 +48,12 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
         payload["interactive"] = {
             "type": "button",
             "body": {"text": message_text},
-            "action": {"buttons": [{"type": "reply", "reply": {"id": str(i), "title": sanitize_title(b)}} 
-                                   for i, b in enumerate(options, 1)]}
+            "action": {
+                "buttons": [
+                    {"type": "reply", "reply": {"id": str(i), "title": sanitize_title(b)}}
+                    for i, b in enumerate(options, 1)
+                ]
+            }
         }
     elif opt_type == "list" and options:
         payload["type"] = "interactive"
@@ -68,12 +62,14 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
             "body": {"text": message_text},
             "action": {
                 "button": "Choose",
-                "sections": [{"title": "Options", 
-                              "rows": [{"id": str(i), "title": sanitize_title(b)} 
-                                       for i, b in enumerate(options, 1)]}]
+                "sections": [{
+                    "title": "Options",
+                    "rows": [{"id": str(i), "title": sanitize_title(b)} for i, b in enumerate(options, 1)]
+                }]
             }
         }
     else:
+        payload["type"] = "text"
         payload["text"] = {"body": message_text}
 
     resp = requests.post(url, headers=headers, json=payload)
@@ -86,9 +82,14 @@ def schedule_followup(user_id):
         last = LAST_ACTIVE.get(user_id)
         if last and time.time() - last >= MENU["timed_followup"]["timeout"]:
             lang = USER_STATE.get(user_id, {}).get("language", MENU["default_language"])
-            msg = MENU["timed_followup"]["msg"].get(lang, "Are you still there?")
+            msg = MENU["timed_followup"]["msg"].get(lang, "Knock knock 👋 Are you there?")
             send_whatsapp_message(user_id, msg)
-    threading.Thread(target=followup).start()
+    threading.Thread(target=followup, daemon=True).start()
+
+def clean_msg(text):
+    if not text:
+        return ""
+    return text.replace("\n", " ").replace("\r", " ").strip().lower()
 
 # === Webhook Verification ===
 @app.route("/webhook", methods=["GET"])
@@ -100,15 +101,7 @@ def verify_webhook():
         return challenge, 200
     return "Verification failed ❌", 403
 
-# === Helper Function to Clean Incoming Messages ===
-def clean_msg(text):
-    """Remove newlines, carriage returns, extra spaces and lowercase the text."""
-    if not text:
-        return ""
-    return text.replace("\n", "").replace("\r", "").strip().lower()
-
 # === Webhook Message Handler ===
-# --- Webhook Message Handler ---
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
@@ -125,8 +118,7 @@ def webhook():
                     LAST_ACTIVE[from_number] = time.time()
                     schedule_followup(from_number)
 
-                    msg_body = None
-                    user_text = None
+                    msg_body, user_text = None, None
 
                     if "interactive" in msg:
                         interactive = msg["interactive"]
@@ -138,36 +130,34 @@ def webhook():
                     if msg.get("text"):
                         user_text = clean_msg(msg["text"].get("body"))
 
-                    # --- Restart Command ---
-                    if user_text:
-                        if handle_restart(from_number, user_text):
-                            send_bot_message(from_number)   # show opening menu
+                    # Restart
+                    if user_text and handle_restart(from_number, user_text):
+                        continue
 
-                            continue
-
-                    # --- Handle input ---
+                    # Handle button/list
                     if msg_body:
                         handle_user_input(from_number, msg_body)
                         continue
 
+                    # Handle free text
                     if user_text:
                         handle_free_text(from_number, user_text)
                         continue
 
     return jsonify({"status": "ok"}), 200
 
-
-# === Handle Free Text / Fallback ===
+# === Free Text ===
 def handle_free_text(user_id, user_text):
     state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": False})
 
     if state["stage"] == "INIT":
-        if user_text.lower() in [l.lower() for l in MENU["languages"]]:
+        if user_text in [l.lower() for l in MENU["languages"]]:
             USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": user_text, "current_menu": "main_menu", "expecting_reply": True}
             send_bot_message(user_id)
         else:
             lang = MENU["default_language"]
-            send_whatsapp_message(user_id, MENU["opening"]["msg"], MENU["opening"]["buttons"], "buttons")
+            menu_data = MENU["opening"][lang]
+            send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
     if state.get("expecting_reply", False):
@@ -178,51 +168,31 @@ def handle_free_text(user_id, user_text):
     else:
         send_bot_message(user_id)
 
-# === Handle User Input ===
-# === Handle User Input ===
+# === User Input ===
 def handle_user_input(user_id, msg_text):
     msg_text_clean = clean_msg(msg_text)
+    state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": False})
 
-    state = USER_STATE.get(user_id, {
-        "stage": "INIT",
-        "language": None,
-        "current_menu": "initial_greet",
-        "expecting_reply": False
-    })
-
-    # --- Initial Stage: Language Selection ---
+    # Language selection
     if state["stage"] == "INIT":
         if msg_text_clean in ["english", "marathi", "इंग्रजी", "मराठी"]:
             lang = "English" if msg_text_clean in ["english", "इंग्रजी"] else "Marathi"
-            USER_STATE[user_id] = {
-                "stage": "LANG_SELECTED",
-                "language": lang,
-                "current_menu": "main_menu",
-                "expecting_reply": True
-            }
+            USER_STATE[user_id] = {"stage": "LANG_SELECTED", "language": lang, "current_menu": "main_menu", "expecting_reply": True}
             send_bot_message(user_id)
             return
         else:
-            # Invalid language, resend opening
             menu_data = MENU["opening"]["English"]
             send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
             return
 
-    # --- Change Language Command (handle before other buttons) ---
+    # Change language
     if msg_text_clean in ["change language", "भाषा बदल"]:
-        USER_STATE[user_id] = {
-            "stage": "INIT",
-            "language": None,
-            "current_menu": "opening",
-            "expecting_reply": True
-        }
-        # Send language selection directly
-        lang = "English"  # Use default for opening message
-        menu_data = MENU["opening"]
+        USER_STATE[user_id] = {"stage": "INIT", "language": None, "current_menu": "opening", "expecting_reply": True}
+        menu_data = MENU["opening"]["English"]
         send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
-    # --- Menu Navigation ---
+    # Menu navigation
     current_menu = state.get("current_menu")
     lang = state.get("language") or MENU["default_language"]
     menu_data = MENU["flow"][lang].get(current_menu, {})
@@ -231,7 +201,6 @@ def handle_user_input(user_id, msg_text):
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         return
 
-    # --- Options Handling ---
     if "options" in menu_data:
         for opt in menu_data["options"]:
             if msg_text_clean == clean_msg(opt["label"]):
@@ -240,44 +209,19 @@ def handle_user_input(user_id, msg_text):
                 send_bot_message(user_id)
                 return
 
-    # --- Buttons Handling ---
-    if "buttons" in menu_data:
-        button_mapping = {
-            "main menu": "main_menu", "मुख्य मेनू": "main_menu",
-            "about zp": "about_zp", "जि.प. बद्दल": "about_zp",
-            "departments": "departments", "विभाग": "departments",
-            "schemes": "schemes", "योजना": "schemes",
-            "cess fund": "cess_fund", "सेस फंड": "cess_fund",
-            "officers contact": "officers_contact", "अधिकारी यांचे संपर्क": "officers_contact",
-            "online complaint": "online_complaint", "ऑनलाईन तक्रार": "online_complaint",
-            "citizens charter": "citizens_charter", "नागरिकांची सनद": "citizens_charter"
-        }
-
-        selected_key = button_mapping.get(msg_text_clean)
-        if selected_key:
-            USER_STATE[user_id]["current_menu"] = selected_key
-            USER_STATE[user_id]["expecting_reply"] = True
-            send_bot_message(user_id)
-            return
-
-    # --- Fallback if reply invalid ---
+    # Fallback
     if state.get("expecting_reply", False):
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         send_bot_message(user_id)
 
+# === Send Bot Messages ===
 def send_bot_message(user_id):
     state = USER_STATE[user_id]
     current_menu = state.get("current_menu")
-    
-    # Store last valid menu
-    if current_menu:
-        USER_STATE[user_id]["last_menu"] = current_menu
-
     lang = state.get("language") or MENU["default_language"]
 
-    if current_menu in MENU["flow"][lang]:
-        menu_data = MENU["flow"][lang][current_menu]
-    else:
+    menu_data = MENU["flow"][lang].get(current_menu)
+    if not menu_data:
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         return
 
@@ -296,34 +240,12 @@ def send_bot_message(user_id):
         state["expecting_reply"] = False
 
     send_whatsapp_message(user_id, text, options, opt_type)
-    USER_STATE[user_id] = state
 
-
-
-
-# === Send Department / Scheme Info ===
-def send_info(user_id, key, lang):
-    # Check department details
-    dept_data = MENU["flow"][lang].get("department_details", {}).get(key)
-    if dept_data:
-        text = dept_data.get("msg", "")
-        options = dept_data.get("buttons", [])
-        contact = dept_data.get("contact")
-        if contact:
-            text += f"\n📞 {contact['designation']}: {contact['name']} - {contact['phone']}"
-        send_whatsapp_message(user_id, text, options, "buttons")
-        USER_STATE[user_id]["expecting_reply"] = True
-        return
-    # Otherwise fallback
-    send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
-    USER_STATE[user_id]["expecting_reply"] = True
-
-# === Root Endpoint ===
+# === Root ===
 @app.route("/")
 def home():
     return "🚀 ZP Buldhana WhatsApp Bot is running!", 200
 
-# === Run App ===
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
