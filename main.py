@@ -4,7 +4,7 @@ import requests, os, json, threading, time
 # === Load JSON Flow ===
 with open("zp_buldhana_flow.json") as f:
     MENU = json.load(f)
-    
+
 with open("credentials.json", "r") as f:
     creds = json.load(f)
 
@@ -180,27 +180,29 @@ def handle_user_input(user_id, msg_text):
     else:
         handle_free_text(user_id, msg_text)
 
-# === Send Bot Message ===
 def send_bot_message(user_id):
     state = USER_STATE[user_id]
     current_menu = state.get("current_menu")
-    lang = state.get("language", MENU["default_language"])
+    lang = state.get("language") or MENU["default_language"]
 
-    if current_menu == "opening":
-        menu_data = MENU["opening"][lang]
-        send_whatsapp_message(user_id, menu_data["msg"], menu_data["buttons"], "buttons")
-        USER_STATE[user_id]["expecting_reply"] = True
-        return
+    # Opening menu (language selection)
+    if current_menu == "initial_greet":
+        menu_data = MENU["opening"].get(lang, {})
+    else:
+        menu_data = MENU["flow"].get(lang, {}).get(current_menu, {})
 
-    menu_data = MENU["flow"][lang].get(current_menu, {})
     if not menu_data:
-        send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
+        send_whatsapp_message(user_id, MENU["fallback"]["msg"].get(lang, "Sorry, I didn't understand that."))
         return
 
     text = menu_data.get("msg", "")
     options, opt_type = [], "text"
 
-    if "options" in menu_data:
+    if current_menu == "initial_greet":
+        options = menu_data.get("buttons", [])
+        opt_type = "buttons"
+        USER_STATE[user_id]["expecting_reply"] = True
+    elif "options" in menu_data:
         options = [o["label"] for o in menu_data["options"]]
         opt_type = "list"
         USER_STATE[user_id]["expecting_reply"] = True
@@ -212,6 +214,7 @@ def send_bot_message(user_id):
         USER_STATE[user_id]["expecting_reply"] = False
 
     send_whatsapp_message(user_id, text, options, opt_type)
+
 
 # === Send Department / Scheme Info ===
 def send_info(user_id, key, lang):
