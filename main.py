@@ -281,8 +281,8 @@ def send_bot_message(user_id):
             "current_menu": "opening",
             "expecting_reply": True
         }
-        send_whatsapp_message(user_id, MENU.get("opening", {}).get("msg", "Welcome!"),
-                              [btn["Value"] for btn in MENU.get("opening", {}).get("buttons", [])], "buttons")
+        send_whatsapp_message(user_id, MENU["opening"]["msg"],
+                              [btn["Value"] for btn in MENU["opening"]["buttons"]], "buttons")
         return
 
     current_menu = state.get("current_menu")
@@ -294,7 +294,6 @@ def send_bot_message(user_id):
         USER_STATE[user_id]["current_menu"] = "main_menu"
         menu_data = MENU.get("main_menu", {})
 
-    # Extract message text
     text = ""
     if "msg" in menu_data:
         if isinstance(menu_data["msg"], dict):
@@ -305,23 +304,35 @@ def send_bot_message(user_id):
     options = []
     opt_type = "text"
 
-    if "options" in menu_data:
+    # Priority interactive blocks
+    if "options" in menu_data and menu_data["options"]:
         options = [opt[lang_key] for opt in menu_data["options"]]
         opt_type = "list"
         state["expecting_reply"] = True
-    elif "buttons" in menu_data:
+    elif "buttons" in menu_data and menu_data["buttons"]:
         options = [btn["Value"] for btn in menu_data["buttons"]]
-        # Choose button type only if 3 or less buttons allowed by WhatsApp
         opt_type = "buttons" if len(options) <= 3 else "list"
         state["expecting_reply"] = True
-    elif "submenu" in menu_data:
+    elif "submenu" in menu_data and menu_data["submenu"]:
         options = [opt[lang_key] for opt in menu_data["submenu"]]
-        opt_type = "list"  # use list for submenu (can have many options)
+        opt_type = "list"
         state["expecting_reply"] = True
     else:
-        state["expecting_reply"] = False
+        # No explicit options/buttons - add fallback buttons
+        fallback_buttons = []
+        # Add 'Main Menu' button if not already on main menu
+        if current_menu != "main_menu":
+            fallback_buttons.append("Main Menu")
+        # Optionally add 'Back' if you keep track of previous menus (not in current code)
+        if fallback_buttons:
+            options = fallback_buttons
+            opt_type = "buttons"
+            state["expecting_reply"] = True
+        else:
+            state["expecting_reply"] = False
 
     send_whatsapp_message(user_id, text, options, opt_type)
+
 
 
 # Home route
