@@ -195,11 +195,35 @@ def handle_user_input(user_id, msg_text):
                 return
 
     # --- Buttons Handling ---
+    # --- Buttons Handling ---
     if "buttons" in menu_data:
         if msg_text.strip() in menu_data["buttons"]:
-            # Move back to parent menu if needed
-            send_bot_message(user_id)
+            # Map buttons to menu keys
+            button_mapping = {
+                "Main Menu": "main_menu", "मुख्य मेनू": "main_menu",
+                "About ZP": "about_zp", "जि.प. बद्दल": "about_zp",
+                "Departments": "departments", "विभाग": "departments",
+                "Schemes": "schemes", "योजना": "schemes",
+                "Cess Fund": "cess_fund", "सेस फंड": "cess_fund",
+                "Officers Contact": "officers_contact", "अधिकारी यांचे संपर्क": "officers_contact",
+                "Online Complaint": "online_complaint", "ऑनलाईन तक्रार": "online_complaint",
+                "Citizens Charter": "citizens_charter", "नागरिकांची सनद": "citizens_charter",
+                "Change Language": "change_language", "भाषा बदल": "change_language"
+            }
+
+        selected_key = button_mapping.get(msg_text.strip())
+        if selected_key:
+            # Update current_menu accordingly
+            if selected_key == "change_language":
+                USER_STATE[user_id]["stage"] = "INIT"
+                USER_STATE[user_id]["language"] = None
+                USER_STATE[user_id]["current_menu"] = "opening"
+            else:
+                USER_STATE[user_id]["current_menu"] = selected_key
+                USER_STATE[user_id]["expecting_reply"] = True
+                send_bot_message(user_id)
             return
+
 
     # --- If reply invalid and bot expects input ---
     if state.get("expecting_reply", False):
