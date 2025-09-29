@@ -5,48 +5,46 @@
     "follow_up": "If bot is active for someone & no response in 1 hr, send 'Knock Knock 👋 Are you there?'"
   },
   "opening": {
-    "msg": {
-      "en": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language to continue:",
-      "mr": "नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:"
-    },
-    "buttons": ["English", "Marathi"]
+    "msg":
+       "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nPlease select your preferred language to continue:\n नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:",
+    "buttons": [
+      { "id": "english", "Value": "English" },
+      { "id": "marathi", "Value": "मराठी" }
+    ]
   },
   "language_selected": {
     "en": "Okay! Let's talk in English! Please select a service",
     "mr": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा"
   },
   "main_menu": {
-    "title": {
-      "en": "Choose Service",
-      "mr": "सेवा निवडा"
-    },
+    "title": { "en": "Choose Service", "mr": "सेवा निवडा" },
     "options": [
-      { "en": "About Z.P. Buldhana", "mr": "जि.प. बुलढाणा बद्दल", "id": "about_zp" },
-      { "en": "Z.P. Departments", "mr": "जि.प. विभाग", "id": "departments" },
-      { "en": "Z.P. Schemes", "mr": "जि.प. योजना", "id": "schemes" },
-      { "en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना", "id": "cess_fund" },
-      { "en": "Officers’ Contact", "mr": "अधिकारी यांचे संपर्क", "id": "officers_contact" },
-      { "en": "Online Complaint", "mr": "ऑनलाईन तक्रार", "id": "complaint" },
-      { "en": "Citizens’ Charter", "mr": "नागरिकांची सनद", "id": "citizens_charter" },
-      { "en": "Change Language", "mr": "भाषा बदल", "id": "change_language" }
+      { "id": "about_zp", "en": "About Z.P. Buldhana", "mr": "जि.प. बुलढाणा बद्दल" },
+      { "id": "departments", "en": "Z.P. Departments", "mr": "जि.प. विभाग" },
+      { "id": "schemes", "en": "Z.P. Schemes", "mr": "जि.प. योजना" },
+      { "id": "cess_fund", "en": "Z.P. Cess Fund Schemes", "mr": "जि.प. सेस फंड योजना" },
+      { "id": "officers_contact", "en": "Officers’ Contact", "mr": "अधिकारी यांचे संपर्क" },
+      { "id": "complaint", "en": "Online Complaint", "mr": "ऑनलाईन तक्रार" },
+      { "id": "citizens_charter", "en": "Citizens’ Charter", "mr": "नागरिकांची सनद" },
+      { "id": "change_language", "en": "Change Language", "mr": "भाषा बदल" }
     ]
   },
   "about_zp": {
     "msg": {
-      "en": "📅 Before 5 May 1962, Maharashtra had Janapad Sabhas. To strengthen local self-governance, involve locals in planning, and decentralize power, the Zilla Parishad and Panchayat Samiti Act, 1961 was passed. From 5 May 1962, Zilla Parishads were established at the district level and Panchayat Samitis at the block level...",
-      "mr": "📅 ५ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. स्थानिक स्वराज्य वाढविण्यासाठी, स्थानिकांना नियोजनात सामील करण्यासाठी आणि सत्तेचे विकेंद्रीकरण करण्यासाठी जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पारित करण्यात आला. ५ मे १९६२ पासून जिल्ह्यांत जिल्हा परिषद व तालुक्यांत पंचायत समित्या स्थापन झाल्या..."
+      "en": "📅 Before 5 May 1962, Maharashtra had Janapad Sabhas. To strengthen local self-governance and decentralize power, the ZP & Panchayat Samiti Act 1961 was passed. From 5 May 1962, Zilla Parishads and Panchayat Samitis were established...",
+      "mr": "📅 ५ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. स्थानिक स्वराज्य वाढविण्यासाठी आणि सत्तेचे विकेंद्रीकरण करण्यासाठी जिल्हा परिषद व पंचायत समिती अधिनियम १९६१ पारित झाला..."
     },
     "submenu": [
-      { "en": "Vision & Mission", "mr": "दृष्टीकोन आणि ध्येय", "id": "vision_mission" },
-      { "en": "Administrative Structure", "mr": "प्रशासकीय रचना", "id": "admin_structure" },
-      { "en": "Who's Who", "mr": "कोण कोण आहेत", "id": "who_is_who" },
-      { "en": "Main Menu", "mr": "मुख्य मेनू", "id": "main_menu" }
+      { "id": "vision_mission", "en": "Vision & Mission", "mr": "दृष्टीकोन आणि ध्येय" },
+      { "id": "admin_structure", "en": "Administrative Structure", "mr": "प्रशासकीय रचना" },
+      { "id": "who_is_who", "en": "Who's Who", "mr": "कोण कोण आहेत" },
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
     ]
   },
   "vision_mission": {
     "msg": {
-      "en": "🎯 Vision: Rural development, sustainable progress, and better living standards.\n🚀 Mission: Deliver good governance and services in rural areas.",
-      "mr": "🎯 दृष्टीकोन: ग्रामीण विकास, शाश्वत प्रगती व चांगल्या जीवनमानासाठी कार्यरत.\n🚀 ध्येय: ग्रामीण भागात चांगले प्रशासन व सेवा देणे."
+      "en": "🎯 Vision: Rural development, sustainable progress and better living standards.\n🚀 Mission: Deliver good governance and essential services in rural areas.",
+      "mr": "🎯 दृष्टीकोन: ग्रामीण विकास, शाश्वत प्रगती व चांगल्या जीवनमानासाठी प्रयत्न.\n🚀 ध्येय: ग्रामीण भागात चांगले प्रशासन व सेवा देणे."
     }
   },
   "admin_structure": {
@@ -63,74 +61,85 @@
   },
   "departments": {
     "intro": {
-      "en": "Great! Let's start with the departments. ZP Buldhana has 15 departments. Select a department to know more.",
-      "mr": "मस्त! विभागांपासून सुरुवात करूया. जिल्हा परिषद बुलढाणा मध्ये एकूण १५ विभाग आहेत. त्याबद्दल माहिती पाहण्यासाठी विभाग निवडा."
+      "en": "Great! Let's start with the departments. ZP Buldhana has 15 departments. Select one:",
+      "mr": "मस्त! विभागांपासून सुरुवात करूया. जिल्हा परिषद बुलढाणा मध्ये १५ विभाग आहेत. निवडा:"
     },
     "list": [
-      { "en": "Health Department", "mr": "आरोग्य विभाग", "id": "health" },
-      { "en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग", "id": "primary_edu" },
-      { "en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग", "id": "secondary_edu" },
-      { "en": "Animal Husbandry Department", "mr": "पशुसंवर्धन विभाग", "id": "animal" },
-      { "en": "Agriculture Department", "mr": "कृषी विभाग", "id": "agriculture" },
-      { "en": "Social Welfare Department", "mr": "समाज कल्याण विभाग", "id": "social_welfare" },
-      { "en": "Finance Department", "mr": "वित्त विभाग", "id": "finance" },
-      { "en": "General Administration", "mr": "सामान्य प्र विभाग", "id": "general_admin" },
-      { "en": "See More...", "mr": "अधिक पहा...", "id": "see_more" },
-      { "en": "Main Menu", "mr": "मुख्य मेनू", "id": "main_menu" }
+      { "id": "health", "en": "Health Department", "mr": "आरोग्य विभाग" },
+      { "id": "primary_edu", "en": "Primary Education Department", "mr": "शिक्षण प्रा विभाग" },
+      { "id": "secondary_edu", "en": "Secondary Education Department", "mr": "शिक्षण माध्यम विभाग" },
+      { "id": "animal", "en": "Animal Husbandry Department", "mr": "पशुसंवर्धन विभाग" },
+      { "id": "agriculture", "en": "Agriculture Department", "mr": "कृषी विभाग" },
+      { "id": "social_welfare", "en": "Social Welfare Department", "mr": "समाज कल्याण विभाग" },
+      { "id": "finance", "en": "Finance Department", "mr": "वित्त विभाग" },
+      { "id": "general_admin", "en": "General Administration", "mr": "सामान्य प्र विभाग" },
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
     ]
   },
-  "health_department": {
+  "health": {
     "msg": {
-      "en": "🏥 Health Department – Provides healthcare in rural areas through PHCs and Sub-Centres.\nFunctions: Primary healthcare, vaccinations, maternal & child care, disease control, awareness programs.",
-      "mr": "🏥 आरोग्य विभाग – ग्रामीण भागात PHC व उपकेंद्रांद्वारे आरोग्यसेवा पुरवतो.\nकार्ये: प्राथमिक आरोग्य सेवा, लसीकरण, मातृत्व व बाल संगोपन, रोग नियंत्रण, जनजागृती कार्यक्रम."
+      "en": "🏥 Health Dept – Provides healthcare in rural areas via PHCs & Sub-Centres.",
+      "mr": "🏥 आरोग्य विभाग – ग्रामीण भागात PHC व उपकेंद्रांद्वारे आरोग्य सेवा."
     },
     "contact": {
       "en": "Dr. Santosh Dhole – District Health Officer – 9405162034",
       "mr": "डॉ. संतोष ढोले – जिल्हा आरोग्य अधिकारी – 9405162034"
     },
-    "buttons": ["Contact", "Departments", "Main Menu"]
+    "buttons": [
+      { "id": "contact", "en": "Contact", "mr": "संपर्क" },
+      { "id": "departments", "en": "Departments", "mr": "विभाग" },
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+    ]
   },
   "schemes": {
     "intro": {
-      "en": "ZP Buldhana implements Central, State, and ZP schemes across departments. Select a department scheme:",
-      "mr": "जिल्हा परिषद बुलढाणा विविध केंद्रीय, राज्य व झेडपी योजना विभागांमार्फत राबवते. योजना पाहण्यासाठी विभाग निवडा:"
+      "en": "ZP Buldhana implements Central, State and ZP-funded schemes. Select one:",
+      "mr": "जि.प. बुलढाणा विविध केंद्रीय, राज्य व झेडपी योजना राबवते. निवडा:"
     },
     "list": [
-      { "en": "Health Schemes", "mr": "आरोग्य विभाग", "id": "health_schemes" },
-      { "en": "Education Schemes", "mr": "शिक्षण विभाग", "id": "edu_schemes" },
-      { "en": "Women & Child Development Schemes", "mr": "महिला व बालविकास", "id": "women_child" },
-      { "en": "Important Govt. Schemes", "mr": "शासनाच्या योजना", "id": "govt_schemes" },
-      { "en": "Agriculture Schemes", "mr": "कृषी विभाग", "id": "agri_schemes" },
-      { "en": "Social Welfare Schemes", "mr": "समाज कल्याण विभाग", "id": "sw_schemes" },
-      { "en": "Main Menu", "mr": "मुख्य मेनू", "id": "main_menu" }
+      { "id": "health_schemes", "en": "Health Schemes", "mr": "आरोग्य योजना" },
+      { "id": "edu_schemes", "en": "Education Schemes", "mr": "शिक्षण योजना" },
+      { "id": "women_child", "en": "Women & Child Development", "mr": "महिला व बालविकास योजना" },
+      { "id": "govt_schemes", "en": "Important Govt. Schemes", "mr": "महत्त्वाच्या शासन योजना" },
+      { "id": "agri_schemes", "en": "Agriculture Schemes", "mr": "कृषी योजना" },
+      { "id": "sw_schemes", "en": "Social Welfare Schemes", "mr": "समाज कल्याण योजना" },
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
     ]
   },
   "cess_fund": {
     "msg": {
       "en": "💰 For Z.P. Cess Fund Scheme details, please visit:\n🔗 https://yavatmalyojana.com/",
-      "mr": "💰 जि.प. सेस फंड योजनांची अधिक माहिती खालील लिंकवर मिळेल:\n🔗 https://yavatmalyojana.com/"
+      "mr": "💰 जि.प. सेस फंड योजनांची अधिक माहिती:\n🔗 https://yavatmalyojana.com/"
     },
-    "buttons": ["Main Menu"]
+    "buttons": [
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+    ]
   },
   "officers_contact": {
     "msg": {
-      "en": "📞 Officers’ Contact – Directory of ZP Buldhana officers.",
-      "mr": "📞 अधिकारी यांचे संपर्क – जिल्हा परिषद बुलढाणा अधिकाऱ्यांची माहिती."
+      "en": "📞 Officers’ Contact – Directory of ZP Buldhana officials.",
+      "mr": "📞 अधिकारी यांचे संपर्क – जिल्हा परिषद बुलढाणा अधिकारी माहिती."
     },
-    "buttons": ["Main Menu"]
+    "buttons": [
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+    ]
   },
   "complaint": {
     "msg": {
-      "en": "📝 Online Complaint – Submit grievances via official portal.",
-      "mr": "📝 ऑनलाईन तक्रार – अधिकृत पोर्टलवरून तक्रार नोंदवा."
+      "en": "📝 Online Complaint – Submit your grievance via official portal.",
+      "mr": "📝 ऑनलाईन तक्रार – अधिकृत पोर्टलवरून नोंदणी करा."
     },
-    "buttons": ["Main Menu"]
+    "buttons": [
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+    ]
   },
   "citizens_charter": {
     "msg": {
-      "en": "📜 Citizens’ Charter – Rights and responsibilities of citizens.",
+      "en": "📜 Citizens’ Charter – Rights & responsibilities of citizens.",
       "mr": "📜 नागरिकांची सनद – नागरिकांचे अधिकार व जबाबदाऱ्या."
     },
-    "buttons": ["Main Menu"]
+    "buttons": [
+      { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+    ]
   }
 }
