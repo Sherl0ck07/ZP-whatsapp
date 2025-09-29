@@ -125,17 +125,18 @@
       ]
     },
     "primary_edu": {
-      "id": "primary_edu",
-      "parent_id": "departments",
-      "msg": {
-        "en": "📚 Primary Education Department\n\nManages primary schools (Std 1-7) in rural areas.",
-        "mr": "📚 शिक्षण प्राथमिक विभाग\n\nग्रामीण भागातील प्राथमिक शाळा (इ १-७) व्यवस्थापन."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "primary_edu",
+  "parent_id": "departments",
+  "msg": {
+    "en": "📚 Primary Education Department\n\nManages primary schools (Std 1-7) in rural areas.\n\nSelect an option:",
+    "mr": "📚 शिक्षण प्राथमिक विभाग\n\nग्रामीण भागातील प्राथमिक शाळा (इ १-७) व्यवस्थापन.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "primary_edu_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "primary_edu_contact": {
   "id": "primary_edu_contact",
   "parent_id": "primary_edu",
@@ -149,17 +150,18 @@
   ]
 },
     "secondary_edu": {
-      "id": "secondary_edu",
-      "parent_id": "departments",
-      "msg": {
-        "en": "🎓 Secondary Education Department\n\nManages secondary schools (Std 8-12) in rural areas.",
-        "mr": "🎓 शिक्षण माध्यमिक विभाग\n\nग्रामीण भागातील माध्यमिक शाळा (इ ८-१२) व्यवस्थापन."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "secondary_edu",
+  "parent_id": "departments",
+  "msg": {
+    "en": "🎓 Secondary Education Department\n\nManages secondary schools (Std 8-12) in rural areas.\n\nSelect an option:",
+    "mr": "🎓 शिक्षण माध्यमिक विभाग\n\nग्रामीण भागातील माध्यमिक शाळा (इ ८-१२) व्यवस्थापन.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "secondary_edu_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "secondary_edu_contact": {
   "id": "secondary_edu_contact",
   "parent_id": "secondary_edu",
@@ -173,17 +175,18 @@
   ]
 },
     "animal": {
-      "id": "animal",
-      "parent_id": "departments",
-      "msg": {
-        "en": "🐄 Animal Husbandry Department\n\nProvides veterinary services and promotes livestock development.",
-        "mr": "🐄 पशुसंवर्धन विभाग\n\nपशुवैद्यकीय सेवा व पशुधन विकास."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "animal",
+  "parent_id": "departments",
+  "msg": {
+    "en": "🐄 Animal Husbandry Department\n\nProvides veterinary services and promotes livestock development.\n\nSelect an option:",
+    "mr": "🐄 पशुसंवर्धन विभाग\n\nपशुवैद्यकीय सेवा व पशुधन विकास.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "animal_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "animal_contact": {
   "id": "animal_contact",
   "parent_id": "animal",
@@ -197,17 +200,18 @@
   ]
 },
     "agriculture": {
-      "id": "agriculture",
-      "parent_id": "departments",
-      "msg": {
-        "en": "🌾 Agriculture Department\n\nProvides agricultural extension services and implements farming schemes.",
-        "mr": "🌾 कृषी विभाग\n\nकृषी विस्तार सेवा व शेती योजना राबवते."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "agriculture",
+  "parent_id": "departments",
+  "msg": {
+    "en": "🌾 Agriculture Department\n\nProvides agricultural extension services and implements farming schemes.\n\nSelect an option:",
+    "mr": "🌾 कृषी विभाग\n\nकृषी विस्तार सेवा व शेती योजना राबवते.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "agriculture_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "agriculture_contact": {
   "id": "agriculture_contact",
   "parent_id": "agriculture",
@@ -221,17 +225,18 @@
   ]
 },
     "social_welfare": {
-      "id": "social_welfare",
-      "parent_id": "departments",
-      "msg": {
-        "en": "🤝 Social Welfare Department\n\nImplements welfare schemes for backward classes, SC/ST and other communities.",
-        "mr": "🤝 समाज कल्याण विभाग\n\nमागासवर्गीय, अनुसूचित जाती/जमाती व इतर समाजांसाठी कल्याण योजना."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "social_welfare",
+  "parent_id": "departments",
+  "msg": {
+    "en": "🤝 Social Welfare Department\n\nImplements welfare schemes for backward classes, SC/ST and other communities.\n\nSelect an option:",
+    "mr": "🤝 समाज कल्याण विभाग\n\nमागासवर्गीय, अनुसूचित जाती/जमाती व इतर समाजांसाठी कल्याण योजना.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "social_welfare_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "social_welfare_contact": {
   "id": "social_welfare_contact",
   "parent_id": "social_welfare",
@@ -245,17 +250,18 @@
   ]
 },
     "finance": {
-      "id": "finance",
-      "parent_id": "departments",
-      "msg": {
-        "en": "💰 Finance Department\n\nManages financial accounts, budgets and audit for ZP.",
-        "mr": "💰 वित्त विभाग\n\nजि.प. चे आर्थिक लेखे, अर्थसंकल्प व लेखापरीक्षण."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "finance",
+  "parent_id": "departments",
+  "msg": {
+    "en": "💰 Finance Department\n\nManages financial accounts, budgets and audit for ZP.\n\nSelect an option:",
+    "mr": "💰 वित्त विभाग\n\nजि.प. चे आर्थिक लेखे, अर्थसंकल्प व लेखापरीक्षण.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "finance_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "finance_contact": {
   "id": "finance_contact",
   "parent_id": "finance",
@@ -269,17 +275,18 @@
   ]
 },
     "general_admin": {
-      "id": "general_admin",
-      "parent_id": "departments",
-      "msg": {
-        "en": "📋 General Administration\n\nHandles administrative matters, personnel and establishment.",
-        "mr": "📋 सामान्य प्रशासन विभाग\n\nप्रशासकीय बाबी, कर्मचारी व स्थापना व्यवस्थापन."
-      },
-      "buttons": [
-        { "id": "departments", "en": "◀ Back", "mr": "◀ मागे" },
-        { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
-      ]
-    },
+  "id": "general_admin",
+  "parent_id": "departments",
+  "msg": {
+    "en": "📋 General Administration\n\nHandles administrative matters, personnel and establishment.\n\nSelect an option:",
+    "mr": "📋 सामान्य प्रशासन विभाग\n\nप्रशासकीय बाबी, कर्मचारी व स्थापना व्यवस्थापन.\n\nपर्याय निवडा:"
+  },
+  "options": [
+    { "id": "general_admin_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "general_admin_contact": {
   "id": "general_admin_contact",
   "parent_id": "general_admin",
