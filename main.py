@@ -159,6 +159,7 @@ def handle_free_text(user_id, user_text):
         send_bot_message(user_id)
 
 # === Handle User Input ===
+# === Handle User Input ===
 def handle_user_input(user_id, msg_text):
     msg_text_clean = clean_msg(msg_text)
 
@@ -187,7 +188,7 @@ def handle_user_input(user_id, msg_text):
             send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
             return
 
-    # --- Change Language Command ---
+    # --- Change Language Command (handle before other buttons) ---
     if msg_text_clean in ["change language", "भाषा बदल"]:
         USER_STATE[user_id] = {
             "stage": "INIT",
@@ -195,7 +196,10 @@ def handle_user_input(user_id, msg_text):
             "current_menu": "opening",
             "expecting_reply": True
         }
-        send_bot_message(user_id)
+        # Send language selection directly
+        lang = "English"  # Use default for opening message
+        menu_data = MENU["opening"][lang]
+        send_whatsapp_message(user_id, menu_data["msg"], menu_data.get("buttons", []), "buttons")
         return
 
     # --- Menu Navigation ---
@@ -226,20 +230,13 @@ def handle_user_input(user_id, msg_text):
             "cess fund": "cess_fund", "सेस फंड": "cess_fund",
             "officers contact": "officers_contact", "अधिकारी यांचे संपर्क": "officers_contact",
             "online complaint": "online_complaint", "ऑनलाईन तक्रार": "online_complaint",
-            "citizens charter": "citizens_charter", "नागरिकांची सनद": "citizens_charter",
-            "change language": "change_language", "भाषा बदल": "change_language"
+            "citizens charter": "citizens_charter", "नागरिकांची सनद": "citizens_charter"
         }
 
         selected_key = button_mapping.get(msg_text_clean)
         if selected_key:
-            if selected_key == "change_language":
-                USER_STATE[user_id]["stage"] = "INIT"
-                USER_STATE[user_id]["language"] = None
-                USER_STATE[user_id]["current_menu"] = "opening"
-                USER_STATE[user_id]["expecting_reply"] = True
-            else:
-                USER_STATE[user_id]["current_menu"] = selected_key
-                USER_STATE[user_id]["expecting_reply"] = True
+            USER_STATE[user_id]["current_menu"] = selected_key
+            USER_STATE[user_id]["expecting_reply"] = True
             send_bot_message(user_id)
             return
 
@@ -247,7 +244,6 @@ def handle_user_input(user_id, msg_text):
     if state.get("expecting_reply", False):
         send_whatsapp_message(user_id, MENU["fallback"]["msg"][lang])
         send_bot_message(user_id)
-
 
 def send_bot_message(user_id):
     state = USER_STATE[user_id]
