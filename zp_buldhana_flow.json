@@ -1,1323 +1,193 @@
 {
-  "bot_metadata": {
-    "bot_name": "Sevadoot - ZP Buldhana Helpline",
-    "version": "1.0.0",
-    "created_date": "2025-01-15",
-    "organization": "Zilla Parishad Buldhana",
-    "default_language": "mr",
-    "supported_languages": ["mr", "en"],
-    "session_config": {
-      "timeout_minutes": 60,
-      "idle_followup_enabled": true,
-      "max_retries": 3,
-      "enable_analytics": true
-    }
+  "bot_name": "ZP Buldhana WhatsApp Bot",
+  "languages": ["Marathi", "English"],
+  "default_language": "English",
+  "user_states": {
+    "INIT": "user has just started the bot",
+    "LANG_SELECTED": "user has selected a language",
+    "MAIN_MENU": "user is at main menu",
+    "SUB_MENU": "user is in submenu",
+    "CONTACT": "user requested contact info",
+    "SCHEMES": "user requested scheme details",
+    "FALLBACK": "bot fallback state"
   },
-
-  "global_triggers": {
-    "restart": {
-      "keywords": ["restart", "पुन्हा सुरू करा", "start", "सुरू", "reset"],
-      "action": "go_to_initial",
-      "clear_session": true
-    },
+  "fallback": {
+    "msg": "Sorry, I didn't understand that. कृपया पुन्हा निवडा / Please select again.",
+    "actions": ["repeat_last_menu", "go_to_main_menu"]
+  },
+  "initial_greet": {
+    "msg": "Hello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana\nनमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद Buldhana च्या हेल्पलाईनमध्ये आपले स्वागत आहे!",
+    "options": ["Marathi", "English"]
+  },
+  "menus": {
     "main_menu": {
-      "keywords": ["main menu", "मुख्य मेनू", "menu", "मेनू", "home", "होम"],
-      "action": "go_to_main_menu",
-      "preserve_language": true
+      "Marathi": {
+        "msg": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा",
+        "options": [
+          {"key": "about_zp", "label": "जि.प. Buldhana बद्दल"},
+          {"key": "departments", "label": "जि.प. विभाग"},
+          {"key": "schemes", "label": "जि.प. योजना"},
+          {"key": "cess_fund", "label": "जि.प. सेस फंड योजना"},
+          {"key": "officers_contact", "label": "अधिकारी यांचे संपर्क"},
+          {"key": "online_complaint", "label": "ऑनलाईन तक्रार"},
+          {"key": "citizens_charter", "label": "नागरिकांची सनद"},
+          {"key": "change_language", "label": "भाषा बदल"}
+        ]
+      },
+      "English": {
+        "msg": "Okay! Let's talk in English! Please select a service",
+        "options": [
+          {"key": "about_zp", "label": "About Z.P. Buldhana"},
+          {"key": "departments", "label": "Z.P. Departments"},
+          {"key": "schemes", "label": "Z.P. Schemes"},
+          {"key": "cess_fund", "label": "Z.P. Cess Fund Schemes"},
+          {"key": "officers_contact", "label": "Officers’ Contact"},
+          {"key": "online_complaint", "label": "Online Complaint"},
+          {"key": "citizens_charter", "label": "Citizens’ Charter"},
+          {"key": "change_language", "label": "Change Language"}
+        ]
+      }
     },
-    "help": {
-      "keywords": ["help", "मदत", "?", "सहाय्य"],
-      "action": "show_help",
-      "message_key": "help_message"
+    "about_zp": {
+      "Marathi": {
+        "msg": "📅 १ मे १९६२ पूर्वी महाराष्ट्रात जनपद सभांचे अस्तित्व होते. [Sample Info Text]",
+        "submenu": ["departments"]
+      },
+      "English": {
+        "msg": "📅 Before May 1, 1962, there were district boards in Maharashtra. [Sample Info Text]",
+        "submenu": ["departments"]
+      }
+    },
+    "departments": {
+      "Marathi": {
+        "msg": "मस्त! विभागांपासून सुरुवात करूया. विभाग निवडा.",
+        "options": [
+          {"key": "health", "label": "आरोग्य विभाग"},
+          {"key": "primary_edu", "label": "शिक्षण प्रा विभाग"},
+          {"key": "secondary_edu", "label": "शिक्षण माध्य विभाग"},
+          {"key": "animal_husbandry", "label": "पशुसंवर्धन विभाग"},
+          {"key": "agriculture", "label": "कृषी विभाग"},
+          {"key": "social_welfare", "label": "समाज कल्याण विभाग"},
+          {"key": "finance", "label": "वित्त विभाग"},
+          {"key": "general_admin", "label": "सामान्य प्र विभाग"},
+          {"key": "main_menu", "label": "मुख्य मेनू"}
+        ]
+      },
+      "English": {
+        "msg": "Great! Let's start with departments. Please select a department.",
+        "options": [
+          {"key": "health", "label": "Health Department"},
+          {"key": "primary_edu", "label": "Primary Education Department"},
+          {"key": "secondary_edu", "label": "Secondary Education Department"},
+          {"key": "animal_husbandry", "label": "Animal Husbandry Department"},
+          {"key": "agriculture", "label": "Agriculture Department"},
+          {"key": "social_welfare", "label": "Social Welfare Department"},
+          {"key": "finance", "label": "Finance Department"},
+          {"key": "general_admin", "label": "General Administration Department"},
+          {"key": "main_menu", "label": "Main Menu"}
+        ]
+      }
+    },
+    "department_details": {
+      "health": {
+        "Marathi": {
+          "msg": "🏥 आरोग्य विभाग – जिल्हा परिषद, यवतमाळ [Sample Info Text]",
+          "buttons": ["Contact", "submenu_departments", "Main Menu"],
+          "contact": {
+            "name": "श्री.संतोष ढोले",
+            "designation": "जिल्हा आरोग्य अधिकारी",
+            "phone": "9405162034",
+            "email": "dhozpyavatmal@gmail.com"
+          }
+        },
+        "English": {
+          "msg": "🏥 Health Department – ZP Yavatmal [Sample Info Text]",
+          "buttons": ["Contact", "submenu_departments", "Main Menu"],
+          "contact": {
+            "name": "Mr. Santosh Dhole",
+            "designation": "District Health Officer",
+            "phone": "9405162034",
+            "email": "dhozpyavatmal@gmail.com"
+          }
+        }
+      },
+      "primary_edu": {
+        "Marathi": {"msg": "📘 प्राथमिक शिक्षण विभाग – [Sample Info Text]"},
+        "English": {"msg": "📘 Primary Education Department – [Sample Info Text]"}
+      },
+      "secondary_edu": {
+        "Marathi": {"msg": "📝 माध्यमिक शिक्षण विभाग – [Sample Info Text]"},
+        "English": {"msg": "📝 Secondary Education Department – [Sample Info Text]"}
+      },
+      "animal_husbandry": {
+        "Marathi": {"msg": "🐄 पशुसंवर्धन विभाग – [Sample Info Text]"},
+        "English": {"msg": "🐄 Animal Husbandry Department – [Sample Info Text]"}
+      },
+      "agriculture": {
+        "Marathi": {"msg": "🌾 कृषी विभाग – [Sample Info Text]"},
+        "English": {"msg": "🌾 Agriculture Department – [Sample Info Text]"}
+      },
+      "social_welfare": {
+        "Marathi": {"msg": "🤝 समाजकल्याण विभाग – [Sample Info Text]"},
+        "English": {"msg": "🤝 Social Welfare Department – [Sample Info Text]"}
+      },
+      "finance": {
+        "Marathi": {"msg": "💰 वित्त विभाग – [Sample Info Text]"},
+        "English": {"msg": "💰 Finance Department – [Sample Info Text]"}
+      },
+      "general_admin": {
+        "Marathi": {"msg": "🏛️ सामान्य प्रशासन विभाग – [Sample Info Text]"},
+        "English": {"msg": "🏛️ General Administration Department – [Sample Info Text]"}
+      }
+    },
+    "schemes": {
+      "Marathi": {
+        "msg": "जिल्हा परिषद यवतमाळ विविध योजना [Sample Info Text]",
+        "options": [
+          {"key": "health_schemes", "label": "आरोग्य विभाग"},
+          {"key": "education_schemes", "label": "शिक्षण प्रा विभाग"},
+          {"key": "women_child_schemes", "label": "महिला व बालविकास विभाग"},
+          {"key": "important_govt_schemes", "label": "शासनाच्या महत्त्वाच्या योजना"},
+          {"key": "agriculture_schemes", "label": "कृषी विभाग"},
+          {"key": "social_welfare_schemes", "label": "समाज कल्याण विभाग"},
+          {"key": "main_menu", "label": "मुख्य मेनू"}
+        ]
+      },
+      "English": {
+        "msg": "ZP Yavatmal runs various schemes [Sample Info Text]",
+        "options": [
+          {"key": "health_schemes", "label": "Health Department"},
+          {"key": "education_schemes", "label": "Education Department"},
+          {"key": "women_child_schemes", "label": "Women & Child Development Department"},
+          {"key": "important_govt_schemes", "label": "Important Government Schemes"},
+          {"key": "agriculture_schemes", "label": "Agriculture Department"},
+          {"key": "social_welfare_schemes", "label": "Social Welfare Department"},
+          {"key": "main_menu", "label": "Main Menu"}
+        ]
+      }
+    },
+    "cess_fund": {
+      "Marathi": {"msg": "Cess Fund Information [Sample Info Text]", "buttons": ["Main Menu"]},
+      "English": {"msg": "Cess Fund Information [Sample Info Text]", "buttons": ["Main Menu"]}
+    },
+    "officers_contact": {
+      "Marathi": {"msg": "Officers Contact Information [Sample Info Text]", "buttons": ["Main Menu"]},
+      "English": {"msg": "Officers Contact Information [Sample Info Text]", "buttons": ["Main Menu"]}
+    },
+    "online_complaint": {
+      "Marathi": {"msg": "ऑनलाईन तक्रार फॉर्म [Sample Info Text]", "buttons": ["Main Menu"]},
+      "English": {"msg": "Online Complaint Form [Sample Info Text]", "buttons": ["Main Menu"]}
+    },
+    "citizens_charter": {
+      "Marathi": {"msg": "नागरिकांची सनद [Sample Info Text]", "buttons": ["Main Menu"]},
+      "English": {"msg": "Citizens’ Charter [Sample Info Text]", "buttons": ["Main Menu"]}
     }
   },
-
-  "conversation_states": {
-    "INITIAL": {
-      "state_id": "welcome_language_selection",
-      "state_name": "Welcome Screen",
-      "state_type": "interactive_button",
-      "entry_actions": ["clear_session", "log_session_start"],
-      "message_config": {
-        "message_key": "welcome_message",
-        "media_type": "text",
-        "emoji_enabled": true
-      },
-      "interaction_config": {
-        "type": "buttons",
-        "max_buttons": 2,
-        "timeout_seconds": 300
-      },
-      "buttons": [
-        {
-          "id": "btn_select_marathi",
-          "button_type": "reply",
-          "label_key": "btn_marathi_label",
-          "icon": null,
-          "next_state": "LANGUAGE_SELECTED_MR",
-          "action": "set_language_marathi"
-        },
-        {
-          "id": "btn_select_english",
-          "button_type": "reply",
-          "label_key": "btn_english_label",
-          "icon": null,
-          "next_state": "LANGUAGE_SELECTED_EN",
-          "action": "set_language_english"
-        }
-      ],
-      "fallback": {
-        "invalid_response_message_key": "invalid_language_selection",
-        "retry_limit": 3,
-        "on_max_retry": "INITIAL"
-      }
-    },
-
-    "LANGUAGE_SELECTED_MR": {
-      "state_id": "main_menu_marathi",
-      "state_name": "Main Menu - Marathi",
-      "state_type": "interactive_list",
-      "entry_actions": ["set_language:mr", "log_language_selection"],
-      "message_config": {
-        "message_key": "main_menu_intro_mr",
-        "media_type": "text"
-      },
-      "interaction_config": {
-        "type": "list",
-        "list_title_key": "main_menu_title_mr",
-        "button_text_key": "main_menu_button_mr",
-        "max_sections": 2,
-        "max_rows_per_section": 10
-      },
-      "sections": [
-        {
-          "section_id": "main_services_mr",
-          "section_title_key": "main_services_section_mr",
-          "rows": [
-            {
-              "id": "about_zp",
-              "row_type": "navigation",
-              "title_key": "about_zp_title_mr",
-              "description_key": "about_zp_desc_mr",
-              "icon": null,
-              "next_state": "ABOUT_ZP_MENU"
-            },
-            {
-              "id": "departments",
-              "row_type": "navigation",
-              "title_key": "departments_title_mr",
-              "description_key": "departments_desc_mr",
-              "next_state": "DEPARTMENTS_MENU"
-            },
-            {
-              "id": "schemes",
-              "row_type": "navigation",
-              "title_key": "schemes_title_mr",
-              "description_key": "schemes_desc_mr",
-              "next_state": "SCHEMES_MENU"
-            },
-            {
-              "id": "cess_fund",
-              "row_type": "navigation",
-              "title_key": "cess_fund_title_mr",
-              "description_key": "cess_fund_desc_mr",
-              "next_state": "CESS_FUND_INFO"
-            }
-          ]
-        },
-        {
-          "section_id": "contact_services_mr",
-          "section_title_key": "contact_services_section_mr",
-          "rows": [
-            {
-              "id": "officers_contact",
-              "row_type": "navigation",
-              "title_key": "officers_contact_title_mr",
-              "description_key": "officers_contact_desc_mr",
-              "next_state": "OFFICERS_CONTACT_MENU"
-            },
-            {
-              "id": "online_complaint",
-              "row_type": "navigation",
-              "title_key": "complaint_title_mr",
-              "description_key": "complaint_desc_mr",
-              "next_state": "ONLINE_COMPLAINT"
-            },
-            {
-              "id": "citizen_charter",
-              "row_type": "navigation",
-              "title_key": "charter_title_mr",
-              "description_key": "charter_desc_mr",
-              "next_state": "CITIZEN_CHARTER"
-            },
-            {
-              "id": "change_language",
-              "row_type": "navigation",
-              "title_key": "change_lang_title_mr",
-              "description_key": "change_lang_desc_mr",
-              "next_state": "INITIAL"
-            }
-          ]
-        }
-      ],
-      "fallback": {
-        "invalid_response_message_key": "invalid_menu_selection_mr",
-        "retry_limit": 3
-      }
-    },
-
-    "LANGUAGE_SELECTED_EN": {
-      "state_id": "main_menu_english",
-      "state_name": "Main Menu - English",
-      "state_type": "interactive_list",
-      "entry_actions": ["set_language:en", "log_language_selection"],
-      "message_config": {
-        "message_key": "main_menu_intro_en",
-        "media_type": "text"
-      },
-      "interaction_config": {
-        "type": "list",
-        "list_title_key": "main_menu_title_en",
-        "button_text_key": "main_menu_button_en",
-        "max_sections": 2,
-        "max_rows_per_section": 10
-      },
-      "sections": [
-        {
-          "section_id": "main_services_en",
-          "section_title_key": "main_services_section_en",
-          "rows": [
-            {
-              "id": "about_zp",
-              "row_type": "navigation",
-              "title_key": "about_zp_title_en",
-              "description_key": "about_zp_desc_en",
-              "next_state": "ABOUT_ZP_MENU"
-            },
-            {
-              "id": "departments",
-              "row_type": "navigation",
-              "title_key": "departments_title_en",
-              "description_key": "departments_desc_en",
-              "next_state": "DEPARTMENTS_MENU"
-            },
-            {
-              "id": "schemes",
-              "row_type": "navigation",
-              "title_key": "schemes_title_en",
-              "description_key": "schemes_desc_en",
-              "next_state": "SCHEMES_MENU"
-            },
-            {
-              "id": "cess_fund",
-              "row_type": "navigation",
-              "title_key": "cess_fund_title_en",
-              "description_key": "cess_fund_desc_en",
-              "next_state": "CESS_FUND_INFO"
-            }
-          ]
-        },
-        {
-          "section_id": "contact_services_en",
-          "section_title_key": "contact_services_section_en",
-          "rows": [
-            {
-              "id": "officers_contact",
-              "row_type": "navigation",
-              "title_key": "officers_contact_title_en",
-              "description_key": "officers_contact_desc_en",
-              "next_state": "OFFICERS_CONTACT_MENU"
-            },
-            {
-              "id": "online_complaint",
-              "row_type": "navigation",
-              "title_key": "complaint_title_en",
-              "description_key": "complaint_desc_en",
-              "next_state": "ONLINE_COMPLAINT"
-            },
-            {
-              "id": "citizen_charter",
-              "row_type": "navigation",
-              "title_key": "charter_title_en",
-              "description_key": "charter_desc_en",
-              "next_state": "CITIZEN_CHARTER"
-            },
-            {
-              "id": "change_language",
-              "row_type": "navigation",
-              "title_key": "change_lang_title_en",
-              "description_key": "change_lang_desc_en",
-              "next_state": "INITIAL"
-            }
-          ]
-        }
-      ],
-      "fallback": {
-        "invalid_response_message_key": "invalid_menu_selection_en",
-        "retry_limit": 3
-      }
-    },
-
-    "ABOUT_ZP_MENU": {
-      "state_id": "about_zp_submenu",
-      "state_name": "About ZP Submenu",
-      "state_type": "interactive_list",
-      "entry_actions": ["log_navigation"],
-      "message_config": {
-        "message_key": "about_zp_intro",
-        "media_type": "text"
-      },
-      "interaction_config": {
-        "type": "list",
-        "list_title_key": "about_zp_list_title",
-        "button_text_key": "about_zp_button_text"
-      },
-      "sections": [
-        {
-          "section_id": "about_details",
-          "section_title_key": "about_details_section",
-          "rows": [
-            {
-              "id": "vision_mission",
-              "title_key": "vision_mission_title",
-              "description_key": "vision_mission_desc",
-              "next_state": "VISION_MISSION"
-            },
-            {
-              "id": "admin_structure",
-              "title_key": "admin_structure_title",
-              "description_key": "admin_structure_desc",
-              "next_state": "ADMIN_STRUCTURE"
-            },
-            {
-              "id": "who_is_who",
-              "title_key": "who_is_who_title",
-              "description_key": "who_is_who_desc",
-              "next_state": "WHO_IS_WHO"
-            },
-            {
-              "id": "back_main",
-              "title_key": "back_main_menu",
-              "next_state": "MAIN_MENU"
-            }
-          ]
-        }
-      ]
-    },
-
-    "VISION_MISSION": {
-      "state_id": "vision_mission_details",
-      "state_name": "Vision and Mission",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "vision_mission_content",
-        "media_type": "text",
-        "formatting": "markdown"
-      },
-      "buttons": [
-        {
-          "id": "back_about",
-          "label_key": "back_button",
-          "next_state": "ABOUT_ZP_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "ADMIN_STRUCTURE": {
-      "state_id": "admin_structure_details",
-      "state_name": "Administrative Structure",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "admin_structure_content",
-        "media_type": "text",
-        "formatting": "markdown"
-      },
-      "buttons": [
-        {
-          "id": "back_about",
-          "label_key": "back_button",
-          "next_state": "ABOUT_ZP_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "WHO_IS_WHO": {
-      "state_id": "who_is_who_details",
-      "state_name": "Key Officers",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "who_is_who_content",
-        "media_type": "text",
-        "formatting": "markdown"
-      },
-      "buttons": [
-        {
-          "id": "back_about",
-          "label_key": "back_button",
-          "next_state": "ABOUT_ZP_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPARTMENTS_MENU": {
-      "state_id": "departments_main_list",
-      "state_name": "Departments List",
-      "state_type": "interactive_list",
-      "message_config": {
-        "message_key": "departments_intro"
-      },
-      "interaction_config": {
-        "type": "list",
-        "list_title_key": "departments_list_title",
-        "button_text_key": "departments_button_text"
-      },
-      "sections": [
-        {
-          "section_id": "core_departments",
-          "section_title_key": "core_departments_section",
-          "rows": [
-            {
-              "id": "dept_health",
-              "title_key": "health_dept_title",
-              "description_key": "health_dept_desc",
-              "next_state": "DEPT_HEALTH"
-            },
-            {
-              "id": "dept_primary_edu",
-              "title_key": "primary_edu_title",
-              "description_key": "primary_edu_desc",
-              "next_state": "DEPT_PRIMARY_EDU"
-            },
-            {
-              "id": "dept_secondary_edu",
-              "title_key": "secondary_edu_title",
-              "description_key": "secondary_edu_desc",
-              "next_state": "DEPT_SECONDARY_EDU"
-            },
-            {
-              "id": "dept_animal",
-              "title_key": "animal_dept_title",
-              "description_key": "animal_dept_desc",
-              "next_state": "DEPT_ANIMAL"
-            }
-          ]
-        },
-        {
-          "section_id": "support_departments",
-          "section_title_key": "support_departments_section",
-          "rows": [
-            {
-              "id": "dept_agriculture",
-              "title_key": "agriculture_dept_title",
-              "description_key": "agriculture_dept_desc",
-              "next_state": "DEPT_AGRICULTURE"
-            },
-            {
-              "id": "dept_social",
-              "title_key": "social_welfare_title",
-              "description_key": "social_welfare_desc",
-              "next_state": "DEPT_SOCIAL"
-            },
-            {
-              "id": "dept_finance",
-              "title_key": "finance_dept_title",
-              "description_key": "finance_dept_desc",
-              "next_state": "DEPT_FINANCE"
-            },
-            {
-              "id": "dept_gad",
-              "title_key": "gad_dept_title",
-              "description_key": "gad_dept_desc",
-              "next_state": "DEPT_GAD"
-            },
-            {
-              "id": "back_main",
-              "title_key": "back_main_menu",
-              "next_state": "MAIN_MENU"
-            }
-          ]
-        }
-      ]
-    },
-
-    "DEPT_HEALTH": {
-      "state_id": "health_dept_details",
-      "state_name": "Health Department Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "health_dept_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_health",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_HEALTH"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_HEALTH": {
-      "state_id": "health_contact_info",
-      "state_name": "Health Department Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "health_contact_details",
-        "contact_info": {
-          "officer_name_key": "health_officer_name",
-          "phone_key": "health_officer_phone",
-          "email_key": "health_officer_email"
-        }
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_HEALTH"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_PRIMARY_EDU": {
-      "state_id": "primary_edu_details",
-      "state_name": "Primary Education Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "primary_edu_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_primary",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_PRIMARY_EDU"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_PRIMARY_EDU": {
-      "state_id": "primary_edu_contact_info",
-      "state_name": "Primary Education Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "primary_edu_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_PRIMARY_EDU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_SECONDARY_EDU": {
-      "state_id": "secondary_edu_details",
-      "state_name": "Secondary Education Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "secondary_edu_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_secondary",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_SECONDARY_EDU"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_SECONDARY_EDU": {
-      "state_id": "secondary_edu_contact_info",
-      "state_name": "Secondary Education Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "secondary_edu_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_SECONDARY_EDU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_ANIMAL": {
-      "state_id": "animal_husbandry_details",
-      "state_name": "Animal Husbandry Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "animal_dept_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_animal",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_ANIMAL"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_ANIMAL": {
-      "state_id": "animal_contact_info",
-      "state_name": "Animal Husbandry Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "animal_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_ANIMAL"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_AGRICULTURE": {
-      "state_id": "agriculture_details",
-      "state_name": "Agriculture Department Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "agriculture_dept_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_agri",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_AGRICULTURE"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_AGRICULTURE": {
-      "state_id": "agriculture_contact_info",
-      "state_name": "Agriculture Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "agriculture_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_AGRICULTURE"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_SOCIAL": {
-      "state_id": "social_welfare_details",
-      "state_name": "Social Welfare Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "social_welfare_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_social",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_SOCIAL"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_SOCIAL": {
-      "state_id": "social_welfare_contact_info",
-      "state_name": "Social Welfare Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "social_welfare_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_SOCIAL"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_FINANCE": {
-      "state_id": "finance_details",
-      "state_name": "Finance Department Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "finance_dept_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_finance",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_FINANCE"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_FINANCE": {
-      "state_id": "finance_contact_info",
-      "state_name": "Finance Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "finance_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_FINANCE"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "DEPT_GAD": {
-      "state_id": "gad_details",
-      "state_name": "General Administration Details",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "gad_dept_content"
-      },
-      "buttons": [
-        {
-          "id": "contact_gad",
-          "label_key": "contact_button",
-          "next_state": "CONTACT_GAD"
-        },
-        {
-          "id": "back_dept",
-          "label_key": "back_departments",
-          "next_state": "DEPARTMENTS_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CONTACT_GAD": {
-      "state_id": "gad_contact_info",
-      "state_name": "GAD Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "gad_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_dept",
-          "label_key": "back_button",
-          "next_state": "DEPT_GAD"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "SCHEMES_MENU": {
-      "state_id": "schemes_main_menu",
-      "state_name": "Schemes Main Menu",
-      "state_type": "interactive_list",
-      "message_config": {
-        "message_key": "schemes_intro"
-      },
-      "interaction_config": {
-        "type": "list",
-        "list_title_key": "schemes_list_title",
-        "button_text_key": "schemes_button_text"
-      },
-      "sections": [
-        {
-          "section_id": "schemes_by_dept",
-          "section_title_key": "schemes_by_department",
-          "rows": [
-            {
-              "id": "schemes_health",
-              "title_key": "health_schemes_title",
-              "description_key": "health_schemes_desc",
-              "next_state": "SCHEMES_HEALTH"
-            },
-            {
-              "id": "schemes_education",
-              "title_key": "education_schemes_title",
-              "description_key": "education_schemes_desc",
-              "next_state": "SCHEMES_EDUCATION"
-            },
-            {
-              "id": "schemes_wcd",
-              "title_key": "wcd_schemes_title",
-              "description_key": "wcd_schemes_desc",
-              "next_state": "SCHEMES_WCD"
-            },
-            {
-              "id": "schemes_govt",
-              "title_key": "govt_schemes_title",
-              "description_key": "govt_schemes_desc",
-              "next_state": "SCHEMES_GOVT"
-            },
-            {
-              "id": "schemes_agri",
-              "title_key": "agri_schemes_title",
-              "description_key": "agri_schemes_desc",
-              "next_state": "SCHEMES_AGRICULTURE"
-            },
-            {
-              "id": "schemes_social",
-              "title_key": "social_schemes_title",
-              "description_key": "social_schemes_desc",
-              "next_state": "SCHEMES_SOCIAL"
-            },
-            {
-              "id": "back_main",
-              "title_key": "back_main_menu",
-              "next_state": "MAIN_MENU"
-            }
-          ]
-        }
-      ]
-    },
-
-    "SCHEMES_HEALTH": {
-      "state_id": "health_schemes_list",
-      "state_name": "Health Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "health_schemes_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "back_schemes",
-          "label_key": "back_schemes_menu",
-          "next_state": "SCHEMES_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "SCHEMES_EDUCATION": {
-      "state_id": "education_schemes_list",
-      "state_name": "Education Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "education_schemes_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "back_schemes",
-          "label_key": "back_schemes_menu",
-          "next_state": "SCHEMES_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "SCHEMES_WCD": {
-      "state_id": "wcd_schemes_list",
-      "state_name": "Women & Child Development Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "wcd_schemes_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "back_schemes",
-          "label_key": "back_schemes_menu",
-          "next_state": "SCHEMES_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "SCHEMES_GOVT": {
-      "state_id": "govt_schemes_list",
-      "state_name": "Important Government Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "govt_schemes_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "back_schemes",
-          "label_key": "back_schemes_menu",
-          "next_state": "SCHEMES_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "SCHEMES_AGRICULTURE": {
-      "state_id": "agri_schemes_list",
-      "state_name": "Agriculture Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "agri_schemes_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "back_schemes",
-          "label_key": "back_schemes_menu",
-          "next_state": "SCHEMES_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "SCHEMES_SOCIAL": {
-      "state_id": "social_schemes_list",
-      "state_name": "Social Welfare Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "social_schemes_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "back_schemes",
-          "label_key": "back_schemes_menu",
-          "next_state": "SCHEMES_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CESS_FUND_INFO": {
-      "state_id": "cess_fund_details",
-      "state_name": "Cess Fund Schemes",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "cess_fund_content",
-        "include_links": true,
-        "external_link": "https://yavatmalyojana.com/"
-      },
-      "buttons": [
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "OFFICERS_CONTACT_MENU": {
-      "state_id": "officers_contact_main",
-      "state_name": "Officers Contact Menu",
-      "state_type": "interactive_list",
-      "message_config": {
-        "message_key": "officers_contact_intro"
-      },
-      "interaction_config": {
-        "type": "list",
-        "list_title_key": "officers_list_title",
-        "button_text_key": "officers_button_text"
-      },
-      "sections": [
-        {
-          "section_id": "dept_officers",
-          "section_title_key": "department_officers",
-          "rows": [
-            {
-              "id": "contact_ceo",
-              "title_key": "ceo_title",
-              "description_key": "ceo_desc",
-              "next_state": "CONTACT_CEO"
-            },
-            {
-              "id": "contact_health",
-              "title_key": "health_officer_title",
-              "description_key": "health_officer_desc",
-              "next_state": "CONTACT_HEALTH"
-            },
-            {
-              "id": "contact_primary",
-              "title_key": "primary_edu_officer_title",
-              "description_key": "primary_edu_officer_desc",
-              "next_state": "CONTACT_PRIMARY_EDU"
-            },
-            {
-              "id": "contact_secondary",
-              "title_key": "secondary_edu_officer_title",
-              "description_key": "secondary_edu_officer_desc",
-              "next_state": "CONTACT_SECONDARY_EDU"
-            },
-            {
-              "id": "contact_animal",
-              "title_key": "animal_officer_title",
-              "description_key": "animal_officer_desc",
-              "next_state": "CONTACT_ANIMAL"
-            },
-            {
-              "id": "contact_agri",
-              "title_key": "agri_officer_title",
-              "description_key": "agri_officer_desc",
-              "next_state": "CONTACT_AGRICULTURE"
-            },
-            {
-              "id": "contact_social",
-              "title_key": "social_officer_title",
-              "description_key": "social_officer_desc",
-              "next_state": "CONTACT_SOCIAL"
-            },
-            {
-              "id": "contact_finance",
-              "title_key": "finance_officer_title",
-              "description_key": "finance_officer_desc",
-              "next_state": "CONTACT_FINANCE"
-            },
-            {
-              "id": "contact_gad",
-              "title_key": "gad_officer_title",
-              "description_key": "gad_officer_desc",
-              "next_state": "CONTACT_GAD"
-            },
-            {
-              "id": "back_main",
-              "title_key": "back_main_menu",
-              "next_state": "MAIN_MENU"
-            }
-          ]
-        }
-      ]
-    },
-
-    "CONTACT_CEO": {
-      "state_id": "ceo_contact_info",
-      "state_name": "CEO Contact",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "ceo_contact_details"
-      },
-      "buttons": [
-        {
-          "id": "back_officers",
-          "label_key": "back_button",
-          "next_state": "OFFICERS_CONTACT_MENU"
-        },
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "ONLINE_COMPLAINT": {
-      "state_id": "complaint_registration",
-      "state_name": "Online Complaint",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "complaint_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "CITIZEN_CHARTER": {
-      "state_id": "charter_details",
-      "state_name": "Citizens Charter",
-      "state_type": "text_with_buttons",
-      "message_config": {
-        "message_key": "charter_content",
-        "include_links": true
-      },
-      "buttons": [
-        {
-          "id": "main_menu",
-          "label_key": "main_menu_button",
-          "next_state": "MAIN_MENU"
-        }
-      ]
-    },
-
-    "MAIN_MENU": {
-      "state_id": "return_to_main_menu",
-      "state_name": "Return to Main Menu",
-      "state_type": "redirect",
-      "redirect_logic": {
-        "check_language": true,
-        "if_marathi": "LANGUAGE_SELECTED_MR",
-        "if_english": "LANGUAGE_SELECTED_EN",
-        "default": "INITIAL"
-      }
-    }
+  "timed_followup": {
+    "timeout": 3600,
+    "msg": "Knock Knock! Are you still there? / तुम्ही अद्याप आहात का?"
   },
-
-  "message_templates": {
-    "welcome_message": {
-      "en": "PLACEHOLDER_TEXT",
-      "mr": "PLACEHOLDER_TEXT"
-    },
-    "btn_marathi_label": {
-      "en": "Marathi",
-      "mr": "मराठी"
-    },
-    "btn_english_label": {
-      "en": "English",
-      "mr": "English"
-    },
-    "main_menu_intro_mr": {
-      "mr": "PLACEHOLDER_TEXT"
-    },
-    "main_menu_intro_en": {
-      "en": "PLACEHOLDER_TEXT"
-    },
-    "main_menu_title_mr": {
-      "mr": "सेवा निवडा"
-    },
-    "main_menu_title_en": {
-      "en": "Choose Service"
-    },
-    "main_menu_button_mr": {
-      "mr": "सेवा यादी"
-    },
-    "main_menu_button_en": {
-      "en": "Service List"
-    },
-    "back_button": {
-      "en": "← Back",
-      "mr": "← मागे"
-    },
-    "main_menu_button": {
-      "en": "Main Menu",
-      "mr": "मुख्य मेनू"
-    },
-    "contact_button": {
-      "en": "Contact",
-      "mr": "संपर्क"
-    },
-    "back_departments": {
-      "en": "← Departments",
-      "mr": "← विभाग"
-    },
-    "back_schemes_menu": {
-      "en": "← Schemes Menu",
-      "mr": "← योजना मेनू"
-    },
-    "back_main_menu": {
-      "en": "← Main Menu",
-      "mr": "← मुख्य मेनू"
-    },
-    "invalid_language_selection": {
-      "en": "Please select a valid language option.",
-      "mr": "कृपया वैध भाषा पर्याय निवडा."
-    },
-    "invalid_menu_selection_mr": {
-      "mr": "कृपया वैध पर्याय निवडा."
-    },
-    "invalid_menu_selection_en": {
-      "en": "Please select a valid option."
-    },
-    "help_message": {
-      "en": "PLACEHOLDER_HELP_TEXT",
-      "mr": "PLACEHOLDER_HELP_TEXT"
-    }
-  },
-
-  "state_machine_config": {
-    "error_handling": {
-      "max_retries": 3,
-      "fallback_state": "MAIN_MENU",
-      "timeout_action": "send_idle_followup",
-      "invalid_input_message_key": "invalid_input_message"
-    },
-    "session_management": {
-      "store_user_language": true,
-      "store_navigation_history": true,
-      "max_history_length": 10,
-      "enable_back_navigation": true
-    },
-    "analytics": {
-      "track_state_transitions": true,
-      "track_user_selections": true,
-      "track_session_duration": true,
-      "track_popular_departments": true,
-      "track_popular_schemes": true
-    }
-  },
-
-  "webhook_config": {
-    "whatsapp_business_api": {
-      "api_version": "v18.0",
-      "message_types": {
-        "interactive_button": {
-          "type": "button",
-          "max_buttons": 3
-        },
-        "interactive_list": {
-          "type": "list",
-          "max_sections": 10,
-          "max_rows_per_section": 10
-        },
-        "text": {
-          "type": "text",
-          "max_length": 4096
-        }
-      }
-    },
-    "endpoints": {
-      "incoming_webhook": "/webhook/whatsapp/incoming",
-      "outgoing_webhook": "/webhook/whatsapp/outgoing",
-      "status_webhook": "/webhook/whatsapp/status"
-    },
-    "security": {
-      "verify_token": "PLACEHOLDER_VERIFY_TOKEN",
-      "webhook_secret": "PLACEHOLDER_WEBHOOK_SECRET"
-    }
+  "restart": {
+    "msg": "Restarting the bot... / बॉट पुन्हा सुरू करत आहे..."
   }
 }
