@@ -185,7 +185,36 @@
           {"key": "main_menu", "label": "मुख्य मेनू"}
         ]
       },
+       "health_schemes": {
+        "msg": "🏥 आरोग्य विभाग योजना:\n\n1. राष्ट्रीय आरोग्य मिशन\n2. आयुष्मान भारत योजना\n3. मातृ व बाल आरोग्य सेवा\n4. रोग प्रतिबंधक लसीकरण कार्यक्रम\n5. दूरवरच्या भागात मोबाईल मेडिकल युनिट",
+        "buttons": ["योजना", "मुख्य मेनू"]
+      },
 
+      "education_schemes": {
+        "msg": "📚 शिक्षण विभाग योजना:\n\n1. मध्याह्न भोजन योजना\n2. शालेय पोशाख व पुस्तके\n3. शिष्यवृत्ती योजना\n4. डिजिटल शिक्षण कार्यक्रम\n5. शाळा विकास अनुदान",
+        "buttons": ["योजना", "मुख्य मेनू"]
+      },
+
+      "women_child_schemes": {
+        "msg": "👶 महिला व बालविकास योजना:\n\n1. एकात्मिक बालविकास सेवा (ICDS)\n2. आंगणवाडी सेवा\n3. पोषण आहार योजना\n4. बेटी बचाओ बेटी पढाओ\n5. महिला स्वयंसहायता गट",
+        "buttons": ["योजना", "मुख्य मेनू"]
+      },
+
+      "important_govt_schemes": {
+        "msg": "🏛️ शासनाच्या महत्त्वाच्या योजना:\n\n1. मनरेगा योजना\n2. प्रधानमंत्री आवास योजना\n3. स्वच्छ भारत मिशन\n4. जल जीवन मिशन\n5. राष्ट्रीय ग्रामीण आजीविका मिशन",
+        "buttons": ["योजना", "मुख्य मेनू"]
+      },
+
+      "agriculture_schemes": {
+        "msg": "🌾 कृषी विभाग योजना:\n\n1. प्रधानमंत्री किसान सम्मान निधी\n2. पीक विमा योजना\n3. सूक्ष्म सिंचन योजना\n4. मृदा आरोग्य कार्ड\n5. शेती तंत्रज्ञान प्रशिक्षण",
+        "buttons": ["योजना", "मुख्य मेनू"]
+      },
+
+      "social_welfare_schemes": {
+        "msg": "🤝 समाज कल्याण योजना:\n\n1. सामाजिक सुरक्षा पेन्शन\n2. दिव्यांग कल्याण योजना\n3. अनुसूचित जाती/जमाती विकास योजना\n4. मुख्यमंत्री शिष्यवृत्ती\n5. वृद्धापकाळ निवृत्तिवेतन",
+        "buttons": ["योजना", "मुख्य मेनू"]
+      }
+    ,
       "cess_fund": {
         "msg": "सेस फंड माहिती: https://yavatmalyojana.com/",
         "buttons": ["मुख्य मेनू"]
@@ -353,7 +382,36 @@
           {"key": "main_menu", "label": "Main Menu"}
         ]
       },
+    "health_schemes": {
+        "msg": "🏥 Health Department Schemes:\n\n1. National Health Mission\n2. Ayushman Bharat Yojana\n3. Maternal & Child Health Services\n4. Disease Prevention Immunization Program\n5. Mobile Medical Units for Remote Areas",
+        "buttons": ["Schemes", "Main Menu"]
+      },
 
+      "education_schemes": {
+        "msg": "📚 Education Department Schemes:\n\n1. Mid-Day Meal Scheme\n2. School Uniform & Books\n3. Scholarship Programs\n4. Digital Education Initiative\n5. School Development Grants",
+        "buttons": ["Schemes", "Main Menu"]
+      },
+
+      "women_child_schemes": {
+        "msg": "👶 Women & Child Development Schemes:\n\n1. Integrated Child Development Services (ICDS)\n2. Anganwadi Services\n3. Nutrition Programs\n4. Beti Bachao Beti Padhao\n5. Women Self-Help Groups",
+        "buttons": ["Schemes", "Main Menu"]
+      },
+
+      "important_govt_schemes": {
+        "msg": "🏛️ Important Government Schemes:\n\n1. MGNREGA\n2. Pradhan Mantri Awas Yojana\n3. Swachh Bharat Mission\n4. Jal Jeevan Mission\n5. National Rural Livelihood Mission",
+        "buttons": ["Schemes", "Main Menu"]
+      },
+
+      "agriculture_schemes": {
+        "msg": "🌾 Agriculture Department Schemes:\n\n1. PM-KISAN (Farmer Income Support)\n2. Crop Insurance Scheme\n3. Micro Irrigation Scheme\n4. Soil Health Card\n5. Farm Technology Training",
+        "buttons": ["Schemes", "Main Menu"]
+      },
+
+      "social_welfare_schemes": {
+        "msg": "🤝 Social Welfare Schemes:\n\n1. Social Security Pension\n2. Divyang (Disability) Welfare\n3. SC/ST Development Schemes\n4. Chief Minister's Scholarship\n5. Old Age Pension",
+        "buttons": ["Schemes", "Main Menu"]
+      }
+      ,
       "cess_fund": {
         "msg": "Cess Fund Info: https://yavatmalyojana.com/",
         "buttons": ["Main Menu"]
