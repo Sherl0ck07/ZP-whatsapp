@@ -256,6 +256,16 @@ def handle_user_input(user_id, msg_text):
                 # Buttons might not have submenus; just resend or handle accordingly
                 send_bot_message(user_id)
                 return
+            
+    if "submenu" in current_menu_data:
+        for opt in current_menu_data["submenu"]:
+            option_text = opt.get(lang_key, "").strip().lower()
+            if clean_text == option_text:
+                USER_STATE[user_id]["current_menu"] = opt["id"]
+                USER_STATE[user_id]["expecting_reply"] = True
+                send_bot_message(user_id)
+                return
+
 
     # Fallback if input not recognized
     send_whatsapp_message(user_id, "Sorry, I did not understand. Please select a valid option.")
@@ -265,14 +275,14 @@ def handle_user_input(user_id, msg_text):
 def send_bot_message(user_id):
     state = USER_STATE.get(user_id)
     if not state:
-        # Reset state if missing
         USER_STATE[user_id] = {
             "stage": "INIT",
             "language": None,
             "current_menu": "opening",
             "expecting_reply": True
         }
-        send_whatsapp_message(user_id, MENU.get("opening", {}).get("msg", "Welcome!"), [btn["Value"] for btn in MENU.get("opening", {}).get("buttons", [])], "buttons")
+        send_whatsapp_message(user_id, MENU.get("opening", {}).get("msg", "Welcome!"),
+                              [btn["Value"] for btn in MENU.get("opening", {}).get("buttons", [])], "buttons")
         return
 
     current_menu = state.get("current_menu")
@@ -281,11 +291,10 @@ def send_bot_message(user_id):
 
     menu_data = MENU.get(current_menu, {})
     if not menu_data:
-        # If no menu data, fallback to main menu
         USER_STATE[user_id]["current_menu"] = "main_menu"
         menu_data = MENU.get("main_menu", {})
 
-    # Message text
+    # Extract message text
     text = ""
     if "msg" in menu_data:
         if isinstance(menu_data["msg"], dict):
@@ -293,21 +302,27 @@ def send_bot_message(user_id):
         else:
             text = menu_data["msg"]
 
-    # Options/buttons text
     options = []
     opt_type = "text"
+
     if "options" in menu_data:
         options = [opt[lang_key] for opt in menu_data["options"]]
         opt_type = "list"
         state["expecting_reply"] = True
     elif "buttons" in menu_data:
         options = [btn["Value"] for btn in menu_data["buttons"]]
-        opt_type = "buttons"
+        # Choose button type only if 3 or less buttons allowed by WhatsApp
+        opt_type = "buttons" if len(options) <= 3 else "list"
+        state["expecting_reply"] = True
+    elif "submenu" in menu_data:
+        options = [opt[lang_key] for opt in menu_data["submenu"]]
+        opt_type = "list"  # use list for submenu (can have many options)
         state["expecting_reply"] = True
     else:
         state["expecting_reply"] = False
 
     send_whatsapp_message(user_id, text, options, opt_type)
+
 
 # Home route
 @app.route("/")
