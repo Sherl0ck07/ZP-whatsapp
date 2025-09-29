@@ -228,7 +228,7 @@
         "list_title": "About Zilla Parishad",
         "options": [
           {"key": "vision_mission", "label": "Vision and Mission"},
-          {"key": "administrative_structure", "label": "Administrative Structure"},
+          {"key": "administrative_structure", "label": "Admin Structure"},
           {"key": "who_is_who", "label": "Who's Who"},
           {"key": "main_menu", "label": "Main Menu"}
         ]

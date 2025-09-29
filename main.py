@@ -145,7 +145,7 @@ def handle_free_text(user_id, user_text):
 # === Handle User Input ===
 def handle_user_input(user_id, msg_text):
     state = USER_STATE.get(user_id, {"stage": "INIT", "language": None, "current_menu": "initial_greet", "expecting_reply": False})
-
+    msg_text = msg_text.strip().replace("\n", "")
     # --- Initial Stage: Language Selection ---
     if state["stage"] == "INIT":
         if msg_text.lower() in ["english", "marathi", "इंग्रजी", "मराठी"]:
