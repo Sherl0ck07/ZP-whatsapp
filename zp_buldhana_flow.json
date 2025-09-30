@@ -97,9 +97,120 @@
         { "id": "social_welfare", "en": "Social Welfare", "mr": "समाज कल्याण विभाग" },
         { "id": "finance", "en": "Finance Dept", "mr": "वित्त विभाग" },
         { "id": "general_admin", "en": "General Admin", "mr": "सामान्य प्र विभाग" },
+        { "id": "see_more_dept", "en": "See More", "mr": "अधिक पहा" },
         { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
     },
+    "see_more_dept": {
+  "id": "see_more_dept",
+  "parent_id": "departments",
+  "msg": {
+    "en": "Here are more departments of ZP Buldhana. Please select one to see detailed information:",
+    "mr": "जिल्हा परिषद बुलढाणा चे आणखी विभाग येथे आहेत. कृपया विभाग निवडा:"
+  },
+  "options": [
+    { "id": "zp_construction", "en": "ZP Construction Dept", "mr": "जि.प बांधकाम विभाग" },
+    { "id": "women_child_dev", "en": "Women & Child Development", "mr": "महिला व बालविकास विभाग" },
+    { "id": "water_sanitation", "en": "Water & Sanitation", "mr": "पाणी व स्वच्छता विभाग" },
+    { "id": "panchayat", "en": "Panchayat Dept", "mr": "पंचायत विभाग" },
+    { "id": "mnrega", "en": "MNREGA Dept", "mr": "मनरेगा विभाग" },
+    { "id": "drda", "en": "District Rural Development", "mr": "जिल्हा ग्रामीण विकास यंत्रणा" },
+    { "id": "minor_irrigation", "en": "Minor Irrigation Dept", "mr": "लघुपाटबंधारे विभाग" },
+    { "id": "departments", "en": "◀ All Departments", "mr": "◀ सर्व विभाग" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"zp_construction": {
+  "id": "zp_construction",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "🏗️ ZP Construction Dept – ZP Buldhana\nResponsible for rural infrastructure development.",
+    "mr": "🏗️ जि.प. बांधकाम विभाग – ZP बुलढाणा\nग्रामीण पायाभूत सुविधांचा पाया!"
+  },
+  "buttons": [
+    { "id": "zp_construction_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"women_child_dev": {
+  "id": "women_child_dev",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "👩‍👧‍👦 Women & Child Development – ZP Buldhana\nEmpowering women and ensuring child nutrition & protection.",
+    "mr": "👩‍👧‍👦 महिला व बालविकास विभाग – ZP बुलढाणा\nग्रामीण महिलांचे सक्षमीकरण व बालकांचे समग्र पोषण व संरक्षण हे आमचे ध्येय!"
+  },
+  "buttons": [
+    { "id": "women_child_dev_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"water_sanitation": {
+  "id": "water_sanitation",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "🚰 Water & Sanitation Dept – ZP Buldhana\nEnsuring clean drinking water and sanitation in rural areas.",
+    "mr": "🚰 पाणी व स्वच्छता विभाग – ZP बुलढाणा\nग्रामीण भागातील शुद्ध पिण्याचे पाणी आणि संपूर्ण स्वच्छता हेच आमचे ध्येय!"
+  },
+  "buttons": [
+    { "id": "water_sanitation_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"panchayat": {
+  "id": "panchayat",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "🏡 Panchayat Dept – ZP Buldhana\nStrengthening the Gram Panchayats for effective governance.",
+    "mr": "🏡 पंचायत विभाग – ZP बुलढाणा\nग्रामपंचायतींच्या बळकटीसाठी कटिबद्ध!"
+  },
+  "buttons": [
+    { "id": "panchayat_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"mnrega": {
+  "id": "mnrega",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "👷‍♂️ MNREGA Dept – ZP Buldhana\nEnsuring employment rights and supporting rural development.",
+    "mr": "👷‍♂️ मनरेगा विभाग – ZP बुलढाणा\nकामाचा हक्क, ग्रामीण विकासाचा आधार!"
+  },
+  "buttons": [
+    { "id": "mnrega_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"drda": {
+  "id": "drda",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "🏡 District Rural Development Agency (DRDA) – Buldhana\nPlanning, implementing, and monitoring rural development and poverty alleviation schemes.",
+    "mr": "🏡 जिल्हा ग्रामीण विकास यंत्रणा (DRDA), बुलढाणा\nगावाकडं विकास, गरिबीकडं संधी!"
+  },
+  "buttons": [
+    { "id": "drda_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"minor_irrigation": {
+  "id": "minor_irrigation",
+  "parent_id": "see_more_dept",
+  "msg": {
+    "en": "💧 Minor Irrigation Dept – ZP Buldhana\nConstructs and maintains minor irrigation projects (0–200 hectares) to support agriculture.",
+    "mr": "💧 बुलढाणा ZP लघुपाटबंधारे विभाग\nग्रामीण भागातील शेतीला आधार देण्यासाठी व जलस्त्रोत वाढवण्यासाठी लघुपाटबंधारे सुविधा उभारणी व देखभाल विभागामार्फत केली जाते."
+  },
+  "buttons": [
+    { "id": "minor_irrigation_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
     "health": {
       "id": "health",
       "parent_id": "departments",
@@ -125,7 +236,92 @@
         { "id": "health", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
-    },
+    },"zp_building_contact": {
+  "id": "zp_building_contact",
+  "parent_id": "zp_building",
+  "msg": {
+    "en": "📞 ZP Building Dept Contact:\n\nShri XYZ\nDistrict Engineer\nEmail: xyz@example.com",
+    "mr": "📞 जि.प. बांधकाम संपर्क:\n\nश्री XYZ\nजिल्हा अभियंता\nई-मेल: xyz@example.com"
+  },
+  "buttons": [
+    { "id": "zp_building", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"women_child_dev_contact": {
+  "id": "women_child_dev_contact",
+  "parent_id": "women_child_dev",
+  "msg": {
+    "en": "📞 Women & Child Dev Contact:\n\nSmt. ABC\nDistrict Officer\nEmail: abc@example.com",
+    "mr": "📞 महिला व बालविकास संपर्क:\n\nसौ. ABC\nजिल्हा अधिकारी\nई-मेल: abc@example.com"
+  },
+  "buttons": [
+    { "id": "women_child_dev", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"water_sanitation_contact": {
+  "id": "water_sanitation_contact",
+  "parent_id": "water_sanitation",
+  "msg": {
+    "en": "📞 Water & Sanitation Contact:\n\nShri DEF\nDistrict Officer\nEmail: def@example.com",
+    "mr": "📞 पाणी व स्वच्छता संपर्क:\n\nश्री DEF\nजिल्हा अधिकारी\nई-मेल: def@example.com"
+  },
+  "buttons": [
+    { "id": "water_sanitation", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"panchayat_dept_contact": {
+  "id": "panchayat_dept_contact",
+  "parent_id": "panchayat_dept",
+  "msg": {
+    "en": "📞 Panchayat Dept Contact:\n\nShri GHI\nDistrict Officer\nEmail: ghi@example.com",
+    "mr": "📞 पंचायत विभाग संपर्क:\n\nश्री GHI\nजिल्हा अधिकारी\nई-मेल: ghi@example.com"
+  },
+  "buttons": [
+    { "id": "panchayat_dept", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"mnrega_contact": {
+  "id": "mnrega_contact",
+  "parent_id": "mnrega",
+  "msg": {
+    "en": "📞 MNREGA Contact:\n\nShri JKL\nDistrict Officer\nEmail: jkl@example.com",
+    "mr": "📞 मनरेगा संपर्क:\n\nश्री JKL\nजिल्हा अधिकारी\nई-मेल: jkl@example.com"
+  },
+  "buttons": [
+    { "id": "mnrega", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"drda_contact": {
+  "id": "drda_contact",
+  "parent_id": "drda",
+  "msg": {
+    "en": "📞 DRDA Contact:\n\nShri MNO\nDistrict Officer\nEmail: mno@example.com",
+    "mr": "📞 जिल्हा ग्रामीण विकास संपर्क:\n\nश्री MNO\nजिल्हा अधिकारी\nई-मेल: mno@example.com"
+  },
+  "buttons": [
+    { "id": "drda", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+},
+"minor_irrigation_contact": {
+  "id": "minor_irrigation_contact",
+  "parent_id": "minor_irrigation",
+  "msg": {
+    "en": "📞 Minor Irrigation Contact:\n\nShri PQR\nDistrict Officer\nEmail: pqr@example.com",
+    "mr": "📞 लघुपाटबंधारे संपर्क:\n\nश्री PQR\nजिल्हा अधिकारी\nई-मेल: pqr@example.com"
+  },
+  "buttons": [
+    { "id": "minor_irrigation", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
+  ]
+}
+,
+    
     "primary_edu": {
   "id": "primary_edu",
   "parent_id": "departments",
