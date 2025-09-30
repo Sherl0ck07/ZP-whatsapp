@@ -22,6 +22,7 @@
       "options": [
         { "id": "about_zp", "en": "About Z.P. Buldhana", "mr": "जि.प. बुलढाणा बद्दल" },
         { "id": "departments", "en": "Z.P. Departments", "mr": "जि.प. विभाग" },
+        { "id": "rts", "en": "Right to Service ", "mr": "सेवा हक्क अधिनियम" },
         { "id": "schemes", "en": "Z.P. Schemes", "mr": "जि.प. योजना" },
         { "id": "cess_fund", "en": "Z.P. Cess Fund", "mr": "जि.प. सेस फंड" },
         { "id": "officers_contact", "en": "Officers' Contact", "mr": "अधिकारी संपर्क" },
@@ -89,14 +90,14 @@
   "mr": "मस्त! विभागांपासून सुरुवात करूया. जिल्हा परिषद बुलढाणा मध्ये १५ विभाग आहेत.\n\nसविस्तर माहिती पाहण्यासाठी कृपया विभाग निवडा:"
 },
       "options": [
+        { "id": "general_admin", "en": "General Admin", "mr": "सामान्य प्र विभाग" },
+        { "id": "finance", "en": "Finance Dept", "mr": "वित्त विभाग" },
         { "id": "health", "en": "Health Department", "mr": "आरोग्य विभाग" },
         { "id": "primary_edu", "en": "Primary Education", "mr": "शिक्षण प्रा विभाग" },
         { "id": "secondary_edu", "en": "Secondary Education", "mr": "शिक्षण माध्यम विभाग" },
         { "id": "animal", "en": "Animal Husbandry", "mr": "पशुसंवर्धन विभाग" },
         { "id": "agriculture", "en": "Agriculture Dept", "mr": "कृषी विभाग" },
         { "id": "social_welfare", "en": "Social Welfare", "mr": "समाज कल्याण विभाग" },
-        { "id": "finance", "en": "Finance Dept", "mr": "वित्त विभाग" },
-        { "id": "general_admin", "en": "General Admin", "mr": "सामान्य प्र विभाग" },
         { "id": "see_more_dept", "en": "See More", "mr": "अधिक पहा" },
         { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
       ]
@@ -128,7 +129,7 @@
     "mr": "🏗️ जि.प. बांधकाम विभाग – ZP बुलढाणा\nग्रामीण पायाभूत सुविधांचा पाया!"
   },
   "buttons": [
-    { "id": "zp_construction_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "zp_building_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
   ]
@@ -167,7 +168,7 @@
     "mr": "🏡 पंचायत विभाग – ZP बुलढाणा\nग्रामपंचायतींच्या बळकटीसाठी कटिबद्ध!"
   },
   "buttons": [
-    { "id": "panchayat_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
+    { "id": "panchayat_dept_contact", "en": "Contact Officer", "mr": "संपर्क अधिकारी" },
     { "id": "see_more_dept", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
   ]
@@ -236,15 +237,16 @@
         { "id": "health", "en": "◀ Back", "mr": "◀ मागे" },
         { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
       ]
-    },"zp_building_contact": {
+    },
+    "zp_building_contact": {
   "id": "zp_building_contact",
-  "parent_id": "zp_building",
+  "parent_id": "zp_construction",
   "msg": {
     "en": "📞 ZP Building Dept Contact:\n\nShri XYZ\nDistrict Engineer\nEmail: xyz@example.com",
     "mr": "📞 जि.प. बांधकाम संपर्क:\n\nश्री XYZ\nजिल्हा अभियंता\nई-मेल: xyz@example.com"
   },
   "buttons": [
-    { "id": "zp_building", "en": "◀ Back", "mr": "◀ मागे" },
+    { "id": "zp_construction", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
   ]
 },
@@ -274,7 +276,7 @@
 },
 "panchayat_dept_contact": {
   "id": "panchayat_dept_contact",
-  "parent_id": "panchayat_dept",
+  "parent_id": "panchayat",
   "msg": {
     "en": "📞 Panchayat Dept Contact:\n\nShri GHI\nDistrict Officer\nEmail: ghi@example.com",
     "mr": "📞 पंचायत विभाग संपर्क:\n\nश्री GHI\nजिल्हा अधिकारी\nई-मेल: ghi@example.com"
