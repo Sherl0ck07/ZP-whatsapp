@@ -207,49 +207,53 @@ def webhook():
 
 # Handle free text input
 def handle_free_text(user_id, user_text):
-    state = USER_STATE.get(user_id, {
-        "stage": "INIT", 
-        "language": None, 
-        "current_menu": "opening", 
-        "expecting_reply": False
+    # Always get state with defaults
+    state = USER_STATE.setdefault(user_id, {
+        "stage": "INIT",
+        "language": None,
+        "current_menu": "opening",
+        "expecting_reply": False,
+        "warned": False
     })
-    
+
     # Language selection via text
-    if state["stage"] == "INIT" or state.get("current_menu") == "opening":
+    if state.get("stage") == "INIT" or state.get("current_menu") == "opening":
         lang_text = user_text.lower()
         if "english" in lang_text or lang_text == "en":
             USER_STATE[user_id] = {
-                "stage": "LANG_SELECTED", 
-                "language": "en", 
-                "current_menu": "main_menu", 
-                "expecting_reply": True
+                "stage": "LANG_SELECTED",
+                "language": "en",
+                "current_menu": "main_menu",
+                "expecting_reply": True,
+                "warned": False
             }
             send_menu_by_id(user_id, "main_menu", "en")
             return
         elif "marathi" in lang_text or "मराठी" in lang_text or lang_text == "mr":
             USER_STATE[user_id] = {
-                "stage": "LANG_SELECTED", 
-                "language": "mr", 
-                "current_menu": "main_menu", 
-                "expecting_reply": True
+                "stage": "LANG_SELECTED",
+                "language": "mr",
+                "current_menu": "main_menu",
+                "expecting_reply": True,
+                "warned": False
             }
             send_menu_by_id(user_id, "main_menu", "mr")
             return
-    
+
     # Unknown input - resend current menu or opening
     lang = state.get("language", "en")
     current_menu = state.get("current_menu", "opening")
-    
+
     if current_menu == "opening" or not state.get("language"):
         send_opening_menu(user_id)
     else:
-        # Send help message with current menu
         help_msg = {
             "en": "Please use the buttons below to continue:",
             "mr": "कृपया पुढे जाण्यासाठी खालील बटणे वापरा:"
         }
         send_whatsapp_message(user_id, help_msg.get(lang, help_msg["en"]))
         send_menu_by_id(user_id, current_menu, lang)
+
 
 # Handle user button/list input
 def handle_user_input(user_id, selected_id):
