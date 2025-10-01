@@ -71,25 +71,49 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
     print(f"📤 Send message response: {resp.status_code} {resp.text}")
     return resp.json()
 
-# Schedule 1-hour follow-up if inactive
-def schedule_followup(user_id):
-    def followup():
+# Idle check for each user
+def schedule_idle_check(user_id):
+    def idle_checker():
         try:
-            followup_timeout = 3600  # 1 hour
-            time.sleep(followup_timeout)
-            last = LAST_ACTIVE.get(user_id)
-            if last and time.time() - last >= followup_timeout:
-                msg = MENU.get("rules", {}).get("follow_up", "Knock Knock 👋 Are you there?")
-                send_whatsapp_message(user_id, msg)
-                # Send main menu after follow-up
-                state = USER_STATE.get(user_id)
-                if state and state.get("language"):
-                    send_menu_by_id(user_id, "main_menu", state["language"])
-                else:
-                    send_opening_menu(user_id)
+            while True:
+                time.sleep(10)  # check every 30s
+                last = LAST_ACTIVE.get(user_id)
+                if not last:
+                    return  # no activity yet
+
+                idle_time = time.time() - last
+                state = USER_STATE.get(user_id, {})
+                lang = state.get("language", "en")
+
+                # Case 1: 3 min idle → follow-up
+                if 25 <= idle_time < 500: #if 180 <= idle_time < 300:
+                    if not state.get("warned"):  # send only once
+                        follow_msg = MENU.get("rules", {}).get("follow_up", {})
+                        msg_text = follow_msg.get(lang, follow_msg.get("en", "Are you still there?"))
+                        send_whatsapp_message(user_id, msg_text)
+                        USER_STATE.setdefault(user_id, {})["warned"] = True
+
+                # Case 2: 5 min idle → session close
+                elif idle_time >= 50:
+                    close_msg = MENU.get("rules", {}).get("session_close", {})
+                    msg_text = close_msg.get(lang, close_msg.get("en", "Session closed. Please say anything to restart."))
+                    send_whatsapp_message(user_id, msg_text)
+
+                    # Reset state
+                    USER_STATE[user_id] = {
+                        "stage": "INIT",
+                        "language": None,
+                        "current_menu": "opening",
+                        "expecting_reply": False,
+                        "warned": False
+                    }
+                    LAST_ACTIVE[user_id] = None
+                    return  # stop checking for this user
+
         except Exception as e:
-            print("⚠️ Follow-up thread error:", e)
-    threading.Thread(target=followup, daemon=True).start()
+            print("⚠️ Idle checker error:", e)
+
+    threading.Thread(target=idle_checker, daemon=True).start()
 
 # Clean input text
 def clean_msg(text):
@@ -149,7 +173,7 @@ def webhook():
                 for msg in messages:
                     from_number = msg.get("from")
                     LAST_ACTIVE[from_number] = time.time()
-                    schedule_followup(from_number)
+                    schedule_idle_check(from_number)
 
                     msg_body, user_text = None, None
                     

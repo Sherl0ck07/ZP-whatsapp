@@ -1,9 +1,5 @@
 {
   "bot_name": "ZP Buldhana WhatsApp Bot",
-  "rules": {
-    "restart": "If user types 'Restart', bot should start from opening template.",
-    "follow_up": "If bot is active for someone & no response in 1 hr, send 'Knock Knock 👋 Are you there?'"
-  },
   "opening": {
     "msg": "नमस्कार 🙏🏻, सेवादूत, जिल्हा परिषद बुलढाणा च्या हेल्पलाईनमध्ये आपले स्वागत आहे!\nHello 🙏🏻, Welcome to Sevadoot, Helpline for Zilla Parishad Buldhana!\n\nसमोर जाण्यासाठी खालील भाषापैकी एक निवडा:\nPlease select your preferred language to continue:",
     "buttons": [
@@ -11,6 +7,16 @@
       { "id": "language_mr", "Value": "मराठी" }
     ]
   },
+  "rules": {
+  "follow_up": {
+    "en": "Knock Knock 👋 Are you there?",
+    "mr": "नमस्कार 👋 आपण अजून इथे आहात का?"
+  },
+  "session_close": {
+    "en": "⏳ Session closed. To reinitiate, please say anything.",
+    "mr": "⏳ सत्र बंद झाले आहे. पुन्हा सुरू करण्यासाठी काहीही लिहा."
+  }
+},
   "menus": {
     "main_menu": {
       "id": "main_menu",
