@@ -76,7 +76,7 @@ def schedule_idle_check(user_id):
     def idle_checker():
         try:
             while True:
-                time.sleep(10)  # check every 30s
+                time.sleep(30)  # check every 30s
                 last = LAST_ACTIVE.get(user_id)
                 if not last:
                     return  # no activity yet
@@ -86,7 +86,7 @@ def schedule_idle_check(user_id):
                 lang = state.get("language", "en")
 
                 # Case 1: 3 min idle → follow-up
-                if 25 <= idle_time < 500: #if 180 <= idle_time < 300:
+                if 180 <= idle_time < 300: #if 180 <= idle_time < 300:
                     if not state.get("warned"):  # send only once
                         follow_msg = MENU.get("rules", {}).get("follow_up", {})
                         msg_text = follow_msg.get(lang, follow_msg.get("en", "Are you still there?"))
@@ -94,7 +94,7 @@ def schedule_idle_check(user_id):
                         USER_STATE.setdefault(user_id, {})["warned"] = True
 
                 # Case 2: 5 min idle → session close
-                elif idle_time >= 50:
+                elif idle_time >= 300:
                     close_msg = MENU.get("rules", {}).get("session_close", {})
                     msg_text = close_msg.get(lang, close_msg.get("en", "Session closed. Please say anything to restart."))
                     send_whatsapp_message(user_id, msg_text)
