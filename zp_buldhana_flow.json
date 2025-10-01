@@ -26,6 +26,7 @@
         "mr": "ठीक आहे! आपण मराठीमध्ये बोलूया! कृपया एक सेवा निवडा:"
       },
       "options": [
+        { "id": "whats_new", "en": "What's New", "mr": "नवीनतम घडामोडी"},
         { "id": "about_zp", "en": "About Z.P. Buldhana", "mr": "जि.प. बुलढाणा बद्दल" },
         { "id": "departments", "en": "Z.P. Departments", "mr": "जि.प. विभाग" },
         { "id": "rts", "en": "Right to Service ", "mr": "सेवा हक्क अधिनियम" },
@@ -37,6 +38,19 @@
         { "id": "change_language", "en": "Change Language", "mr": "भाषा बदल" }
       ]
     },
+    "whats_new": {
+  "id": "whats_new",
+  "parent_id": "main_menu",
+  "msg": {
+    "en": "📰 Click the link to see the latest news and updates from ZP Buldhana:\nhttps://zpbuldhana.maharashtra.gov.in/en/#whats_news",
+    "mr": "📰 नवीनतम घडामोडी आणि अद्ययावत माहिती पाहण्यासाठी खालील लिंकवर क्लिक करा:\nhttps://zpbuldhana.maharashtra.gov.in/en/#whats_news"
+  },
+  "buttons": [
+    { "id": "main_menu", "en": "◀ Main Menu", "mr": "◀ मुख्य मेनू" }
+  ]
+}
+
+    ,
     "about_zp": {
       "id": "about_zp",
       "parent_id": "main_menu",
@@ -248,9 +262,9 @@
   "id": "zp_building_contact",
   "parent_id": "zp_construction",
   "msg": {
-    "en": "📞 ZP Building Dept Contact:\n\nShri XYZ\nDistrict Engineer\nEmail: xyz@example.com",
-    "mr": "📞 जि.प. बांधकाम संपर्क:\n\nश्री XYZ\nजिल्हा अभियंता\nई-मेल: xyz@example.com"
-  },
+      "en": "📞 ZP Building Dept Contact:\n\nShri Sushilkumar Guddhe\nExecutive Engineer (Building)\nDistrict Council Buldhana\nEmail: zpbuldhana.ee@mahapwd.com",
+      "mr": "📞 जि.प. बांधकाम संपर्क:\n\nश्री सुशीलकुमार गुडधे\nकार्यकारी अभियंता (बांधकाम)\nजिल्हा परिषद बुलढाणा\nई-मेल: zpbuldhana.ee@mahapwd.com"
+    },
   "buttons": [
     { "id": "zp_construction", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -260,9 +274,9 @@
   "id": "women_child_dev_contact",
   "parent_id": "women_child_dev",
   "msg": {
-    "en": "📞 Women & Child Dev Contact:\n\nSmt. ABC\nDistrict Officer\nEmail: abc@example.com",
-    "mr": "📞 महिला व बालविकास संपर्क:\n\nसौ. ABC\nजिल्हा अधिकारी\nई-मेल: abc@example.com"
-  },
+      "en": "📞 Women & Child Dev Contact:\n\nShri Pramod Andole\nDeputy Chief Executive Officer (MWCD)\nWomen & Child Dev Dept, ZP Buldhana\nEmail: dyceocwzpbuldana@gmail.com",
+      "mr": "📞 महिला व बालविकास संपर्क:\n\nश्री प्रमोद एंडोले\nउपमुख्य कार्यकारी अधिकारी (मबाक)\nमहिला व बालविकास विभाग, ZP बुलढाणा\nई-मेल: dyceocwzpbuldana@gmail.com"
+    },
   "buttons": [
     { "id": "women_child_dev", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -272,9 +286,9 @@
   "id": "water_sanitation_contact",
   "parent_id": "water_sanitation",
   "msg": {
-    "en": "📞 Water & Sanitation Contact:\n\nShri DEF\nDistrict Officer\nEmail: def@example.com",
-    "mr": "📞 पाणी व स्वच्छता संपर्क:\n\nश्री DEF\nजिल्हा अधिकारी\nई-मेल: def@example.com"
-  },
+      "en": "📞 Water & Sanitation Contact:\n\nShri Satish Deshmukh\nDeputy Chief Executive Officer (PAVSWA)\nWater & Sanitation Dept, ZP Buldhana\nEmail: nbazpbuldana@gmail.com",
+      "mr": "📞 पाणी व स्वच्छता संपर्क:\n\nश्री सतिष देशमुख\nउपमुख्य कार्यकारी अधिकारी (पावस्व)\nपाणी व स्वच्छता विभाग, जिल्हा परिषद बुलढाणा\nई-मेल: nbazpbuldana@gmail.com"
+    },
   "buttons": [
     { "id": "water_sanitation", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -284,9 +298,9 @@
   "id": "panchayat_dept_contact",
   "parent_id": "panchayat",
   "msg": {
-    "en": "📞 Panchayat Dept Contact:\n\nShri GHI\nDistrict Officer\nEmail: ghi@example.com",
-    "mr": "📞 पंचायत विभाग संपर्क:\n\nश्री GHI\nजिल्हा अधिकारी\nई-मेल: ghi@example.com"
-  },
+      "en": "📞 Panchayat Dept Contact:\n\nShri Shivshankar Bharsakale\nDeputy Chief Executive Officer (Gram Panchayat)\nGram Panchayat Dept, ZP Buldhana\nEmail: nbazpbuldana@gmail.com",
+      "mr": "📞 पंचायत विभाग संपर्क:\n\nश्री शिवशंकर भारसाकळे\nउपमुख्य कार्यकारी अधिकारी (ग्रापं)\nग्राम पंचायत विभाग, जिल्हा परिषद बुलढाणा\nई-मेल: nbazpbuldana@gmail.com"
+    },
   "buttons": [
     { "id": "panchayat", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -308,9 +322,9 @@
   "id": "drda_contact",
   "parent_id": "drda",
   "msg": {
-    "en": "📞 DRDA Contact:\n\nShri MNO\nDistrict Officer\nEmail: mno@example.com",
-    "mr": "📞 जिल्हा ग्रामीण विकास संपर्क:\n\nश्री MNO\nजिल्हा अधिकारी\nई-मेल: mno@example.com"
-  },
+      "en": "📞 DRDA Contact:\n\nShri Satish Deshmukh\nProject Director (In-charge)\nDistrict Rural Development Agency, ZP Buldhana\nEmail: drda_buldana@yahoo.com",
+      "mr": "📞 जिल्हा ग्रामीण विकास संपर्क:\n\nश्री सतिष देशमुख (प्रभारी)\nप्रकल्प संचालक, जिल्हा ग्रामीण विकास यंत्रणा, जिल्हा परिषद बुलढाणा\nई-मेल: drda_buldana@yahoo.com"
+    },
   "buttons": [
     { "id": "drda", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
@@ -320,9 +334,9 @@
   "id": "minor_irrigation_contact",
   "parent_id": "minor_irrigation",
   "msg": {
-    "en": "📞 Minor Irrigation Contact:\n\nShri PQR\nDistrict Officer\nEmail: pqr@example.com",
-    "mr": "📞 लघुपाटबंधारे संपर्क:\n\nश्री PQR\nजिल्हा अधिकारी\nई-मेल: pqr@example.com"
-  },
+      "en": "📞 Minor Irrigation Contact:\n\nSmt. Snehal Mane\nExecutive Engineer (Minor Irrigation) (In-charge)\nZP Buldhana\nEmail: mizpbld@yahoo.in",
+      "mr": "📞 लघुपाटबंधारे संपर्क:\n\nश्रीमती स्नेहल माने (प्रभारी)\nकार्यकारी अभियंता (लघुसिंचन), जिल्हा परिषद बुलढाणा\nई-मेल: mizpbld@yahoo.in"
+    },
   "buttons": [
     { "id": "minor_irrigation", "en": "◀ Back", "mr": "◀ मागे" },
     { "id": "main_menu", "en": "Main Menu", "mr": "मुख्य मेनू" }
