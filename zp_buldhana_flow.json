@@ -150,17 +150,29 @@
         {
           "id": "vision_mission",
           "en": "Vision & Mission",
-          "mr": "दृष्टीकोन आणि ध्येय"
+          "mr": "दृष्टीकोन आणि ध्येय",
+          "desc": {
+            "en": "ZP's goals and objectives",
+            "mr": "जि.प. चे उद्दिष्ट आणि ध्येय"
+          }
         },
         {
           "id": "admin_structure",
           "en": "Admin Structure",
-          "mr": "प्रशासकीय रचना"
+          "mr": "प्रशासकीय रचना",
+          "desc": {
+            "en": "Organizational hierarchy and officers",
+            "mr": "संघटनात्मक रचना आणि अधिकारी"
+          }
         },
         {
           "id": "who_is_who",
           "en": "Who's Who",
-          "mr": "कोण कोण आहेत"
+          "mr": "कोण कोण आहेत",
+          "desc": {
+            "en": "Key officials and their roles",
+            "mr": "प्रमुख अधिकारी आणि त्यांची भूमिका"
+          }
         },
         {
           "id": "main_menu",
@@ -240,42 +252,74 @@
         {
           "id": "general_admin",
           "en": "General Admin Dept",
-          "mr": "सामान्य प्र विभाग"
+          "mr": "सामान्य प्र विभाग",
+          "desc": {
+            "en": "Personnel, coordination & office management",
+            "mr": "कर्मचारी, समन्वय व कार्यालय व्यवस्थापन"
+          }
         },
         {
           "id": "finance",
           "en": "Finance Dept",
-          "mr": "वित्त विभाग"
+          "mr": "वित्त विभाग",
+          "desc": {
+            "en": "Budget, accounts & fund distribution",
+            "mr": "अंदाजपत्रक, हिशोब व निधी वितरण"
+          }
         },
         {
           "id": "health",
           "en": "Health Department",
-          "mr": "आरोग्य विभाग"
+          "mr": "आरोग्य विभाग",
+          "desc": {
+            "en": "PHCs, health services & disease control",
+            "mr": "PHC, आरोग्य सेवा व रोग नियंत्रण"
+          }
         },
         {
           "id": "primary_edu",
           "en": "Primary Education",
-          "mr": "शिक्षण प्रा विभाग"
+          "mr": "शिक्षण प्रा विभाग",
+          "desc": {
+            "en": "Schools, teachers & student welfare",
+            "mr": "शाळा, शिक्षक व विद्यार्थी कल्याण"
+          }
         },
         {
           "id": "secondary_edu",
           "en": "Secondary Education",
-          "mr": "शिक्षण माध्यम विभाग"
+          "mr": "शिक्षण माध्यम विभाग",
+          "desc": {
+            "en": "Std 8-12 schools & scholarships",
+            "mr": "इ ८-१२ शाळा व शिष्यवृत्ती"
+          }
         },
         {
           "id": "animal",
           "en": "Animal Husbandry",
-          "mr": "पशुसंवर्धन विभाग"
+          "mr": "पशुसंवर्धन विभाग",
+          "desc": {
+            "en": "Veterinary services & breed improvement",
+            "mr": "पशुवैद्यकीय सेवा व जाती सुधार"
+          }
         },
         {
           "id": "agriculture",
           "en": "Agriculture Dept",
-          "mr": "कृषी विभाग"
+          "mr": "कृषी विभाग",
+          "desc": {
+            "en": "Farming support, seeds & training",
+            "mr": "शेती सहाय्य, बियाणे व प्रशिक्षण"
+          }
         },
         {
           "id": "social_welfare",
           "en": "Social Welfare",
-          "mr": "समाज कल्याण विभाग"
+          "mr": "समाज कल्याण विभाग",
+          "desc": {
+            "en": "SC/ST/OBC welfare & scholarships",
+            "mr": "SC/ST/OBC कल्याण व शिष्यवृत्ती"
+          }
         },
         {
           "id": "see_more_dept",
@@ -300,37 +344,65 @@
         {
           "id": "zp_construction",
           "en": "ZP Construction Dept",
-          "mr": "जि.प बांधकाम विभाग"
+          "mr": "जि.प बांधकाम विभाग",
+          "desc": {
+            "en": "Rural infrastructure development",
+            "mr": "ग्रामीण पायाभूत सुविधा विकास"
+          }
         },
         {
           "id": "women_child_dev",
           "en": "Women & Child Development",
-          "mr": "महिला व बालविकास विभाग"
+          "mr": "महिला व बालविकास विभाग",
+          "desc": {
+            "en": "Women empowerment & child nutrition",
+            "mr": "महिला सशक्तीकरण व बाल पोषण"
+          }
         },
         {
           "id": "water_sanitation",
           "en": "Water & Sanitation",
-          "mr": "पाणी व स्वच्छता विभाग"
+          "mr": "पाणी व स्वच्छता विभाग",
+          "desc": {
+            "en": "Clean water & sanitation facilities",
+            "mr": "स्वच्छ पाणी व स्वच्छता सुविधा"
+          }
         },
         {
           "id": "panchayat",
           "en": "Panchayat Dept",
-          "mr": "पंचायत विभाग"
+          "mr": "पंचायत विभाग",
+          "desc": {
+            "en": "Gram Panchayat strengthening",
+            "mr": "ग्रामपंचायत बळकटीकरण"
+          }
         },
         {
           "id": "mnrega",
           "en": "MNREGA Dept",
-          "mr": "मनरेगा विभाग"
+          "mr": "मनरेगा विभाग",
+          "desc": {
+            "en": "Employment guarantee scheme",
+            "mr": "रोजगार हमी योजना"
+          }
         },
         {
           "id": "drda",
           "en": "District Rural Development",
-          "mr": "जिल्हा ग्रामीण विकास यंत्रणा"
+          "mr": "जिल्हा ग्रामीण विकास यंत्रणा",
+          "desc": {
+            "en": "Rural development & poverty alleviation",
+            "mr": "ग्रामीण विकास व गरिबी निर्मूलन"
+          }
         },
         {
           "id": "minor_irrigation",
           "en": "Minor Irrigation Dept",
-          "mr": "लघुपाटबंधारे विभाग"
+          "mr": "लघुपाटबंधारे विभाग",
+          "desc": {
+            "en": "Small irrigation projects for farming",
+            "mr": "शेतीसाठी लघु सिंचन प्रकल्प"
+          }
         },
         {
           "id": "departments",
@@ -1030,32 +1102,56 @@
         {
           "id": "health_schemes",
           "en": "Health Schemes",
-          "mr": "आरोग्य योजना"
+          "mr": "आरोग्य योजना",
+          "desc": {
+            "en": "PMJAY, immunization & health programs",
+            "mr": "PMJAY, लसीकरण व आरोग्य कार्यक्रम"
+          }
         },
         {
           "id": "edu_schemes",
           "en": "Education Schemes",
-          "mr": "शिक्षण योजना"
+          "mr": "शिक्षण योजना",
+          "desc": {
+            "en": "Mid-day meal, scholarships & textbooks",
+            "mr": "मध्यान्ह भोजन, शिष्यवृत्ती व पुस्तके"
+          }
         },
         {
           "id": "women_child",
           "en": "Women & Child Dev",
-          "mr": "महिला बालविकास"
+          "mr": "महिला बालविकास",
+          "desc": {
+            "en": "Sewing machine, MS-CIT & ICDS schemes",
+            "mr": "शिलाई मशिन, MS-CIT व ICDS योजना"
+          }
         },
         {
           "id": "govt_schemes",
           "en": "Important Govt Schemes",
-          "mr": "महत्त्वाच्या योजना"
+          "mr": "महत्त्वाच्या योजना",
+          "desc": {
+            "en": "PMAY, MGNREGA, SBM & UMED schemes",
+            "mr": "PMAY, मनरेगा, SBM व उमेद योजना"
+          }
         },
         {
           "id": "agri_schemes",
           "en": "Agriculture Schemes",
-          "mr": "कृषी योजना"
+          "mr": "कृषी योजना",
+          "desc": {
+            "en": "Farming support & mechanization aid",
+            "mr": "शेती सहाय्य व यंत्रीकरण मदत"
+          }
         },
         {
           "id": "sw_schemes",
           "en": "Social Welfare",
-          "mr": "समाज कल्याण योजना"
+          "mr": "समाज कल्याण योजना",
+          "desc": {
+            "en": "SC/ST scholarships & welfare programs",
+            "mr": "SC/ST शिष्यवृत्ती व कल्याण कार्यक्रम"
+          }
         },
         {
           "id": "main_menu",
