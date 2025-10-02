@@ -35,7 +35,11 @@
         {
           "id": "whats_new",
           "en": "What's New",
-          "mr": "नवीनतम घडामोडी"
+          "mr": "नवीनतम घडामोडी",
+          "desc": {
+            "en": "Latest updates from ZP Buldhana",
+            "mr": "जि.प. बुलढाणा मधील ताज्या घडामोडी"
+          }
         },
         {
           "id": "about_zp",
@@ -1148,8 +1152,8 @@
       "id": "cess_fund",
       "parent_id": "main_menu",
       "msg": {
-        "en": "💰 For Z.P. Cess Fund Scheme details, please visit:\n\n🔗 https://yavatmalyojana.com/\n\nYou can find complete information about all cess fund schemes here.",
-        "mr": "💰 जि.प. सेस फंड योजनांची अधिक माहिती:\n\n🔗 https://yavatmalyojana.com/\n\nयेथे सर्व सेस फंड योजनांची संपूर्ण माहिती मिळेल."
+        "en": "💰 Z.P. Cess Fund Scheme Details – Buldhana\n\nFor complete information about all ZP Buldhana cess fund schemes, please visit the official website:\n\n🔗 https://zpbuldhana.maharashtra.gov.in/en/\n\nYou can explore detailed information about schemes, eligibility criteria, application process, and contact details of concerned officers. Navigate to 'Schemes' or 'Departments' section on the website for more guidance.",
+        "mr": "💰 जि.प. सेस फंड योजना – बुलढाणा\n\nसर्व जि.प. बुलढाणा सेस फंड योजनांची संपूर्ण माहिती मिळवण्यासाठी अधिकृत वेबसाईटला भेट द्या:\n\n🔗 https://zpbuldhana.maharashtra.gov.in/en/\n\nयेथे योजनांची माहिती, पात्रता निकष, अर्ज प्रक्रिया आणि संबंधित अधिकाऱ्यांचे संपर्क तपशील पाहू शकता. अधिक मार्गदर्शनासाठी वेबसाईटवर 'Schemes' किंवा 'Departments' विभागात जा."
       },
       "buttons": [
         {
@@ -1163,8 +1167,8 @@
       "id": "officers_contact",
       "parent_id": "main_menu",
       "msg": {
-        "en": "📞 Officers' Contact Directory\n\nFor complete list of ZP Buldhana officials and their contact details, please visit the official website or contact the main office.\n\nMain Office: 07263-222222",
-        "mr": "📞 अधिकारी यांचे संपर्क\n\nजिल्हा परिषद बुलढाणा अधिकारी व त्यांच्या संपर्क तपशीलांसाठी अधिकृत वेबसाईट भेट द्या किंवा मुख्य कार्यालयात संपर्क करा.\n\nमुख्य कार्यालय: 07263-222222"
+        "en": "📞 Officers' Contact Directory\n\nFor complete list of ZP Buldhana officials and their contact details, please visit the official website or contact the main office.\n\nMain Office: 9423511961\n\nYou can also view department contacts by going to Main Menu → ZP departments, select the department, and choose 'Contact Officer'.\n\nOfficial Websites:\n- Contact Us: https://zpbuldhana.maharashtra.gov.in/en/contact-us/\n- Who's Who: https://zpbuldhana.maharashtra.gov.in/en/whos-who/",
+        "mr": "📞 अधिकारी यांचे संपर्क\n\nजिल्हा परिषद बुलढाणा अधिकारी व त्यांच्या संपर्क तपशीलांसाठी अधिकृत वेबसाईट भेट द्या किंवा मुख्य कार्यालयात संपर्क करा.\n\nमुख्य कार्यालय: 9423511961\n\nतुम्ही विभागांचे संपर्क देखील पाहू शकता: मेन मेनू → जि.प. विभाग, विभाग निवडा, आणि 'अधिकारी संपर्क' निवडा.\n\nअधिकृत वेबसाईट:\n- संपर्क करा: https://zpbuldhana.maharashtra.gov.in/en/contact-us/\n- कोण कोण आहे: https://zpbuldhana.maharashtra.gov.in/en/whos-who/"
       },
       "buttons": [
         {

@@ -316,16 +316,29 @@ def send_menu_item(user_id, item, lang):
     if isinstance(msg_text, dict):
         msg_text = msg_text.get(lang, msg_text.get("en", ""))
 
+   
+
     # Prepare options/buttons
     options = []
     opt_type = "text"
     
     if "options" in item:
-        # List options
-        options = [
-            {"id": opt["id"], "title": opt.get(lang, opt.get("en", opt["id"]))} 
-            for opt in item["options"]
-        ]
+        options = []
+        for opt in item["options"]:
+            row = {
+                "id": opt["id"],
+                "title": opt.get(lang, opt.get("en", opt["id"]))
+            }
+            # Include description if present
+            if "desc" in opt:
+                desc = ""
+                if isinstance(opt["desc"], dict):
+                    desc = opt["desc"].get(lang, opt["desc"].get("en", ""))
+                elif isinstance(opt["desc"], str):
+                    desc = opt["desc"].strip()
+                if desc:
+                    row["description"] = desc
+            options.append(row)
         opt_type = "list"
     elif "buttons" in item:
         # Button options
