@@ -1384,9 +1384,9 @@
       },
       "buttons": [
         {
-          "id": "main_menu",
-          "en": "◀ Main Menu",
-          "mr": "◀ मुख्य मेनू"
+          "id": "opening",
+          "en": "Get Started",
+          "mr": "प्रारंभ करा"
         }
       ]
     }
