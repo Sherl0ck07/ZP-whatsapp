@@ -57,7 +57,11 @@ def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
                 "sections": [{
                     "title": "Options",
                     "rows": [
-                        {"id": opt["id"], "title": sanitize_title(opt["title"])} 
+                        {
+                            "id": opt["id"], 
+                            "title": sanitize_title(opt["title"]),
+                            **({'description': opt["description"][:72]} if "description" in opt else {})
+                        }
                         for opt in options
                     ]
                 }]
