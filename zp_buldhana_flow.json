@@ -1,7 +1,7 @@
 {
   "bot_name": "ZP Buldhana WhatsApp Bot",
   "opening": {
-    "msg": "नमस्कार! 🙏🏻\n\nसेवादूत मध्ये आपले स्वागत आहे – जिल्हा परिषद बुलढाणा सेवांसाठी तुमची डिजिटल मदतनीस!\n\nविभाग, योजना, सेवा आणि अधिक माहितीसाठी मी येथे आहे.\n\nकृपया तुमची पसंतीची भाषा निवडा:\n\nHello! 🙏🏻\n\nWelcome to Sevadoot – your digital helpline for Zilla Parishad Buldhana services!\n\nI'm here to help you with information about departments, schemes, services, and more.\n\nPlease select your preferred language:",
+    "msg": "नमस्कार! 🙏🏻\n\nसेवादूत मध्ये आपले स्वागत आहे – जिल्हा परिषद बुलढाणा सेवांसाठी तुमची डिजिटल मदतनीस!\n\nविभाग, योजना, सेवा आणि अधिक माहितीसाठी मी येथे आहे.\n\nकृपया तुमची पसंतीची भाषा निवडा:\n\nHello! 🙏🏻\n\nWelcome to Sevadoot – your digital helpline for Zilla Parishad Buldhana services!\n\nI'm here to help you with information about departments, schemes, services, and more.\n\nPlease select your preferred language:\n\n💡 Type 'help' to learn how to use this bot.",
     "buttons": [
       {
         "id": "language_en",
@@ -1284,8 +1284,8 @@
       "id": "cess_fund",
       "parent_id": "main_menu",
       "msg": {
-        "en": "💰 Z.P. Cess Fund Scheme Details – Buldhana\n\nFor complete information about all ZP Buldhana cess fund schemes, please visit the official website:\n\n🔗 https://zpbuldhana.maharashtra.gov.in/en/\n\nYou can explore detailed information about schemes, eligibility criteria, application process, and contact details of concerned officers. Navigate to 'Schemes' or 'Departments' section on the website for more guidance.",
-        "mr": "💰 जि.प. सेस फंड योजना – बुलढाणा\n\nसर्व जि.प. बुलढाणा सेस फंड योजनांची संपूर्ण माहिती मिळवण्यासाठी अधिकृत वेबसाईटला भेट द्या:\n\n🔗 https://zpbuldhana.maharashtra.gov.in/en/\n\nयेथे योजनांची माहिती, पात्रता निकष, अर्ज प्रक्रिया आणि संबंधित अधिकाऱ्यांचे संपर्क तपशील पाहू शकता. अधिक मार्गदर्शनासाठी वेबसाईटवर 'Schemes' किंवा 'Departments' विभागात जा."
+        "en": "💰 Z.P. Cess Fund Scheme Details – Buldhana\n\nFor complete information about all ZP Buldhana cess fund schemes, please visit the official website:\n\n🔗 https://zpbuldhana.maharashtra.gov.in/en/schemes-programmes/\n\nYou can explore detailed information about schemes, eligibility criteria, application process, and contact details of concerned officers. Navigate to 'Schemes' or 'Departments' section on the website for more guidance.",
+        "mr": "💰 जि.प. सेस फंड योजना – बुलढाणा\n\nसर्व जि.प. बुलढाणा सेस फंड योजनांची संपूर्ण माहिती मिळवण्यासाठी अधिकृत वेबसाईटला भेट द्या:\n\n🔗 https://zpbuldhana.maharashtra.gov.in/योजना-कार्यक्रम/\n\nयेथे योजनांची माहिती, पात्रता निकष, अर्ज प्रक्रिया आणि संबंधित अधिकाऱ्यांचे संपर्क तपशील पाहू शकता. अधिक मार्गदर्शनासाठी वेबसाईटवर 'Schemes' किंवा 'Departments' विभागात जा."
       },
       "buttons": [
         {
@@ -1374,6 +1374,24 @@
           "mr": "मराठी"
         }
       ]
+    },
+    "help": {
+  "id": "help",
+  "parent_id": null,
+  "msg": {
+    "en": "💡 Sevadoot Bot Help\\n\\nHere’s how you can use this bot:\\n1️⃣ Use the buttons or list options to navigate menus.\\n2️⃣ Type 'restart' to restart the bot at any time.\\n3️⃣ Type 'help' to see this help message again.\\n4️⃣ Select your preferred language to continue.\\n\\nWe are here to help you explore ZP Buldhana services, schemes, and departments.",
+    "mr": "💡 सेवादूत बॉट मदत\\n\\nहा बॉट वापरण्याबाबत मार्गदर्शन:\\n1️⃣ मेनू मध्ये नेव्हिगेट करण्यासाठी बटणे किंवा यादी पर्याय वापरा.\\n2️⃣ बॉट पुन्हा सुरू करण्यासाठी 'पुन्हा सुरू करा' टाइप करा.\\n3️⃣ ही मदत पाहण्यासाठी 'मदत' टाइप करा.\\n4️⃣ पुढे जाण्यासाठी आपली पसंतीची भाषा निवडा.\\n\\nआम्ही येथे जि.प. बुलढाणा सेवा, योजना आणि विभाग शोधण्यात तुमची मदत करण्यासाठी आहोत."
+  },
+  "buttons": [
+    {
+      "id": "main_menu",
+      "en": "◀ Main Menu",
+      "mr": "◀ मुख्य मेनू"
     }
+  ]
+}
+
+    
   }
+  
 }
