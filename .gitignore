@@ -1,22 +1,5 @@
-# Ignore folders
 docs/
 quotes/
-
-# Ignore specific files
 test_api.py
 test.py
 working.py
-
-# Common Python ignores
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.env
-.env
-.venv/
-*.log
-
-# IDE/editor settings
-.vscode/
-.idea/
