@@ -247,7 +247,11 @@ def handle_free_text(user_id, user_text):
     # Unknown input - resend current menu or opening
     lang = state.get("language", "en")
     current_menu = state.get("current_menu", "opening")
-
+    # --- NEW: handle 'help' input ---
+    if user_text.strip().lower() == "help":
+        send_menu_by_id(user_id, "help", lang)
+        return 
+    
     if current_menu == "opening" or not state.get("language"):
         send_opening_menu(user_id)
     else:
