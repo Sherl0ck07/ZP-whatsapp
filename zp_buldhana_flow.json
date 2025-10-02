@@ -44,47 +44,83 @@
         {
           "id": "about_zp",
           "en": "About Z.P. Buldhana",
-          "mr": "जि.प. बुलढाणा बद्दल"
+          "mr": "जि.प. बुलढाणा बद्दल",
+          "desc": {
+            "en": "History, vision, mission and structure",
+            "mr": "इतिहास, दृष्टीकोन, ध्येय आणि रचना"
+          }
         },
         {
           "id": "departments",
           "en": "Z.P. Departments",
-          "mr": "जि.प. विभाग"
+          "mr": "जि.प. विभाग",
+          "desc": {
+            "en": "15 departments serving rural areas",
+            "mr": "ग्रामीण भागासाठी १५ विभाग"
+          }
         },
         {
           "id": "rts",
           "en": "Right to Service ",
-          "mr": "सेवा हक्क अधिनियम"
+          "mr": "सेवा हक्क अधिनियम",
+          "desc": {
+            "en": "Know your service rights and appeals",
+            "mr": "सेवा हक्क आणि अपील माहिती"
+          }
         },
         {
           "id": "schemes",
           "en": "Z.P. Schemes",
-          "mr": "जि.प. योजना"
+          "mr": "जि.प. योजना",
+          "desc": {
+            "en": "Government schemes and benefits",
+            "mr": "शासकीय योजना आणि लाभ"
+          }
         },
         {
           "id": "cess_fund",
           "en": "Z.P. Cess Fund",
-          "mr": "जि.प. सेस फंड"
+          "mr": "जि.प. सेस फंड",
+          "desc": {
+            "en": "ZP Cess Fund scheme information",
+            "mr": "जि.प. सेस फंड योजना माहिती"
+          }
         },
         {
           "id": "officers_contact",
           "en": "Officers' Contact",
-          "mr": "अधिकारी संपर्क"
+          "mr": "अधिकारी संपर्क",
+          "desc": {
+            "en": "Contact details of ZP officials",
+            "mr": "जि.प. अधिकाऱ्यांचे संपर्क तपशील"
+          }
         },
         {
           "id": "complaint",
           "en": "Online Complaint",
-          "mr": "ऑनलाईन तक्रार"
+          "mr": "ऑनलाईन तक्रार",
+          "desc": {
+            "en": "Register your grievance online",
+            "mr": "तक्रार नोंदणी करा"
+          }
         },
         {
           "id": "RTI",
           "en": "Right to Information",
-          "mr": "माहिती अधिकार"
+          "mr": "माहिती अधिकार",
+          "desc": {
+            "en": "RTI Act 2005 information and filing",
+            "mr": "माहिती अधिकार कायदा २००५"
+          }
         },
         {
           "id": "change_language",
           "en": "Change Language",
-          "mr": "भाषा बदल"
+          "mr": "भाषा बदल",
+          "desc": {
+            "en": "Switch language between English or Marathi",
+            "mr": "भाषा इंग्रजी किंवा मराठी मध्ये बदला"
+          }
         }
       ]
     },
