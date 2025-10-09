@@ -28,7 +28,7 @@ def sanitize_title(title):
 
 # Send WhatsApp message with proper formatting
 def send_whatsapp_message(to, message_text, options=None, opt_type="text"):
-    url = f"https://graph.facebook.com/v22.0/{PHONE_NUMBER_ID}/messages"
+    url = f"https://graph.facebook.com/v23.0/{PHONE_NUMBER_ID}/messages"
     headers = {
         "Authorization": f"Bearer {ACCESS_TOKEN}",
         "Content-Type": "application/json"
