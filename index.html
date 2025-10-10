@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of DigiSeva Zilla Parishad Buldhana - promoting digital governance and citizen services in Buldhana District, Maharashtra.">
+    <meta name="keywords" content="Zilla Parishad Buldhana, DigiSeva, Maharashtra Government, ZP Buldhana, Rural Development, Digital India, e-Governance">
+    <meta name="author" content="General Administration Department, Zilla Parishad Buldhana">
+    <title>DigiSeva ZP Buldhana | Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #004080 0%, #0059b3 100%);
+            color: white;
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .emblem {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #004080;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        .header-text h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header-text .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+        
+        .header-text .tagline {
+            font-size: 1em;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #FF9933;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+        
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: #004080;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #FF9933, #138808);
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .official-details {
+            background: white;
+            border-left: 5px solid #138808;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .official-details h3 {
+            color: #004080;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .official-details p {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+        
+        .official-details strong {
+            color: #004080;
+            display: inline-block;
+            min-width: 150px;
+        }
+        
+        /* Departments Grid */
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .department-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #FF9933;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .department-card h3 {
+            color: #004080;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* Initiatives */
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .initiative-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #138808;
+        }
+        
+        .initiative-card h3 {
+            color: #004080;
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+        
+        .initiative-card p {
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            line-height: 2;
+        }
+        
+        .contact-info p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        
+        .contact-info a {
+            color: #004080;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-icon {
+            display: inline-block;
+            width: 25px;
+            font-size: 1.2em;
+        }
+        
+        /* Footer */
+        footer {
+            background: #004080;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        footer p {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.9;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 1.8em;
+            }
+            
+            .header-text .subtitle {
+                font-size: 1em;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            nav a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .departments-grid,
+            .initiatives-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="emblem">
+                    Zilla Parishad<br>Buldhana
+                </div>
+                <div class="header-text">
+                    <h1>DigiSeva ZP Buldhana</h1>
+                    <div class="subtitle">Digital Empowerment by Zilla Parishad Buldhana, Maharashtra</div>
+                    <div class="tagline">Empowering Citizens Through Technology and Transparency</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#departments">Departments</a></li>
+            <li><a href="#initiatives">Digital Initiatives</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Zilla Parishad Buldhana</h2>
+            <div class="about-content">
+                <p>Zilla Parishad Buldhana is the governing local body responsible for planning, development, and welfare activities in Buldhana District, Maharashtra. As a pivotal institution in rural governance, we are committed to the holistic development of our district through transparent administration and citizen-centric services.</p>
+                
+                <p>The General Administration Department oversees operations, human resource management, public services, and digital governance under the "DigiSeva" initiative. DigiSeva represents our commitment to leveraging technology for improved service delivery, transparency, and accessibility for all citizens of Buldhana District.</p>
+                
+                <div class="official-details">
+                    <h3>Official Details</h3>
+                    <p><strong>Legal Name:</strong> Zilla Parishad Buldhana</p>
+                    <p><strong>Department:</strong> General Administration Department</p>
+                    <p><strong>Office Address:</strong> 01, Zilla Parishad Karyalaya, Zilla Parishad Road, Buldhana – 443001, Maharashtra, India</p>
+                    <p><strong>Phone Number:</strong> +91 9423511961</p>
+                    <p><strong>Email:</strong> <a href="mailto:contact@digisevazpbuldhana.org">contact@digisevazpbuldhana.org</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments">
+        <div class="container">
+            <h2 class="section-title">Our Key Departments</h2>
+            <div class="departments-grid">
+                <div class="department-card">
+                    <h3>General Administration Department</h3>
+                    <p>Oversees overall administration, human resources, and digital governance initiatives.</p>
+                </div>
+                <div class="department-card">
+                    <h3>Rural Development and Panchayat Raj</h3>
+                    <p>Implements rural development schemes and strengthens local self-governance.</p>
+                </div>
+                <div class="department-card">
+                    <h3>Health and Family Welfare</h3>
+                    <p>Provides healthcare services and promotes public health initiatives across the district.</p>
+                </div>
+                <div class="department-card">
+                    <h3>Education and Child Development</h3>
+                    <p>Ensures quality education and holistic development of children in rural areas.</p>
+                </div>
+                <div class="department-card">
+                    <h3>Agriculture and Water Conservation</h3>
+                    <p>Supports farmers and implements sustainable water management practices.</p>
+                </div>
+                <div class="department-card">
+                    <h3>Public Works and Rural Infrastructure</h3>
+                    <p>Develops and maintains infrastructure for improved connectivity and services.</p>
+                </div>
+                <div class="department-card">
+                    <h3>Social Welfare and Empowerment</h3>
+                    <p>Implements welfare schemes and empowerment programs for marginalized communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Initiatives Section -->
+    <section id="initiatives">
+        <div class="container">
+            <h2 class="section-title">Digital Initiatives under DigiSeva</h2>
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <h3>Online Grievance Redressal</h3>
+                    <p>Citizens can submit issues online and receive updates via SMS for transparent complaint resolution.</p>
+                </div>
+                <div class="initiative-card">
+                    <h3>e-Governance Dashboard</h3>
+                    <p>Real-time data visualization for rural development schemes and progress tracking.</p>
+                </div>
+                <div class="initiative-card">
+                    <h3>Smart Attendance System</h3>
+                    <p>Automated attendance tracking for ZP officers ensuring accountability and efficiency.</p>
+                </div>
+                <div class="initiative-card">
+                    <h3>ZP Connect App</h3>
+                    <p>Digital communication platform connecting officers and citizens for seamless interaction.</p>
+                </div>
+                <div class="initiative-card">
+                    <h3>Digital Records Management</h3>
+                    <p>Paperless file movement and approval system for faster administrative processes.</p>
+                </div>
+                <div class="initiative-card">
+                    <h3>Rural e-Library Program</h3>
+                    <p>Promoting digital learning and knowledge access in villages across Buldhana District.</p>
+                </div>
+                <div class="initiative-card">
+                    <h3>Farmers Support Portal</h3>
+                    <p>Agriculture updates, weather alerts, and government schemes information for farmers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p><span class="contact-icon">📍</span> <strong>Zilla Parishad Buldhana</strong></p>
+                    <p style="margin-left: 35px;">01, Zilla Parishad Karyalaya, Zilla Parishad Road,<br>Buldhana – 443001, Maharashtra, India</p>
+                    
+                    <p><span class="contact-icon">☎️</span> <strong>Phone:</strong> <a href="tel:+919423511961">+91 9423511961</a></p>
+                    
+                    <p><span class="contact-icon">✉️</span> <strong>Email:</strong> <a href="mailto:contact@digisevazpbuldhana.org">contact@digisevazpbuldhana.org</a></p>
+                    
+                    <p><span class="contact-icon">🌐</span> <strong>Website:</strong> <a href="https://www.digisevazpbuldhana.org" target="_blank">https://www.digisevazpbuldhana.org</a></p>
+                    
+                    <p><span class="contact-icon">🕐</span> <strong>Office Hours:</strong> Monday–Saturday, 10:00 AM – 5:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>© 2025 DigiSeva Zilla Parishad Buldhana. All Rights Reserved.</strong></p>
+            <p>An initiative by the General Administration Department, Zilla Parishad Buldhana,<br>to promote digital governance and transparency.</p>
+            
+            <div class="footer-links">
+                <a href="#terms">Terms of Use</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#accessibility">Accessibility</a>
+                <a href="https://www.maharashtra.gov.in" target="_blank">Government of Maharashtra</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

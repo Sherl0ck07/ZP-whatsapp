@@ -166,6 +166,7 @@ def verify_webhook():
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
+    print("Webhook triggered!")
     data = request.get_json()
     print("📩 Received webhook:", json.dumps(data, indent=2, ensure_ascii=False))
     
